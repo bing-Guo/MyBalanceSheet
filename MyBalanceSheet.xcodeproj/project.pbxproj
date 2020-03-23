@@ -7,14 +7,41 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC85D1152420DFA0008512DB /* RightPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC85D1132420DFA0008512DB /* RightPickerTableViewCell.swift */; };
+		FC85D1162420DFA0008512DB /* RightPickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC85D1142420DFA0008512DB /* RightPickerTableViewCell.xib */; };
+		FC85D11A2420E450008512DB /* IconCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC85D1182420E450008512DB /* IconCollectionViewCell.swift */; };
+		FC85D11B2420E450008512DB /* IconCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC85D1192420E450008512DB /* IconCollectionViewCell.xib */; };
 		FCF29D6B2413889F007E93D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF29D6A2413889F007E93D2 /* AppDelegate.swift */; };
 		FCF29D6D2413889F007E93D2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF29D6C2413889F007E93D2 /* SceneDelegate.swift */; };
-		FCF29D6F2413889F007E93D2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF29D6E2413889F007E93D2 /* ViewController.swift */; };
 		FCF29D722413889F007E93D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCF29D702413889F007E93D2 /* Main.storyboard */; };
 		FCF29D752413889F007E93D2 /* MyBalanceSheet.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FCF29D732413889F007E93D2 /* MyBalanceSheet.xcdatamodeld */; };
 		FCF29D77241388A3007E93D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCF29D76241388A3007E93D2 /* Assets.xcassets */; };
 		FCF29D7A241388A3007E93D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCF29D78241388A3007E93D2 /* LaunchScreen.storyboard */; };
 		FCF29D85241388A3007E93D2 /* MyBalanceSheetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF29D84241388A3007E93D2 /* MyBalanceSheetTests.swift */; };
+		FCF29D9124138AB0007E93D2 /* SummaryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF29D9024138AB0007E93D2 /* SummaryTableViewController.swift */; };
+		FCF29D9624138FC0007E93D2 /* SheetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF29D9424138FC0007E93D2 /* SheetTableViewCell.swift */; };
+		FCF29D9724138FC0007E93D2 /* SheetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCF29D9524138FC0007E93D2 /* SheetTableViewCell.xib */; };
+		FCF29DB02414B9F6007E93D2 /* DateSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF29DAF2414B9F6007E93D2 /* DateSelector.swift */; };
+		FCF29DB22414BA2A007E93D2 /* DateSelector.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCF29DB12414BA2A007E93D2 /* DateSelector.xib */; };
+		FCF29DB52414D3B6007E93D2 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF29DB42414D3B6007E93D2 /* UIColor+Ext.swift */; };
+		FCF29DB724150E20007E93D2 /* AssetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF29DB624150E20007E93D2 /* AssetTableViewController.swift */; };
+		FCF29DB92415106B007E93D2 /* LiabilityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF29DB82415106B007E93D2 /* LiabilityTableViewController.swift */; };
+		FCF29DCD2415400C007E93D2 /* StorgeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF29DCC2415400C007E93D2 /* StorgeManager.swift */; };
+		FCF29DD7241C95F5007E93D2 /* Sheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF29DD6241C95F5007E93D2 /* Sheet.swift */; };
+		FCF29DD9241C9890007E93D2 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF29DD8241C9890007E93D2 /* Genre.swift */; };
+		FCF29DDB241C9A06007E93D2 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF29DDA241C9A06007E93D2 /* Database.swift */; };
+		FCF29DDF241CA18E007E93D2 /* CreateAssetSheetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF29DDE241CA18E007E93D2 /* CreateAssetSheetTableViewController.swift */; };
+		FCF29DE3241CB71E007E93D2 /* RightTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF29DE1241CB71E007E93D2 /* RightTextTableViewCell.swift */; };
+		FCF29DE4241CB71E007E93D2 /* RightTextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCF29DE2241CB71E007E93D2 /* RightTextTableViewCell.xib */; };
+		FCF29DE8241CBBB6007E93D2 /* AssetGenreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF29DE7241CBBB6007E93D2 /* AssetGenreTableViewController.swift */; };
+		FCF29DEA241CF6A1007E93D2 /* CurrencyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF29DE9241CF6A1007E93D2 /* CurrencyTableViewController.swift */; };
+		FCF29DED241CF7CE007E93D2 /* RightTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF29DEB241CF7CE007E93D2 /* RightTextFieldTableViewCell.swift */; };
+		FCF29DEE241CF7CE007E93D2 /* RightTextFieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCF29DEC241CF7CE007E93D2 /* RightTextFieldTableViewCell.xib */; };
+		FCF29DF1241E5892007E93D2 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF29DEF241E5892007E93D2 /* ItemTableViewCell.swift */; };
+		FCF29DF2241E5892007E93D2 /* ItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCF29DF0241E5892007E93D2 /* ItemTableViewCell.xib */; };
+		FCF29DF9241E7A12007E93D2 /* CreateAssetGenreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF29DF8241E7A12007E93D2 /* CreateAssetGenreTableViewController.swift */; };
+		FCF29DFC241E7BAA007E93D2 /* RightNumberFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF29DFA241E7BAA007E93D2 /* RightNumberFieldTableViewCell.swift */; };
+		FCF29DFD241E7BAA007E93D2 /* RightNumberFieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCF29DFB241E7BAA007E93D2 /* RightNumberFieldTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,10 +55,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FC85D1132420DFA0008512DB /* RightPickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightPickerTableViewCell.swift; sourceTree = "<group>"; };
+		FC85D1142420DFA0008512DB /* RightPickerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RightPickerTableViewCell.xib; sourceTree = "<group>"; };
+		FC85D1182420E450008512DB /* IconCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconCollectionViewCell.swift; sourceTree = "<group>"; };
+		FC85D1192420E450008512DB /* IconCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IconCollectionViewCell.xib; sourceTree = "<group>"; };
 		FCF29D672413889F007E93D2 /* MyBalanceSheet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyBalanceSheet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCF29D6A2413889F007E93D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCF29D6C2413889F007E93D2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FCF29D6E2413889F007E93D2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FCF29D712413889F007E93D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FCF29D742413889F007E93D2 /* MyBalanceSheet.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyBalanceSheet.xcdatamodel; sourceTree = "<group>"; };
 		FCF29D76241388A3007E93D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -40,6 +70,30 @@
 		FCF29D80241388A3007E93D2 /* MyBalanceSheetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyBalanceSheetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCF29D84241388A3007E93D2 /* MyBalanceSheetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBalanceSheetTests.swift; sourceTree = "<group>"; };
 		FCF29D86241388A3007E93D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FCF29D9024138AB0007E93D2 /* SummaryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryTableViewController.swift; sourceTree = "<group>"; };
+		FCF29D9424138FC0007E93D2 /* SheetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetTableViewCell.swift; sourceTree = "<group>"; };
+		FCF29D9524138FC0007E93D2 /* SheetTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SheetTableViewCell.xib; sourceTree = "<group>"; };
+		FCF29DAF2414B9F6007E93D2 /* DateSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelector.swift; sourceTree = "<group>"; };
+		FCF29DB12414BA2A007E93D2 /* DateSelector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DateSelector.xib; sourceTree = "<group>"; };
+		FCF29DB42414D3B6007E93D2 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
+		FCF29DB624150E20007E93D2 /* AssetTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetTableViewController.swift; sourceTree = "<group>"; };
+		FCF29DB82415106B007E93D2 /* LiabilityTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiabilityTableViewController.swift; sourceTree = "<group>"; };
+		FCF29DCC2415400C007E93D2 /* StorgeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorgeManager.swift; sourceTree = "<group>"; };
+		FCF29DD6241C95F5007E93D2 /* Sheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sheet.swift; sourceTree = "<group>"; };
+		FCF29DD8241C9890007E93D2 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
+		FCF29DDA241C9A06007E93D2 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
+		FCF29DDE241CA18E007E93D2 /* CreateAssetSheetTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAssetSheetTableViewController.swift; sourceTree = "<group>"; };
+		FCF29DE1241CB71E007E93D2 /* RightTextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightTextTableViewCell.swift; sourceTree = "<group>"; };
+		FCF29DE2241CB71E007E93D2 /* RightTextTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RightTextTableViewCell.xib; sourceTree = "<group>"; };
+		FCF29DE7241CBBB6007E93D2 /* AssetGenreTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetGenreTableViewController.swift; sourceTree = "<group>"; };
+		FCF29DE9241CF6A1007E93D2 /* CurrencyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewController.swift; sourceTree = "<group>"; };
+		FCF29DEB241CF7CE007E93D2 /* RightTextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightTextFieldTableViewCell.swift; sourceTree = "<group>"; };
+		FCF29DEC241CF7CE007E93D2 /* RightTextFieldTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RightTextFieldTableViewCell.xib; sourceTree = "<group>"; };
+		FCF29DEF241E5892007E93D2 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
+		FCF29DF0241E5892007E93D2 /* ItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemTableViewCell.xib; sourceTree = "<group>"; };
+		FCF29DF8241E7A12007E93D2 /* CreateAssetGenreTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAssetGenreTableViewController.swift; sourceTree = "<group>"; };
+		FCF29DFA241E7BAA007E93D2 /* RightNumberFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightNumberFieldTableViewCell.swift; sourceTree = "<group>"; };
+		FCF29DFB241E7BAA007E93D2 /* RightNumberFieldTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RightNumberFieldTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +114,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FC85D1172420E408008512DB /* IconCollection */ = {
+			isa = PBXGroup;
+			children = (
+				FC85D1182420E450008512DB /* IconCollectionViewCell.swift */,
+				FC85D1192420E450008512DB /* IconCollectionViewCell.xib */,
+			);
+			path = IconCollection;
+			sourceTree = "<group>";
+		};
 		FCF29D5E2413889F007E93D2 = {
 			isa = PBXGroup;
 			children = (
@@ -81,14 +144,16 @@
 		FCF29D692413889F007E93D2 /* MyBalanceSheet */ = {
 			isa = PBXGroup;
 			children = (
+				FCF29DB32414D39E007E93D2 /* Extension */,
+				FCF29D9824139085007E93D2 /* Model */,
+				FCF29D9224138EC8007E93D2 /* View */,
+				FCF29D8F241389CE007E93D2 /* Controller */,
 				FCF29D6A2413889F007E93D2 /* AppDelegate.swift */,
 				FCF29D6C2413889F007E93D2 /* SceneDelegate.swift */,
-				FCF29D6E2413889F007E93D2 /* ViewController.swift */,
 				FCF29D702413889F007E93D2 /* Main.storyboard */,
 				FCF29D76241388A3007E93D2 /* Assets.xcassets */,
 				FCF29D78241388A3007E93D2 /* LaunchScreen.storyboard */,
 				FCF29D7B241388A3007E93D2 /* Info.plist */,
-				FCF29D732413889F007E93D2 /* MyBalanceSheet.xcdatamodeld */,
 			);
 			path = MyBalanceSheet;
 			sourceTree = "<group>";
@@ -100,6 +165,94 @@
 				FCF29D86241388A3007E93D2 /* Info.plist */,
 			);
 			path = MyBalanceSheetTests;
+			sourceTree = "<group>";
+		};
+		FCF29D8F241389CE007E93D2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FCF29DF7241E78A3007E93D2 /* Assets */,
+				FCF29D9024138AB0007E93D2 /* SummaryTableViewController.swift */,
+				FCF29DB82415106B007E93D2 /* LiabilityTableViewController.swift */,
+				FCF29DE9241CF6A1007E93D2 /* CurrencyTableViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		FCF29D9224138EC8007E93D2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FC85D1172420E408008512DB /* IconCollection */,
+				FCF29DE0241CB6E6007E93D2 /* FormCell */,
+				FCF29DAE2414B9B8007E93D2 /* DateSelector */,
+				FCF29D9324138ECF007E93D2 /* Cell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FCF29D9324138ECF007E93D2 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				FCF29D9424138FC0007E93D2 /* SheetTableViewCell.swift */,
+				FCF29D9524138FC0007E93D2 /* SheetTableViewCell.xib */,
+				FCF29DEF241E5892007E93D2 /* ItemTableViewCell.swift */,
+				FCF29DF0241E5892007E93D2 /* ItemTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		FCF29D9824139085007E93D2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FCF29D732413889F007E93D2 /* MyBalanceSheet.xcdatamodeld */,
+				FCF29DCC2415400C007E93D2 /* StorgeManager.swift */,
+				FCF29DD6241C95F5007E93D2 /* Sheet.swift */,
+				FCF29DD8241C9890007E93D2 /* Genre.swift */,
+				FCF29DDA241C9A06007E93D2 /* Database.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		FCF29DAE2414B9B8007E93D2 /* DateSelector */ = {
+			isa = PBXGroup;
+			children = (
+				FCF29DAF2414B9F6007E93D2 /* DateSelector.swift */,
+				FCF29DB12414BA2A007E93D2 /* DateSelector.xib */,
+			);
+			path = DateSelector;
+			sourceTree = "<group>";
+		};
+		FCF29DB32414D39E007E93D2 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				FCF29DB42414D3B6007E93D2 /* UIColor+Ext.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		FCF29DE0241CB6E6007E93D2 /* FormCell */ = {
+			isa = PBXGroup;
+			children = (
+				FCF29DE1241CB71E007E93D2 /* RightTextTableViewCell.swift */,
+				FCF29DE2241CB71E007E93D2 /* RightTextTableViewCell.xib */,
+				FCF29DEB241CF7CE007E93D2 /* RightTextFieldTableViewCell.swift */,
+				FCF29DEC241CF7CE007E93D2 /* RightTextFieldTableViewCell.xib */,
+				FCF29DFA241E7BAA007E93D2 /* RightNumberFieldTableViewCell.swift */,
+				FCF29DFB241E7BAA007E93D2 /* RightNumberFieldTableViewCell.xib */,
+				FC85D1132420DFA0008512DB /* RightPickerTableViewCell.swift */,
+				FC85D1142420DFA0008512DB /* RightPickerTableViewCell.xib */,
+			);
+			path = FormCell;
+			sourceTree = "<group>";
+		};
+		FCF29DF7241E78A3007E93D2 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				FCF29DB624150E20007E93D2 /* AssetTableViewController.swift */,
+				FCF29DDE241CA18E007E93D2 /* CreateAssetSheetTableViewController.swift */,
+				FCF29DE7241CBBB6007E93D2 /* AssetGenreTableViewController.swift */,
+				FCF29DF8241E7A12007E93D2 /* CreateAssetGenreTableViewController.swift */,
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,8 +336,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCF29DB22414BA2A007E93D2 /* DateSelector.xib in Resources */,
 				FCF29D7A241388A3007E93D2 /* LaunchScreen.storyboard in Resources */,
+				FC85D11B2420E450008512DB /* IconCollectionViewCell.xib in Resources */,
+				FCF29DEE241CF7CE007E93D2 /* RightTextFieldTableViewCell.xib in Resources */,
+				FC85D1162420DFA0008512DB /* RightPickerTableViewCell.xib in Resources */,
 				FCF29D77241388A3007E93D2 /* Assets.xcassets in Resources */,
+				FCF29DF2241E5892007E93D2 /* ItemTableViewCell.xib in Resources */,
+				FCF29D9724138FC0007E93D2 /* SheetTableViewCell.xib in Resources */,
+				FCF29DFD241E7BAA007E93D2 /* RightNumberFieldTableViewCell.xib in Resources */,
+				FCF29DE4241CB71E007E93D2 /* RightTextTableViewCell.xib in Resources */,
 				FCF29D722413889F007E93D2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -203,10 +364,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCF29DB724150E20007E93D2 /* AssetTableViewController.swift in Sources */,
+				FCF29DED241CF7CE007E93D2 /* RightTextFieldTableViewCell.swift in Sources */,
+				FCF29DB92415106B007E93D2 /* LiabilityTableViewController.swift in Sources */,
+				FCF29DCD2415400C007E93D2 /* StorgeManager.swift in Sources */,
+				FCF29DD7241C95F5007E93D2 /* Sheet.swift in Sources */,
+				FCF29DF9241E7A12007E93D2 /* CreateAssetGenreTableViewController.swift in Sources */,
+				FCF29DB52414D3B6007E93D2 /* UIColor+Ext.swift in Sources */,
+				FCF29D9124138AB0007E93D2 /* SummaryTableViewController.swift in Sources */,
+				FCF29DD9241C9890007E93D2 /* Genre.swift in Sources */,
 				FCF29D752413889F007E93D2 /* MyBalanceSheet.xcdatamodeld in Sources */,
-				FCF29D6F2413889F007E93D2 /* ViewController.swift in Sources */,
+				FCF29DB02414B9F6007E93D2 /* DateSelector.swift in Sources */,
 				FCF29D6B2413889F007E93D2 /* AppDelegate.swift in Sources */,
+				FCF29DFC241E7BAA007E93D2 /* RightNumberFieldTableViewCell.swift in Sources */,
+				FCF29DF1241E5892007E93D2 /* ItemTableViewCell.swift in Sources */,
+				FC85D11A2420E450008512DB /* IconCollectionViewCell.swift in Sources */,
+				FC85D1152420DFA0008512DB /* RightPickerTableViewCell.swift in Sources */,
+				FCF29D9624138FC0007E93D2 /* SheetTableViewCell.swift in Sources */,
+				FCF29DEA241CF6A1007E93D2 /* CurrencyTableViewController.swift in Sources */,
+				FCF29DDB241C9A06007E93D2 /* Database.swift in Sources */,
+				FCF29DE3241CB71E007E93D2 /* RightTextTableViewCell.swift in Sources */,
 				FCF29D6D2413889F007E93D2 /* SceneDelegate.swift in Sources */,
+				FCF29DE8241CBBB6007E93D2 /* AssetGenreTableViewController.swift in Sources */,
+				FCF29DDF241CA18E007E93D2 /* CreateAssetSheetTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,7 +661,8 @@
 				FCF29D742413889F007E93D2 /* MyBalanceSheet.xcdatamodel */,
 			);
 			currentVersion = FCF29D742413889F007E93D2 /* MyBalanceSheet.xcdatamodel */;
-			path = MyBalanceSheet.xcdatamodeld;
+			name = MyBalanceSheet.xcdatamodeld;
+			path = ../MyBalanceSheet.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
