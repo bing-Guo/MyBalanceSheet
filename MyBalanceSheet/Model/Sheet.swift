@@ -11,12 +11,12 @@ import Foundation
 struct Sheet {
     let date: String
     let genre: Genre
-    let value: Int
+    let amount: Int
     
-    init(date: String, genre: Genre, value: Int) {
+    init(date: String, genre: Genre, amount: Int) {
         self.date = date
         self.genre = genre
-        self.value = value
+        self.amount = amount
     }
 }
 

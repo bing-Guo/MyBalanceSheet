@@ -3,8 +3,8 @@ import UIKit
 class CreateAssetSheetTableViewController: UITableViewController {
 
     var choseGenre: Genre?
+    var choseAmount: Int?
    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -15,13 +15,6 @@ class CreateAssetSheetTableViewController: UITableViewController {
     func setNavigation() {
         self.title = "新增資產"
         navigationItem.largeTitleDisplayMode = .never
-        
-//        let navBarAppearance = UINavigationBarAppearance()
-//        navBarAppearance.configureWithOpaqueBackground()
-//        navBarAppearance.backgroundColor = UIColor._bootstrap_green
-//        navigationController?.navigationBar.standardAppearance = navBarAppearance
-//        navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
-        
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "儲存", style: .plain, target: self, action: #selector(saveAssetSheet))
     }
     
@@ -31,8 +24,6 @@ class CreateAssetSheetTableViewController: UITableViewController {
         tableView.register(UINib(nibName: "RightTextTableViewCell", bundle: nil), forCellReuseIdentifier: "RightTextTableViewCell")
         tableView.register(UINib(nibName: "RightNumberFieldTableViewCell", bundle: nil), forCellReuseIdentifier: "RightNumberFieldTableViewCell")
     }
-    
-    
     
     // MARK: - Table view data source
 
@@ -69,6 +60,7 @@ class CreateAssetSheetTableViewController: UITableViewController {
                 return cell
             case 2:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "RightNumberFieldTableViewCell", for: indexPath) as! RightNumberFieldTableViewCell
+                cell.delegate = self
                 cell.leftTextLabel.text = "選擇金額"
                 cell.selectionStyle = .none
                 cell.maskTop()
@@ -101,7 +93,17 @@ class CreateAssetSheetTableViewController: UITableViewController {
     
     // MARK: - Action
     @objc func saveAssetSheet() {
-        print("123")
+        let amount = choseAmount ?? 0
+        if let genre = choseGenre {
+            let sheet = Sheet(date: "2020/03", genre: genre, amount: amount)
+            createSheet(sheet: sheet)
+            navigationController?.popViewController(animated: true)
+        }
+        print("amount: \(choseAmount), genre: \(choseGenre)")
+    }
+    
+    func createSheet(sheet: Sheet) {
+        Database.assetSheets.append(sheet)
     }
     
 }
@@ -110,5 +112,11 @@ extension CreateAssetSheetTableViewController: ChoseItemDelegate {
     func choseItem(genre: Genre) {
         self.choseGenre = genre
         tableView.reloadData()
+    }
+}
+
+extension CreateAssetSheetTableViewController: RightNumberFieldDelegate {
+    func getNumberFieldValue(value: Int) {
+        self.choseAmount = value
     }
 }

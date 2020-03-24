@@ -34,5 +34,6 @@ class RightPickerTableViewCell: UITableViewCell {
     @IBAction func segmentChange(_ sender: UISegmentedControl) {
         let value = segmentValue[sender.selectedSegmentIndex]
         delegate?.getPickerValue(value: value)
+        print("chose segment: \(value)")
     }
 }

@@ -16,36 +16,50 @@
                 <rect key="frame" x="0.0" y="0.0" width="394" height="80"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="淨值總計" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pod-x9-HGz">
-                        <rect key="frame" x="10" y="10" width="73.5" height="21"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="＄500,000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sZo-3Q-M1c">
-                        <rect key="frame" x="10" y="49" width="87.5" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15％" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EBY-Q6-ogM">
-                        <rect key="frame" x="346.5" y="49" width="37.5" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ugw-wn-ZDp">
+                        <rect key="frame" x="10" y="10" width="374" height="70"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="淨值總計" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pod-x9-HGz">
+                                <rect key="frame" x="10" y="10" width="73.5" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15％" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EBY-Q6-ogM">
+                                <rect key="frame" x="326.5" y="39" width="37.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="＄500,000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sZo-3Q-M1c">
+                                <rect key="frame" x="10" y="39" width="87.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="sZo-3Q-M1c" firstAttribute="leading" secondItem="Ugw-wn-ZDp" secondAttribute="leading" constant="10" id="7NU-A7-2Km"/>
+                            <constraint firstItem="pod-x9-HGz" firstAttribute="leading" secondItem="Ugw-wn-ZDp" secondAttribute="leading" constant="10" id="E0V-vU-bjg"/>
+                            <constraint firstAttribute="bottom" secondItem="EBY-Q6-ogM" secondAttribute="bottom" constant="10" id="IU6-wf-yVR"/>
+                            <constraint firstAttribute="bottom" secondItem="sZo-3Q-M1c" secondAttribute="bottom" constant="10" id="OVq-bV-DOh"/>
+                            <constraint firstItem="pod-x9-HGz" firstAttribute="top" secondItem="Ugw-wn-ZDp" secondAttribute="top" constant="10" id="X7m-mF-hBm"/>
+                            <constraint firstAttribute="trailing" secondItem="EBY-Q6-ogM" secondAttribute="trailing" constant="10" id="sXo-Fe-oAV"/>
+                        </constraints>
+                    </view>
                 </subviews>
+                <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
-                    <constraint firstItem="pod-x9-HGz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="YQT-a0-bhG"/>
-                    <constraint firstItem="sZo-3Q-M1c" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="ZdS-pA-G9h"/>
-                    <constraint firstAttribute="trailing" secondItem="EBY-Q6-ogM" secondAttribute="trailing" constant="10" id="iFd-NZ-jWs"/>
-                    <constraint firstItem="pod-x9-HGz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="k7f-NQ-ZHL"/>
-                    <constraint firstAttribute="bottom" secondItem="sZo-3Q-M1c" secondAttribute="bottom" constant="10" id="k7q-gU-yth"/>
-                    <constraint firstAttribute="bottom" secondItem="EBY-Q6-ogM" secondAttribute="bottom" constant="10" id="s5u-hn-20W"/>
+                    <constraint firstItem="Ugw-wn-ZDp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="04A-ur-2ha"/>
+                    <constraint firstAttribute="trailing" secondItem="Ugw-wn-ZDp" secondAttribute="trailing" constant="10" id="0PV-3K-4Nc"/>
+                    <constraint firstItem="Ugw-wn-ZDp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="OoE-fs-0G6"/>
+                    <constraint firstAttribute="bottom" secondItem="Ugw-wn-ZDp" secondAttribute="bottom" id="YIl-J2-m6P"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="container" destination="Ugw-wn-ZDp" id="HJU-PZ-hBG"/>
                 <outlet property="genreLabel" destination="pod-x9-HGz" id="Mfc-Fh-lhA"/>
                 <outlet property="statusLabel" destination="EBY-Q6-ogM" id="rEB-7L-Agj"/>
                 <outlet property="totalLabel" destination="sZo-3Q-M1c" id="j1K-Ig-WBE"/>

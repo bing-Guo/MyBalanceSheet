@@ -63,14 +63,14 @@ class CreateAssetSheetGenreTableViewController: UITableViewController {
             addAssetItem(subGenre: subGenre, accountName: accountName)
             self.navigationController?.popViewController(animated: true)
         }else{
-            print("subGenre: \(newSubGenre), accountName: \(newAccountName)")
+            print("subGenre: \(newSubGenre ?? ""), accountName: \(newAccountName ?? "")")
         }
     }
     
     func addAssetItem(subGenre: String, accountName: String) {
         let genre = Genre(id: "000", mainGenre: "資產", subGenre: subGenre, accountName: accountName)
-        Database.genres.append(genre)
-        print(Database.genres)
+        Database.assetGenres.append(genre)
+        print("add: \(Database.assetGenres)")
     }
 }
 

@@ -9,7 +9,7 @@ class AssetGenreTableViewController: UITableViewController {
     @IBOutlet weak var btnContainer: UIView!
     @IBOutlet weak var createAssetSheetItemBtn: UIButton!
     
-    var genreData: [Genre] = Database.genres
+    var genreData: [Genre] = Database.assetGenres
     var data = [TableSection: [Genre]]()
     weak var delegate: ChoseItemDelegate?
     
@@ -26,8 +26,11 @@ class AssetGenreTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        genreData = Database.genres
+        genreData = Database.assetGenres
         sortData()
+        
+        print("reload: \(genreData)")
+        print("reload: \(data)")
         tableView.reloadData()
     }
     

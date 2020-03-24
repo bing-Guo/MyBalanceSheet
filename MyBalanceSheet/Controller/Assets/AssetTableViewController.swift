@@ -2,7 +2,8 @@ import UIKit
 
 class AssetTableViewController: UITableViewController {
 
-    var sheets: [Sheet] = Database.sheets
+    var sheets: [Sheet] = Database.assetSheets
+    var data = [TableSection: [Sheet]]()
     
     @IBOutlet weak var createSheetBtn: UIBarButtonItem!
     
@@ -11,6 +12,17 @@ class AssetTableViewController: UITableViewController {
 
         setNavigation()
         setTableView()
+        sortData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        sheets = Database.assetSheets
+        sortData()
+        tableView.reloadData()
+    }
+    
+    enum TableSection: Int {
+        case current, fixed
     }
     
     func setNavigation() {
@@ -30,44 +42,85 @@ class AssetTableViewController: UITableViewController {
         tableView.register(UINib(nibName: "SheetTableViewCell", bundle: nil), forCellReuseIdentifier: "SheetTableViewCell")
         tableView.register(UINib(nibName: "SeparateTableViewCell", bundle: nil), forCellReuseIdentifier: "SeparateTableViewCell")
     }
+    
+    func sortData() {
+        data[.fixed] = sheets.filter( {$0.genre.subGenre == "fixed"} )
+        data[.current] = sheets.filter( {$0.genre.subGenre == "current"} )
+    }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return sheets.count
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 1
+        if let tableSection = TableSection(rawValue: section), let sheetData = data[tableSection] {
+            return sheetData.count
+        }
+        
+        return 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SheetTableViewCell", for: indexPath) as! SheetTableViewCell
-            
-        cell.genreLabel.text = sheets[indexPath.row].genre.accountName
-        cell.totalLabel.text = String(sheets[indexPath.row].value)
-        return cell
         
+        let section = indexPath.section
+        let row = indexPath.row
+        
+        guard let tableSection = TableSection(rawValue: section) else { return UITableViewCell() }
+        guard let sheetData = data[tableSection] else { return UITableViewCell() }
+        
+        if sheetData.count > 0 {
+            let sheet = sheetData[row]
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SheetTableViewCell", for: indexPath) as! SheetTableViewCell
+                
+            cell.genreLabel.text = sheet.genre.accountName
+            cell.totalLabel.text = String(sheet.amount)
+            return cell
+        }
+        
+        return UITableViewCell()
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 5 || indexPath.section == 0 {
-            return 35
-        }
         return 80
     }
     
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        guard let tableSection = TableSection(rawValue: section) else { return "" }
+        
+        if data[tableSection]?.count == 0 { return "" }
+        
+        switch tableSection {
+        case .fixed:
+            return "流動資產"
+        case .current:
+            return "固定資產"
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView()
-        headerView.backgroundColor = UIColor._standard_light_gray
+        let headerFrame = tableView.frame
+
+        let title = UILabel()
+        title.frame =  CGRect(x: 10, y: 20, width: headerFrame.size.width-20, height: 20)
+        title.font = UIFont.boldSystemFont(ofSize: 17.0)
+        title.text = self.tableView(tableView, titleForHeaderInSection: section)
+
+        let headerView:UIView = UIView(frame: CGRect(x: 0, y: 0, width: headerFrame.size.width, height: headerFrame.size.height))
+        headerView.addSubview(title)
+
         return headerView
     }
     
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 10
-    }
+    
+    // MARK: - Action
     
     @IBAction func createSheet(_ sender: Any) {
         self.navigationController?.pushViewController(CreateAssetSheetTableViewController(), animated: false)

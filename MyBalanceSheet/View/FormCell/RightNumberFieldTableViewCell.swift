@@ -1,10 +1,16 @@
 import UIKit
 
+protocol RightNumberFieldDelegate: NSObject {
+    func getNumberFieldValue(value: Int)
+}
+
 class RightNumberFieldTableViewCell: UITableViewCell {
 
     @IBOutlet weak var container: UIView!
     @IBOutlet weak var rightTextField: UITextField!
     @IBOutlet weak var leftTextLabel: UILabel!
+    
+    weak var delegate: RightNumberFieldDelegate?
     
     let numberToolbar: UIToolbar = UIToolbar()
     
@@ -47,6 +53,8 @@ class RightNumberFieldTableViewCell: UITableViewCell {
             let toNumber: Int = Int(text) ?? 0
             rightTextField.text = String(toNumber)
             rightTextField.resignFirstResponder()
+            
+            delegate?.getNumberFieldValue(value: toNumber)
         }
     }
 
