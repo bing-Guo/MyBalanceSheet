@@ -14,8 +14,9 @@ class CreateAssetSheetTableViewController: UITableViewController {
 
     func setNavigation() {
         self.title = "新增資產"
-        navigationItem.largeTitleDisplayMode = .never
+        self.navigationItem.largeTitleDisplayMode = .never
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "儲存", style: .plain, target: self, action: #selector(saveAssetSheet))
+        self.navigationController?.navigationBar.tintColor = .black
     }
     
     func setTableView() {
