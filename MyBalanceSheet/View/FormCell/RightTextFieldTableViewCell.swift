@@ -1,6 +1,6 @@
 import UIKit
 
-protocol RightTextFieldValueDelegate: NSObject {
+protocol RightTextFieldDelegate: NSObject {
     func getTextFieldValue(value: String)
 }
 
@@ -10,7 +10,7 @@ class RightTextFieldTableViewCell: UITableViewCell {
     @IBOutlet weak var leftTextLabel: UILabel!
     @IBOutlet weak var rightTextField: UITextField!
     
-    weak var delegate: RightTextFieldValueDelegate?
+    weak var delegate: RightTextFieldDelegate?
     
     let numberToolbar: UIToolbar = UIToolbar()
     
@@ -19,6 +19,10 @@ class RightTextFieldTableViewCell: UITableViewCell {
         
         setTextField()
         setCell()
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
     }
     
     func setCell() {
@@ -34,13 +38,16 @@ class RightTextFieldTableViewCell: UITableViewCell {
     func setTextField() {
         rightTextField.delegate = self
         rightTextField.clearButtonMode = .whileEditing
-        rightTextField.placeholder = "ex.某某銀行"
+        rightTextField.font = UIFont.systemFont(ofSize: CGFloat(17))
+        rightTextField.placeholder = "輸入資產名稱"
         rightTextField.returnKeyType = .done
     }
     
-    func maskTop() {
-        container.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+    func setup(leftLabelString: String) {
+        self.leftTextLabel.text = leftLabelString
     }
+    
+    // MARK: - Action
     
     @objc func doneButtonTapped () {
         if let text = rightTextField.text {
@@ -55,8 +62,8 @@ class RightTextFieldTableViewCell: UITableViewCell {
         rightTextField.resignFirstResponder()
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    func focusTextField() {
+        rightTextField.becomeFirstResponder()
     }
 }
 

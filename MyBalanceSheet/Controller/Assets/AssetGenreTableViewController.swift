@@ -1,7 +1,7 @@
 import UIKit
 
 protocol ChoseItemDelegate: NSObject {
-    func choseItem(genre: Genre)
+    func choseItem(genre: AssetGenreListViewModel)
 }
 
 class AssetGenreTableViewController: UITableViewController {
@@ -9,8 +9,9 @@ class AssetGenreTableViewController: UITableViewController {
     @IBOutlet weak var btnContainer: UIView!
     @IBOutlet weak var createAssetSheetItemBtn: UIButton!
     
-    var genreData: [Genre] = Database.assetGenres
-    var data = [TableSection: [Genre]]()
+    var genreData: [AssetGenreListViewModel]?
+    var data = [TableSection: [AssetGenreListViewModel]]()
+    let genreManager = GenreManager()
     weak var delegate: ChoseItemDelegate?
     
     enum TableSection: Int {
@@ -26,11 +27,9 @@ class AssetGenreTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        genreData = Database.assetGenres
+        genreData = genreManager.getAssetGenreList()
         sortData()
         
-        print("reload: \(genreData)")
-        print("reload: \(data)")
         tableView.reloadData()
     }
     
@@ -46,10 +45,11 @@ class AssetGenreTableViewController: UITableViewController {
     }
     
     func sortData() {
-        data[.fixed] = genreData.filter({ $0.subGenre == "fixed" })
-        data[.current] = genreData.filter({ $0.subGenre == "current" })
+        guard let filterGenreData = genreData else { return }
+        
+        data[.fixed] = filterGenreData.filter({ $0.subGenre == "fixed" })
+        data[.current] = filterGenreData.filter({ $0.subGenre == "current" })
     }
-
     
     // MARK: - Table view data source
 
@@ -70,7 +70,7 @@ class AssetGenreTableViewController: UITableViewController {
         
         if let tableSection = TableSection(rawValue: section), let genre = data[tableSection]?[row] {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ItemTableViewCell", for: indexPath) as! ItemTableViewCell
-            cell.itemLabel.text = genre.accountName
+            cell.setup(itemLabelString: genre.accountName)
             return cell
         }
         
@@ -108,16 +108,8 @@ class AssetGenreTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerFrame = tableView.frame
-
-        let title = UILabel()
-        title.frame =  CGRect(x: 10, y: 20, width: headerFrame.size.width-20, height: 20)
-        title.font = UIFont.boldSystemFont(ofSize: 17.0)
-        title.text = self.tableView(tableView, titleForHeaderInSection: section)
-
-        let headerView:UIView = UIView(frame: CGRect(x: 0, y: 0, width: headerFrame.size.width, height: headerFrame.size.height))
-        headerView.addSubview(title)
-
+        let headerView = CellHeaderView(frame: CGRect(x: 10, y: 20, width: tableView.frame.size.width, height: 20))
+        headerView.titleLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
         return headerView
     }
     

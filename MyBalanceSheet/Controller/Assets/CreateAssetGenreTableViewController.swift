@@ -18,7 +18,6 @@ class CreateAssetSheetGenreTableViewController: UITableViewController {
         tableView.separatorStyle = .none
         tableView.register(UINib(nibName: "RightTextFieldTableViewCell", bundle: nil), forCellReuseIdentifier: "RightTextFieldTableViewCell")
         tableView.register(UINib(nibName: "RightPickerTableViewCell", bundle: nil), forCellReuseIdentifier: "RightPickerTableViewCell")
-        
     }
 
     // MARK: - Table view data source
@@ -37,13 +36,14 @@ class CreateAssetSheetGenreTableViewController: UITableViewController {
         switch row {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "RightTextFieldTableViewCell", for: indexPath) as! RightTextFieldTableViewCell
+            cell.setup(leftLabelString: "資產名稱")
+            cell.focusTextField()
             cell.delegate = self
-            cell.leftTextLabel.text = "名稱"
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "RightPickerTableViewCell", for: indexPath) as! RightPickerTableViewCell
+            cell.setup(leftLabelString: "資產類型")
             cell.delegate = self
-            cell.leftTextLabel.text = "資產類型"
             return cell
         default:
             break
@@ -74,13 +74,13 @@ class CreateAssetSheetGenreTableViewController: UITableViewController {
     }
 }
 
-extension CreateAssetSheetGenreTableViewController: RightTextFieldValueDelegate {
+extension CreateAssetSheetGenreTableViewController: RightTextFieldDelegate {
     func getTextFieldValue(value: String) {
         newAccountName = value
     }
 }
 
-extension CreateAssetSheetGenreTableViewController: RightPickerValueDelegate {
+extension CreateAssetSheetGenreTableViewController: RightPickerDelegate {
     func getPickerValue(value: String) {
         newSubGenre = value
     }

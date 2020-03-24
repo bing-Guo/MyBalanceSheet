@@ -24,4 +24,8 @@ class ItemTableViewCell: UITableViewCell {
         selectionStyle = .none
     }
     
+    func setup(itemLabelString: String) {
+        self.itemLabel.text = itemLabelString
+    }
+    
 }

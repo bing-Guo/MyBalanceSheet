@@ -11,28 +11,17 @@ class RightNumberFieldTableViewCell: UITableViewCell {
     @IBOutlet weak var leftTextLabel: UILabel!
     
     weak var delegate: RightNumberFieldDelegate?
-    
     let numberToolbar: UIToolbar = UIToolbar()
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        rightTextField.delegate = self
-        rightTextField.keyboardType = .decimalPad
-        rightTextField.clearButtonMode = .whileEditing
-        rightTextField.text = "0"
-        
-        numberToolbar.items=[
-            UIBarButtonItem(title: "取消", style: .plain, target: self, action: #selector(cancelButtonTapped)),
-            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil),
-            UIBarButtonItem(title: "完成", style: .plain, target: self, action: #selector(doneButtonTapped))
-        ]
-
-        numberToolbar.sizeToFit()
-
-        rightTextField.inputAccessoryView = numberToolbar
-        
         setCell()
+        setTextField()
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
     }
     
     func setCell() {
@@ -44,9 +33,33 @@ class RightNumberFieldTableViewCell: UITableViewCell {
         selectionStyle = .none
     }
     
-    func maskTop() {
-        layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+    func setTextField() {
+        setNumberToolBar()
+        
+        rightTextField.delegate = self
+        rightTextField.keyboardType = .decimalPad
+        rightTextField.clearButtonMode = .whileEditing
+        rightTextField.font = UIFont.systemFont(ofSize: CGFloat(17))
+        rightTextField.text = "0"
+        
+        rightTextField.inputAccessoryView = numberToolbar
     }
+    
+    func setNumberToolBar() {
+        numberToolbar.items=[
+            UIBarButtonItem(title: "取消", style: .plain, target: self, action: #selector(cancelButtonTapped)),
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil),
+            UIBarButtonItem(title: "完成", style: .plain, target: self, action: #selector(doneButtonTapped))
+        ]
+
+        numberToolbar.sizeToFit()
+    }
+    
+    func setup(leftLabelString: String) {
+        self.leftTextLabel.text = leftLabelString
+    }
+    
+    // MARK: - Action
     
     @objc func doneButtonTapped () {
         if let text = rightTextField.text {
@@ -62,12 +75,6 @@ class RightNumberFieldTableViewCell: UITableViewCell {
         rightTextField.text = "0"
         rightTextField.resignFirstResponder()
     }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-    
-    
 }
 
 extension RightNumberFieldTableViewCell: UITextFieldDelegate {

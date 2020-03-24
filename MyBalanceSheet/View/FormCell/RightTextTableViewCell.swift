@@ -1,11 +1,3 @@
-//
-//  RightTextTableViewCell.swift
-//  MyBalanceSheet
-//
-//  Created by Bing Guo on 2020/3/14.
-//  Copyright © 2020 Bing Guo. All rights reserved.
-//
-
 import UIKit
 
 class RightTextTableViewCell: UITableViewCell {
@@ -18,11 +10,12 @@ class RightTextTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        SFTextLabel.text = "⟩"
-        rightTextLabel.textColor = UIColor._standard_gray
-        SFTextLabel.textColor = UIColor._standard_gray
-        
         setCell()
+        setTextLabel()
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
     }
     
     func setCell() {
@@ -35,14 +28,17 @@ class RightTextTableViewCell: UITableViewCell {
         selectionStyle = .none
     }
     
-    func maskButton() {
-        layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    func setTextLabel() {
+        SFTextLabel.text = "⟩"
+        rightTextLabel.textColor = UIColor._standard_gray
+        SFTextLabel.textColor = UIColor._standard_gray
     }
     
+    func setup(leftLabelString: String, rightLabelString: String) {
+        self.rightTextLabel.text = leftLabelString
+        self.leftTextLabel.text = rightLabelString
+    }
+
     func chosenStatus() {
         rightTextLabel.textColor = UIColor._standard_black
         SFTextLabel.textColor = UIColor._standard_black

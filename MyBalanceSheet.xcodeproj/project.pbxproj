@@ -45,6 +45,8 @@
 		FCF5A9932429DE79008121BA /* AssetListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF5A9922429DE79008121BA /* AssetListViewModel.swift */; };
 		FCF5A9952429DEBD008121BA /* SheetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF5A9942429DEBD008121BA /* SheetManager.swift */; };
 		FCF5A99B242A0EC2008121BA /* CellHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF5A99A242A0EC2008121BA /* CellHeaderView.swift */; };
+		FCF5A99D242A146A008121BA /* AssetGenreListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF5A99C242A146A008121BA /* AssetGenreListViewModel.swift */; };
+		FCF5A99F242A15FF008121BA /* GenreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF5A99E242A15FF008121BA /* GenreManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +102,8 @@
 		FCF5A9922429DE79008121BA /* AssetListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetListViewModel.swift; sourceTree = "<group>"; };
 		FCF5A9942429DEBD008121BA /* SheetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetManager.swift; sourceTree = "<group>"; };
 		FCF5A99A242A0EC2008121BA /* CellHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellHeaderView.swift; sourceTree = "<group>"; };
+		FCF5A99C242A146A008121BA /* AssetGenreListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetGenreListViewModel.swift; sourceTree = "<group>"; };
+		FCF5A99E242A15FF008121BA /* GenreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,6 +272,8 @@
 			children = (
 				FCF5A9922429DE79008121BA /* AssetListViewModel.swift */,
 				FCF5A9942429DEBD008121BA /* SheetManager.swift */,
+				FCF5A99C242A146A008121BA /* AssetGenreListViewModel.swift */,
+				FCF5A99E242A15FF008121BA /* GenreManager.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -392,11 +398,13 @@
 				FCF29DB52414D3B6007E93D2 /* UIColor+Ext.swift in Sources */,
 				FCF29D9124138AB0007E93D2 /* SummaryTableViewController.swift in Sources */,
 				FCF29DD9241C9890007E93D2 /* Genre.swift in Sources */,
+				FCF5A99D242A146A008121BA /* AssetGenreListViewModel.swift in Sources */,
 				FCF29D752413889F007E93D2 /* MyBalanceSheet.xcdatamodeld in Sources */,
 				FCF29DB02414B9F6007E93D2 /* DateSelector.swift in Sources */,
 				FCF29D6B2413889F007E93D2 /* AppDelegate.swift in Sources */,
 				FCF29DFC241E7BAA007E93D2 /* RightNumberFieldTableViewCell.swift in Sources */,
 				FCF29DF1241E5892007E93D2 /* ItemTableViewCell.swift in Sources */,
+				FCF5A99F242A15FF008121BA /* GenreManager.swift in Sources */,
 				FC85D11A2420E450008512DB /* IconCollectionViewCell.swift in Sources */,
 				FC85D1152420DFA0008512DB /* RightPickerTableViewCell.swift in Sources */,
 				FCF29D9624138FC0007E93D2 /* SheetTableViewCell.swift in Sources */,

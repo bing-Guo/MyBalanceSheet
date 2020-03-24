@@ -2,7 +2,7 @@ import UIKit
 
 class CreateAssetSheetTableViewController: UITableViewController {
 
-    var choseGenre: Genre?
+    var choseGenre: AssetGenreListViewModel?
     var choseAmount: Int?
    
     override func viewDidLoad() {
@@ -41,9 +41,8 @@ class CreateAssetSheetTableViewController: UITableViewController {
         switch row {
             case 0:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "RightTextTableViewCell", for: indexPath) as! RightTextTableViewCell
-                cell.rightTextLabel.text = "類型"
-                cell.leftTextLabel.text = "選擇類型"
-
+                cell.setup(leftLabelString: "選擇類型", rightLabelString: "類型")
+                
                 if let genre = choseGenre {
                     cell.rightTextLabel.text = genre.accountName
                     cell.chosenStatus()
@@ -52,18 +51,13 @@ class CreateAssetSheetTableViewController: UITableViewController {
                 return cell
             case 1:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "RightTextTableViewCell", for: indexPath) as! RightTextTableViewCell
-                cell.rightTextLabel.text = "貨幣"
-                cell.leftTextLabel.text = "選擇貨幣"
-                cell.selectionStyle = .none
-                cell.maskButton()
-            
+                cell.setup(leftLabelString: "選擇貨幣", rightLabelString: "貨幣")
+                
                 return cell
             case 2:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "RightNumberFieldTableViewCell", for: indexPath) as! RightNumberFieldTableViewCell
+                cell.setup(leftLabelString: "選擇金額")
                 cell.delegate = self
-                cell.leftTextLabel.text = "選擇金額"
-                cell.selectionStyle = .none
-                cell.maskTop()
                 
                 return cell
             default:
@@ -94,8 +88,9 @@ class CreateAssetSheetTableViewController: UITableViewController {
     // MARK: - Action
     @objc func saveAssetSheet() {
         let amount = choseAmount ?? 0
-        if let genre = choseGenre {
+        if let genreVM = choseGenre {
             // todo
+            let genre = Genre(id: genreVM.id, mainGenre: genreVM.mainGenre, subGenre: genreVM.subGenre, accountName: genreVM.accountName)
             let sheet = Sheet(year: 2020, month: 3, genre: genre, amount: amount)
             createSheet(sheet: sheet)
             navigationController?.popViewController(animated: true)
@@ -110,7 +105,7 @@ class CreateAssetSheetTableViewController: UITableViewController {
 }
 
 extension CreateAssetSheetTableViewController: ChoseItemDelegate {
-    func choseItem(genre: Genre) {
+    func choseItem(genre: AssetGenreListViewModel) {
         self.choseGenre = genre
         tableView.reloadData()
     }
