@@ -95,7 +95,8 @@ class CreateAssetSheetTableViewController: UITableViewController {
     @objc func saveAssetSheet() {
         let amount = choseAmount ?? 0
         if let genre = choseGenre {
-            let sheet = Sheet(date: "2020/03", genre: genre, amount: amount)
+            // todo
+            let sheet = Sheet(year: 2020, month: 3, genre: genre, amount: amount)
             createSheet(sheet: sheet)
             navigationController?.popViewController(animated: true)
         }

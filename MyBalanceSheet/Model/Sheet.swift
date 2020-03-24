@@ -1,20 +1,14 @@
-//
-//  Sheet.swift
-//  MyBalanceSheet
-//
-//  Created by Bing Guo on 2020/3/14.
-//  Copyright © 2020 Bing Guo. All rights reserved.
-//
-
 import Foundation
 
 struct Sheet {
-    let date: String
+    let year: Int
+    let month: Int
     let genre: Genre
     let amount: Int
     
-    init(date: String, genre: Genre, amount: Int) {
-        self.date = date
+    init(year: Int, month: Int, genre: Genre, amount: Int) {
+        self.year = year
+        self.month = month
         self.genre = genre
         self.amount = amount
     }

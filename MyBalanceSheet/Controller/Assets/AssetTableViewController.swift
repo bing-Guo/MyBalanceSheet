@@ -2,11 +2,16 @@ import UIKit
 
 class AssetTableViewController: UITableViewController {
 
-    var sheets: [Sheet]?
-    var data = [TableSection: [Sheet]]()
-    
     @IBOutlet weak var createSheetBtn: UIBarButtonItem!
     @IBOutlet weak var dateSelector: DateSelector!
+    
+    var sheetsData: [AssetListViewModel]?
+    var data = [TableSection: [AssetListViewModel]]()
+    let sheetManager = SheetManager()
+    
+    enum TableSection: Int {
+        case current, fixed
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,13 +23,10 @@ class AssetTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        getSheetData()
-        sortData()
+        sheetsData = sheetManager.getAssetList()
+        sortData(year: dateSelector.getYear(), month: dateSelector.getMonth())
+        
         tableView.reloadData()
-    }
-    
-    enum TableSection: Int {
-        case current, fixed
     }
     
     func setNavigation() {
@@ -45,50 +47,42 @@ class AssetTableViewController: UITableViewController {
         tableView.register(UINib(nibName: "SeparateTableViewCell", bundle: nil), forCellReuseIdentifier: "SeparateTableViewCell")
     }
     
-    func sortData() {
-        guard let sheetsData = sheets else { return }
+    func sortData(year: Int, month: Int) {
+        guard var filterSheetData = sheetsData else { return }
         
-        let date = dateSelector.getDate()
-        let yearMonth = dateSelector.dateToYearMonth(date: date, formate: "yyyy/MM")
-        
-        sheets = sheetsData.filter( {$0.date == yearMonth } )
-        data[.fixed] = sheets!.filter( {$0.genre.subGenre == "fixed"} )
-        data[.current] = sheets!.filter( {$0.genre.subGenre == "current"} )
-    }
-    
-    func getSheetData() {
-        sheets = Database.assetSheets
+        filterSheetData = filterSheetData.filter( {$0.year == year && $0.month == month } )
+        data[.fixed] = filterSheetData.filter( {$0.genre.subGenre == "fixed"} )
+        data[.current] = filterSheetData.filter( {$0.genre.subGenre == "current"} )
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let tableSection = TableSection(rawValue: section), let sheetData = data[tableSection] {
-            return sheetData.count
+        if let tableSection = TableSection(rawValue: section), let sheets = data[tableSection] {
+            return sheets.count
         }
         
         return 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let section = indexPath.section
         let row = indexPath.row
         
-        guard let tableSection = TableSection(rawValue: section) else { return UITableViewCell() }
-        guard let sheetData = data[tableSection] else { return UITableViewCell() }
-        
+        guard let tableSection = TableSection(rawValue: section), let sheetData = data[tableSection]  else { return UITableViewCell() }
+
         if sheetData.count > 0 {
             let sheet = sheetData[row]
             let cell = tableView.dequeueReusableCell(withIdentifier: "SheetTableViewCell", for: indexPath) as! SheetTableViewCell
-                
-            cell.genreLabel.text = sheet.genre.accountName
-            cell.totalLabel.text = String(sheet.amount)
+            
+            cell.setup(genre: sheet.genre.accountName,
+                       total: sheet.amountString,
+                       status: sheet.rateString)
+            
             return cell
         }
         
@@ -104,10 +98,8 @@ class AssetTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        
-        guard let tableSection = TableSection(rawValue: section) else { return "" }
-        
-        if data[tableSection]?.count == 0 { return "" }
+        guard let tableSection = TableSection(rawValue: section), let sheets = data[tableSection] else { return "" }
+        guard sheets.count > 0 else { return "" }
         
         switch tableSection {
         case .fixed:
@@ -118,16 +110,8 @@ class AssetTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerFrame = tableView.frame
-
-        let title = UILabel()
-        title.frame =  CGRect(x: 10, y: 20, width: headerFrame.size.width-20, height: 20)
-        title.font = UIFont.boldSystemFont(ofSize: 17.0)
-        title.text = self.tableView(tableView, titleForHeaderInSection: section)
-
-        let headerView:UIView = UIView(frame: CGRect(x: 0, y: 0, width: headerFrame.size.width, height: headerFrame.size.height))
-        headerView.addSubview(title)
-
+        let headerView = CellHeaderView(frame: CGRect(x: 10, y: 20, width: tableView.frame.size.width, height: 20))
+        headerView.titleLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
         return headerView
     }
     
@@ -137,18 +121,17 @@ class AssetTableViewController: UITableViewController {
     @IBAction func createSheet(_ sender: Any) {
         self.navigationController?.pushViewController(CreateAssetSheetTableViewController(), animated: false)
     }
+    
 }
 
 extension AssetTableViewController: DateSelectorDelegate {
-    func prevMonth() {
-        getSheetData()
-        sortData()
+    func prevMonth(year: Int, month: Int) {
+        sortData(year: year, month: month)
         tableView.reloadData()
     }
     
-    func nextMonth() {
-        getSheetData()
-        sortData()
+    func nextMonth(year: Int, month: Int) {
+        sortData(year: year, month: month)
         tableView.reloadData()
     }
 }

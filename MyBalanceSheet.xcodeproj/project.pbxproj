@@ -42,6 +42,9 @@
 		FCF29DF9241E7A12007E93D2 /* CreateAssetGenreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF29DF8241E7A12007E93D2 /* CreateAssetGenreTableViewController.swift */; };
 		FCF29DFC241E7BAA007E93D2 /* RightNumberFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF29DFA241E7BAA007E93D2 /* RightNumberFieldTableViewCell.swift */; };
 		FCF29DFD241E7BAA007E93D2 /* RightNumberFieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCF29DFB241E7BAA007E93D2 /* RightNumberFieldTableViewCell.xib */; };
+		FCF5A9932429DE79008121BA /* AssetListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF5A9922429DE79008121BA /* AssetListViewModel.swift */; };
+		FCF5A9952429DEBD008121BA /* SheetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF5A9942429DEBD008121BA /* SheetManager.swift */; };
+		FCF5A99B242A0EC2008121BA /* CellHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF5A99A242A0EC2008121BA /* CellHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +97,9 @@
 		FCF29DF8241E7A12007E93D2 /* CreateAssetGenreTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAssetGenreTableViewController.swift; sourceTree = "<group>"; };
 		FCF29DFA241E7BAA007E93D2 /* RightNumberFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightNumberFieldTableViewCell.swift; sourceTree = "<group>"; };
 		FCF29DFB241E7BAA007E93D2 /* RightNumberFieldTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RightNumberFieldTableViewCell.xib; sourceTree = "<group>"; };
+		FCF5A9922429DE79008121BA /* AssetListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetListViewModel.swift; sourceTree = "<group>"; };
+		FCF5A9942429DEBD008121BA /* SheetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetManager.swift; sourceTree = "<group>"; };
+		FCF5A99A242A0EC2008121BA /* CellHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +150,7 @@
 		FCF29D692413889F007E93D2 /* MyBalanceSheet */ = {
 			isa = PBXGroup;
 			children = (
+				FCF5A9912429DE58008121BA /* ViewModel */,
 				FCF29DB32414D39E007E93D2 /* Extension */,
 				FCF29D9824139085007E93D2 /* Model */,
 				FCF29D9224138EC8007E93D2 /* View */,
@@ -185,6 +192,7 @@
 				FCF29DE0241CB6E6007E93D2 /* FormCell */,
 				FCF29DAE2414B9B8007E93D2 /* DateSelector */,
 				FCF29D9324138ECF007E93D2 /* Cell */,
+				FCF5A99A242A0EC2008121BA /* CellHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -253,6 +261,15 @@
 				FCF29DF8241E7A12007E93D2 /* CreateAssetGenreTableViewController.swift */,
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		FCF5A9912429DE58008121BA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FCF5A9922429DE79008121BA /* AssetListViewModel.swift */,
+				FCF5A9942429DEBD008121BA /* SheetManager.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -368,8 +385,10 @@
 				FCF29DED241CF7CE007E93D2 /* RightTextFieldTableViewCell.swift in Sources */,
 				FCF29DB92415106B007E93D2 /* LiabilityTableViewController.swift in Sources */,
 				FCF29DCD2415400C007E93D2 /* StorgeManager.swift in Sources */,
+				FCF5A9952429DEBD008121BA /* SheetManager.swift in Sources */,
 				FCF29DD7241C95F5007E93D2 /* Sheet.swift in Sources */,
 				FCF29DF9241E7A12007E93D2 /* CreateAssetGenreTableViewController.swift in Sources */,
+				FCF5A99B242A0EC2008121BA /* CellHeaderView.swift in Sources */,
 				FCF29DB52414D3B6007E93D2 /* UIColor+Ext.swift in Sources */,
 				FCF29D9124138AB0007E93D2 /* SummaryTableViewController.swift in Sources */,
 				FCF29DD9241C9890007E93D2 /* Genre.swift in Sources */,
@@ -383,6 +402,7 @@
 				FCF29D9624138FC0007E93D2 /* SheetTableViewCell.swift in Sources */,
 				FCF29DEA241CF6A1007E93D2 /* CurrencyTableViewController.swift in Sources */,
 				FCF29DDB241C9A06007E93D2 /* Database.swift in Sources */,
+				FCF5A9932429DE79008121BA /* AssetListViewModel.swift in Sources */,
 				FCF29DE3241CB71E007E93D2 /* RightTextTableViewCell.swift in Sources */,
 				FCF29D6D2413889F007E93D2 /* SceneDelegate.swift in Sources */,
 				FCF29DE8241CBBB6007E93D2 /* AssetGenreTableViewController.swift in Sources */,

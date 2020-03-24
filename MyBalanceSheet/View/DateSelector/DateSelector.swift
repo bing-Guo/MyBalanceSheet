@@ -1,8 +1,8 @@
 import UIKit
 
 protocol DateSelectorDelegate:NSObject {
-    func prevMonth()
-    func nextMonth()
+    func prevMonth(year: Int, month: Int)
+    func nextMonth(year: Int, month: Int)
 }
 
 protocol DataSelectorDataSource {
@@ -69,13 +69,13 @@ class DateSelector: UIView {
     @IBAction func prevBtnAction(_ sender: Any) {
         addMonth(-1)
         setDateLabel()
-        delegate?.prevMonth()
+        delegate?.prevMonth(year: self.getYear(), month: self.getMonth())
     }
     
     @IBAction func nextBtnAction(_ sender: Any) {
         addMonth(1)
         setDateLabel()
-        delegate?.nextMonth()
+        delegate?.nextMonth(year: self.getYear(), month: self.getMonth())
     }
     
     // MARK: - Helper
@@ -93,4 +93,13 @@ class DateSelector: UIView {
         return date
     }
     
+    func getYear() -> Int {
+        let year = Calendar.current.component(.year, from: date)
+        return year
+    }
+    
+    func getMonth() -> Int {
+        let month = Calendar.current.component(.month, from: date)
+        return month
+    }
 }

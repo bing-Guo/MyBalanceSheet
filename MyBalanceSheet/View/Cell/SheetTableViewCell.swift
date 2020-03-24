@@ -28,6 +28,12 @@ class SheetTableViewCell: UITableViewCell {
         clipsToBounds = true
         selectionStyle = .none
     }
+    
+    func setup(genre: String, total: String, status: String) {
+        self.genreLabel.text = genre
+        self.totalLabel.text = total
+        self.statusLabel.text = status
+    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
