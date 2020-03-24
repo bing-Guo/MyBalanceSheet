@@ -28,11 +28,14 @@
                             <rect key="frame" x="0.0" y="0.0" width="20" height="40"/>
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                             <state key="normal" image="chevron.left.circle.fill" catalog="system"/>
+                            <connections>
+                                <action selector="prevBtnAction:" destination="-1" eventType="touchUpInside" id="bPH-hT-ArV"/>
+                            </connections>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jyB-dj-GGC">
                             <rect key="frame" x="50" y="0.0" width="200" height="40"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2020年03月" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sx2-Qx-Jpx">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YYYY月MM日" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sx2-Qx-Jpx">
                                     <rect key="frame" x="10" y="10" width="180" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="180" id="zmp-gA-91k"/>
@@ -55,6 +58,9 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dli-Mi-zsL" userLabel="Right Button">
                             <rect key="frame" x="280" y="0.0" width="20" height="40"/>
                             <state key="normal" image="chevron.right.circle.fill" catalog="system"/>
+                            <connections>
+                                <action selector="nextBtnAction:" destination="-1" eventType="touchUpInside" id="3SL-Vu-IYv"/>
+                            </connections>
                         </button>
                     </subviews>
                 </stackView>

@@ -2,21 +2,23 @@ import UIKit
 
 class AssetTableViewController: UITableViewController {
 
-    var sheets: [Sheet] = Database.assetSheets
+    var sheets: [Sheet]?
     var data = [TableSection: [Sheet]]()
     
     @IBOutlet weak var createSheetBtn: UIBarButtonItem!
+    @IBOutlet weak var dateSelector: DateSelector!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        dateSelector.delegate = self
+        
         setNavigation()
         setTableView()
-        sortData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        sheets = Database.assetSheets
+        getSheetData()
         sortData()
         tableView.reloadData()
     }
@@ -44,8 +46,18 @@ class AssetTableViewController: UITableViewController {
     }
     
     func sortData() {
-        data[.fixed] = sheets.filter( {$0.genre.subGenre == "fixed"} )
-        data[.current] = sheets.filter( {$0.genre.subGenre == "current"} )
+        guard let sheetsData = sheets else { return }
+        
+        let date = dateSelector.getDate()
+        let yearMonth = dateSelector.dateToYearMonth(date: date, formate: "yyyy/MM")
+        
+        sheets = sheetsData.filter( {$0.date == yearMonth } )
+        data[.fixed] = sheets!.filter( {$0.genre.subGenre == "fixed"} )
+        data[.current] = sheets!.filter( {$0.genre.subGenre == "current"} )
+    }
+    
+    func getSheetData() {
+        sheets = Database.assetSheets
     }
 
     // MARK: - Table view data source
@@ -124,5 +136,19 @@ class AssetTableViewController: UITableViewController {
     
     @IBAction func createSheet(_ sender: Any) {
         self.navigationController?.pushViewController(CreateAssetSheetTableViewController(), animated: false)
+    }
+}
+
+extension AssetTableViewController: DateSelectorDelegate {
+    func prevMonth() {
+        getSheetData()
+        sortData()
+        tableView.reloadData()
+    }
+    
+    func nextMonth() {
+        getSheetData()
+        sortData()
+        tableView.reloadData()
     }
 }

@@ -12,7 +12,8 @@ class Database {
     static var assetGenres: [Genre] = [
         Genre(id: "a0001", mainGenre: "資產", subGenre: "current", accountName: "現金"),
         Genre(id: "a0002", mainGenre: "資產", subGenre: "current", accountName: "活存"),
-        Genre(id: "a0003", mainGenre: "資產", subGenre: "fixed", accountName: "汽車")
+        Genre(id: "a0003", mainGenre: "資產", subGenre: "fixed", accountName: "汽車"),
+        Genre(id: "a0003", mainGenre: "資產", subGenre: "fixed", accountName: "房屋")
     ]
     
     static var liabilityGenres: [Genre] = [
@@ -21,8 +22,12 @@ class Database {
     ]
     
     static var assetSheets: [Sheet] = [
-        Sheet(date: "2020/03", genre: assetGenres[0], amount: 2000),
-        Sheet(date: "2020/03", genre: assetGenres[1], amount: 15000)
+        Sheet(date: "2020/02", genre: assetGenres[0], amount: 2000),
+        Sheet(date: "2020/02", genre: assetGenres[1], amount: 15000),
+        Sheet(date: "2020/03", genre: assetGenres[0], amount: 250000),
+        Sheet(date: "2020/03", genre: assetGenres[1], amount: 20000),
+        Sheet(date: "2020/03", genre: assetGenres[2], amount: 400000),
+        Sheet(date: "2020/03", genre: assetGenres[3], amount: 12000000)
     ]
     
     init() {}

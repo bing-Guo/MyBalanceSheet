@@ -140,6 +140,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="createSheetBtn" destination="YxM-4j-yFF" id="BL5-r1-mOy"/>
+                        <outlet property="dateSelector" destination="mDe-l8-EJb" id="m9o-ov-yht"/>
                         <segue destination="ApA-ui-DnM" kind="show" identifier="toChoseAsset" id="5je-Q3-wW5"/>
                     </connections>
                 </tableViewController>
