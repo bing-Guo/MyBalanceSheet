@@ -5,10 +5,6 @@ protocol DateSelectorDelegate:NSObject {
     func nextMonth(year: Int, month: Int)
 }
 
-protocol DataSelectorDataSource {
-    
-}
-
 class DateSelector: UIView {
 
     @IBOutlet var view: UIView!
@@ -48,7 +44,7 @@ class DateSelector: UIView {
     }
     
     func setView() {
-        view.backgroundColor = UIColor._standard_light_gray
+        view.backgroundColor = UIColor._app_background
     }
     
     func setButton() {
@@ -69,13 +65,13 @@ class DateSelector: UIView {
     @IBAction func prevBtnAction(_ sender: Any) {
         addMonth(-1)
         setDateLabel()
-        delegate?.prevMonth(year: self.getYear(), month: self.getMonth())
+        delegate?.prevMonth(year: Date.getYear(date), month: Date.getMonth(date))
     }
     
     @IBAction func nextBtnAction(_ sender: Any) {
         addMonth(1)
         setDateLabel()
-        delegate?.nextMonth(year: self.getYear(), month: self.getMonth())
+        delegate?.nextMonth(year: Date.getYear(date), month: Date.getMonth(date))
     }
     
     // MARK: - Helper
@@ -91,15 +87,5 @@ class DateSelector: UIView {
     
     func getDate() -> Date {
         return date
-    }
-    
-    func getYear() -> Int {
-        let year = Calendar.current.component(.year, from: date)
-        return year
-    }
-    
-    func getMonth() -> Int {
-        let month = Calendar.current.component(.month, from: date)
-        return month
     }
 }

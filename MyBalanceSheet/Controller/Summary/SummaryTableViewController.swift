@@ -19,7 +19,8 @@ class SummaryTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         summaryData = sheetManager.getSummaryList()
-        sortData(year: dateSelector.getYear(), month: dateSelector.getMonth())
+        let date = dateSelector.getDate()
+        sortData(year: Date.getYear(date), month: Date.getMonth(date))
         
         tableView.reloadData()
     }
@@ -37,7 +38,7 @@ class SummaryTableViewController: UITableViewController {
     }
     
     func setTableView() {
-        tableView.backgroundColor = UIColor._standard_light_gray
+        tableView.backgroundColor = UIColor._app_background
         tableView.register(UINib(nibName: "SheetTableViewCell", bundle: nil), forCellReuseIdentifier: "SheetTableViewCell")
     }
     
@@ -91,7 +92,7 @@ class SummaryTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
-        headerView.backgroundColor = UIColor._standard_light_gray
+        headerView.backgroundColor = UIColor._app_background
         return headerView
     }
     

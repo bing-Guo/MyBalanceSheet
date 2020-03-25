@@ -19,7 +19,7 @@ class RightTextTableViewCell: UITableViewCell {
     }
     
     func setCell() {
-        contentView.backgroundColor = UIColor._standard_light_gray
+        contentView.backgroundColor = UIColor._app_background
         container.backgroundColor = UIColor.white
         container.layer.borderColor = UIColor.white.cgColor
         container.layer.borderWidth = 1
@@ -40,7 +40,7 @@ class RightTextTableViewCell: UITableViewCell {
     }
 
     func chosenStatus() {
-        rightTextLabel.textColor = UIColor._standard_black
-        SFTextLabel.textColor = UIColor._standard_black
+        rightTextLabel.textColor = .black
+        SFTextLabel.textColor = .black
     }
 }

@@ -34,13 +34,13 @@ class AssetGenreTableViewController: UITableViewController {
     }
     
     func setTableView() {
-        tableView.backgroundColor = UIColor._standard_light_gray
+        tableView.backgroundColor = UIColor._app_background
         tableView.register(UINib(nibName: "ItemTableViewCell", bundle: nil), forCellReuseIdentifier: "ItemTableViewCell")
         tableView.register(UINib(nibName: "CreateItemTableViewCell", bundle: nil), forCellReuseIdentifier: "CreateItemTableViewCell")
     }
     
     func setBtn() {
-        btnContainer.backgroundColor = UIColor._standard_light_gray
+        btnContainer.backgroundColor = UIColor._app_background
         createAssetSheetItemBtn.layer.cornerRadius = 8
     }
     

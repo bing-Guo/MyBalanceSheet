@@ -21,11 +21,7 @@ extension UIColor {
         self.init(red: redValue, green: greenValue, blue: blueValue, alpha: 1.0)
     }
     
-    class var _standard_purple: UIColor {
-        return UIColor(hex: "#A6269D")
-    }
-    
-    class var _standard_light_gray: UIColor {
+    class var _app_background: UIColor {
         return UIColor(hex: "#eeeeee")
     }
     
@@ -33,39 +29,19 @@ extension UIColor {
         return UIColor(hex: "#cccccc")
     }
     
-    class var _standard_dark_gray: UIColor {
-        return UIColor(hex: "#333333")
-    }
-    
-    class var _standard_black: UIColor {
-        return UIColor(hex: "#000000")
-    }
-    
-    class var _standard_white: UIColor {
-        return UIColor(hex: "#FFFFFF")
-    }
-    
     class var _bootstrap_red: UIColor {
         return UIColor(hex: "#E1455E")
-    }
-    
-    class var _bootstrap_blue: UIColor {
-        return UIColor(hex: "#00ABD8")
-    }
-    
-    class var _bootstrap_dark_blue: UIColor {
-        return UIColor(hex: "#2285C5")
     }
     
     class var _bootstrap_yellow: UIColor {
         return UIColor(hex: "#F7C64B")
     }
     
-    class var _bootstrap_green: UIColor {
+    class var _asset_background_green: UIColor {
         return UIColor(hex: "#36C489")
     }
     
-    class var _bootstrap_dark_green: UIColor {
+    class var _asset_green: UIColor {
         return UIColor(hex: "#299E6E")
     }
 }

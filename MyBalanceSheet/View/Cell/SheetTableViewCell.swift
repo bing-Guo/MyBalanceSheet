@@ -21,7 +21,7 @@ class SheetTableViewCell: UITableViewCell {
     }
     
     func setCell() {
-        contentView.backgroundColor = UIColor._standard_light_gray
+        contentView.backgroundColor = UIColor._app_background
         container.layer.borderColor = UIColor.white.cgColor
         container.layer.borderWidth = 1
         container.layer.cornerRadius = 8

@@ -14,7 +14,7 @@ class CreateAssetSheetGenreTableViewController: UITableViewController {
     }
     
     func setTableView() {
-        tableView.backgroundColor = UIColor._standard_light_gray
+        tableView.backgroundColor = UIColor._app_background
         tableView.separatorStyle = .none
         tableView.register(UINib(nibName: "RightTextFieldTableViewCell", bundle: nil), forCellReuseIdentifier: "RightTextFieldTableViewCell")
         tableView.register(UINib(nibName: "RightPickerTableViewCell", bundle: nil), forCellReuseIdentifier: "RightPickerTableViewCell")

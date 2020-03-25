@@ -24,7 +24,8 @@ class AssetTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         sheetsData = sheetManager.getAssetList()
-        sortData(year: dateSelector.getYear(), month: dateSelector.getMonth())
+        let date = dateSelector.getDate()
+        sortData(year: Date.getYear(date), month: Date.getMonth(date))
         
         tableView.reloadData()
     }
@@ -36,13 +37,13 @@ class AssetTableViewController: UITableViewController {
         
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithOpaqueBackground()
-        navBarAppearance.backgroundColor = UIColor._bootstrap_green
+        navBarAppearance.backgroundColor = UIColor._asset_background_green
         navigationController?.navigationBar.standardAppearance = navBarAppearance
         navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
     }
     
     func setTableView() {
-        tableView.backgroundColor = UIColor._standard_light_gray
+        tableView.backgroundColor = UIColor._app_background
         tableView.register(UINib(nibName: "SheetTableViewCell", bundle: nil), forCellReuseIdentifier: "SheetTableViewCell")
         tableView.register(UINib(nibName: "SeparateTableViewCell", bundle: nil), forCellReuseIdentifier: "SeparateTableViewCell")
     }
