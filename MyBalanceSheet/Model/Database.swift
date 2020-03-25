@@ -16,20 +16,22 @@ class Database {
     ]
     
     static var sheets: [Sheet] = [
-        Sheet(year: 2020, month: 2, genre: assetGenres[0], amount: 2000),
-        Sheet(year: 2020, month: 2, genre: assetGenres[1], amount: 15000),
-        Sheet(year: 2020, month: 3, genre: assetGenres[0], amount: 25000),
-        Sheet(year: 2020, month: 3, genre: assetGenres[1], amount: 20000),
-        Sheet(year: 2020, month: 3, genre: assetGenres[2], amount: 400000),
-        Sheet(year: 2020, month: 3, genre: assetGenres[3], amount: 12000000),
-        Sheet(year: 2020, month: 2, genre: liabilityGenres[0], amount: 2000),
-        Sheet(year: 2020, month: 2, genre: liabilityGenres[1], amount: 15000),
-        Sheet(year: 2020, month: 2, genre: liabilityGenres[2], amount: 25000),
-        Sheet(year: 2020, month: 2, genre: liabilityGenres[3], amount: 5000),
-        Sheet(year: 2020, month: 3, genre: liabilityGenres[0], amount: 50000),
-        Sheet(year: 2020, month: 3, genre: liabilityGenres[1], amount: 15000),
-        Sheet(year: 2020, month: 3, genre: liabilityGenres[2], amount: 25000),
-        Sheet(year: 2020, month: 3, genre: liabilityGenres[3], amount: 5000)
+        Sheet(year: 2019, month: 12, genre: assetGenres[0], amount: 20),
+        Sheet(year: 2020, month: 1, genre: assetGenres[0], amount: 20),
+//        Sheet(year: 2020, month: 2, genre: assetGenres[0], amount: 20),
+//        Sheet(year: 2020, month: 2, genre: assetGenres[1], amount: 150),
+//        Sheet(year: 2020, month: 3, genre: assetGenres[0], amount: 250),
+//        Sheet(year: 2020, month: 3, genre: assetGenres[1], amount: 200),
+//        Sheet(year: 2020, month: 3, genre: assetGenres[2], amount: 400),
+//        Sheet(year: 2020, month: 3, genre: assetGenres[3], amount: 1200),
+//        Sheet(year: 2020, month: 2, genre: liabilityGenres[0], amount: 20),
+//        Sheet(year: 2020, month: 2, genre: liabilityGenres[1], amount: 150),
+//        Sheet(year: 2020, month: 2, genre: liabilityGenres[2], amount: 250),
+//        Sheet(year: 2020, month: 2, genre: liabilityGenres[3], amount: 500),
+//        Sheet(year: 2020, month: 3, genre: liabilityGenres[0], amount: 500),
+//        Sheet(year: 2020, month: 3, genre: liabilityGenres[1], amount: 150),
+//        Sheet(year: 2020, month: 3, genre: liabilityGenres[2], amount: 250),
+//        Sheet(year: 2020, month: 3, genre: liabilityGenres[3], amount: 50)
     ]
     
     init() {}

@@ -4,6 +4,8 @@ class SummaryTableViewController: UITableViewController {
     
     @IBOutlet weak var dateSelector: DateSelector!
     
+    var summaryData: [SummaryModelView]?
+    var data = [SummaryModelView]()
     let sheetManager = SheetManager.shareInstance
     
     override func viewDidLoad() {
@@ -13,8 +15,13 @@ class SummaryTableViewController: UITableViewController {
         
         setNavigation()
         setTableView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        summaryData = sheetManager.getSummaryList()
+        sortData(year: dateSelector.getYear(), month: dateSelector.getMonth())
         
-        let r = sheetManager.getSummaryList()
+        tableView.reloadData()
     }
     
     func setNavigation() {
@@ -35,11 +42,9 @@ class SummaryTableViewController: UITableViewController {
     }
     
     func sortData(year: Int, month: Int) {
-//        guard var filterSheetData = sheetsData else { return }
-//
-//        filterSheetData = filterSheetData.filter( {$0.year == year && $0.month == month } )
-//        data[.longterm] = filterSheetData.filter( {$0.genre.subGenre == "longterm"} )
-//        data[.current] = filterSheetData.filter( {$0.genre.subGenre == "current"} )
+        guard let filterData = summaryData else { return }
+        
+        data = filterData.filter( {$0.year == year && $0.month == month } )
     }
 
     // MARK: - Table view data source
@@ -49,28 +54,32 @@ class SummaryTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return data.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SheetTableViewCell", for: indexPath) as! SheetTableViewCell
         
-        switch row {
-        case 0:
-            cell.setup(genre: "淨值總計", total: "0", status: "")
-            return cell
-        case 1:
-            cell.setup(genre: "資產總計", total: "0", status: "")
-            return cell
-        case 2:
-            cell.setup(genre: "負債總計", total: "0", status: "")
-            return cell
-        case 3:
-            cell.setup(genre: "負債比率", total: "0", status: "")
-            return cell
-        default:
-            break
+        if data.count > 0 {
+            let summary = data[row]
+            switch data[row].type {
+            case .networth:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "SheetTableViewCell", for: indexPath) as! SheetTableViewCell
+                cell.setup(genre: "淨值總計", total: summary.amountString, status: summary.rateString)
+                return cell
+            case .asset:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "SheetTableViewCell", for: indexPath) as! SheetTableViewCell
+                cell.setup(genre: "資產總計", total: summary.amountString, status: summary.rateString)
+                return cell
+            case .liability:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "SheetTableViewCell", for: indexPath) as! SheetTableViewCell
+                cell.setup(genre: "負債總計", total: summary.amountString, status: summary.rateString)
+                return cell
+            case .debtRatio:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "SheetTableViewCell", for: indexPath) as! SheetTableViewCell
+                cell.setup(genre: "負債比率", total: summary.amountString, status: summary.rateString)
+                return cell
+            }
         }
         
         return UITableViewCell()

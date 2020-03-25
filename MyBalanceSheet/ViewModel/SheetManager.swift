@@ -19,9 +19,8 @@ class SheetManager {
             match = false
             
             for second in sheetsData {
-                if first.year == second.year &&
-                    first.month-1 == second.month &&
-                    first.genre.id == second.genre.id {
+                if isLastMonth(firstYear: first.year, secondYear: second.year, firstMonth: first.month, secondMonth: second.month)
+                    && first.genre.id == second.genre.id {
                     
                     let vm = SheetListViewModel(sheet: first, prevMonthSheet: second)
                     result.append(vm)
@@ -51,9 +50,8 @@ class SheetManager {
             match = false
             
             for second in sheetsData {
-                if first.year == second.year &&
-                    first.month-1 == second.month &&
-                    first.genre.id == second.genre.id {
+                if isLastMonth(firstYear: first.year, secondYear: second.year, firstMonth: first.month, secondMonth: second.month)
+                    && first.genre.id == second.genre.id {
                     
                     let vm = SheetListViewModel(sheet: first, prevMonthSheet: second)
                     result.append(vm)
@@ -76,16 +74,15 @@ class SheetManager {
     
     func getSummaryList() -> [SummaryModelView] {
         var result = [SummaryModelView]()
-        var summaryDate = generateSummarySheet()
+        let summaryDate = generateSummarySheet()
         var match = false
         
         for first in summaryDate {
             match = false
             
             for second in summaryDate {
-                if first.year == second.year &&
-                    first.month-1 == second.month &&
-                    first.type == second.type {
+                if isLastMonth(firstYear: first.year, secondYear: second.year, firstMonth: first.month, secondMonth: second.month)
+                    && first.type == second.type {
                     
                     let vm = SummaryModelView(summary: first, prevSummary: second)
                     result.append(vm)
@@ -122,14 +119,14 @@ class SheetManager {
             let networth = caculateNetworth(totalAsset: totalAsset, totalLiability: totalLiability)
             let debtRatio = caculateDebtRatio(totalAsset: totalAsset, totalLiability: totalLiability)
             
+            let networthSummary = Summary(year: year, month: month, type: .networth, amount: networth)
             let assetSummary = Summary(year: year, month: month, type: .asset, amount: totalAsset)
             let liabilitySummary = Summary(year: year, month: month, type: .liability, amount: totalLiability)
-            let networthSummary = Summary(year: year, month: month, type: .networth, amount: networth)
             let debtRatioSummary = Summary(year: year, month: month, type: .debtRatio, amount: debtRatio)
             
+            result.append(networthSummary)
             result.append(assetSummary)
             result.append(liabilitySummary)
-            result.append(networthSummary)
             result.append(debtRatioSummary)
         }
         return result
@@ -173,10 +170,20 @@ class SheetManager {
     }
     
     private func caculateNetworth(totalAsset: Int, totalLiability: Int) -> Int {
-        return totalAsset + totalLiability
+        return totalAsset + (-totalLiability)
     }
     
     private func caculateDebtRatio(totalAsset: Int, totalLiability: Int) -> Int {
-        return totalLiability / totalAsset
+        return Int(ceil(Float(totalLiability) / Float(totalAsset) * 100))
     }
+    
+    private func isLastMonth(firstYear: Int, secondYear: Int, firstMonth: Int, secondMonth: Int) -> Bool {
+        let cond1 = firstYear == secondYear && (firstMonth-1) == secondMonth
+        let cond2 = (firstYear-1) == secondYear && firstMonth == 1 && secondMonth == 12
+        if cond1 || cond2 {
+            return true
+        }
+        return false
+    }
+    
 }

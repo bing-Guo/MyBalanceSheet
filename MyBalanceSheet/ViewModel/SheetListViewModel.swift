@@ -16,7 +16,8 @@ class SheetListViewModel {
         
         if let prev = prevMonthSheet {
             let rate = Float(sheet.amount - prev.amount) / Float(sheet.amount)
-            self.rateString = "\(rate)%"
+            let rateCeil = ceil(rate * 100)
+            self.rateString = "\(rateCeil)%"
         }else{
             self.rateString = "-"
         }
@@ -25,6 +26,7 @@ class SheetListViewModel {
     static func moneyFormat(_ value: Int) -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
+        formatter.maximumFractionDigits = 0
         return formatter.string(from: NSNumber(value: value))!
     }
 }
