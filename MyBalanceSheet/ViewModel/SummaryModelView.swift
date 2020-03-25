@@ -1,21 +1,20 @@
 import Foundation
 
-class AssetListViewModel {
-    
+class SummaryModelView {
     let year: Int
     let month: Int
-    let genre: Genre
+    let type: summaryType
     let amountString: String
     let rateString: String
     
-    init(sheet: Sheet, prevMonthSheet: Sheet?) {
-        self.year = sheet.year
-        self.month = sheet.month
-        self.genre = sheet.genre
-        self.amountString = AssetListViewModel.moneyFormat(sheet.amount)
+    init(summary: Summary, prevSummary: Summary?) {
+        self.year = summary.year
+        self.month = summary.month
+        self.type = summary.type
+        self.amountString = SheetListViewModel.moneyFormat(summary.amount)
         
-        if let prev = prevMonthSheet {
-            let rate = Float(sheet.amount - prev.amount) / Float(sheet.amount)
+        if let prev = prevSummary {
+            let rate = Float(summary.amount - prev.amount) / Float(summary.amount)
             self.rateString = "\(rate)%"
         }else{
             self.rateString = "-"

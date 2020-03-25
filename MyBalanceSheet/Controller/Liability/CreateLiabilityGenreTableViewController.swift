@@ -1,16 +1,19 @@
 import UIKit
 
-class CreateAssetSheetGenreTableViewController: UITableViewController {
-    
-    @IBOutlet weak var createBtn: UIBarButtonItem!
-    
+class CreateLiabilityGenreTableViewController: UITableViewController {
+
     var newSubGenre: String?
     var newAccountName: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setNavigation()
         setTableView()
+    }
+    
+    func setNavigation() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "儲存", style: .plain, target: self, action: #selector(CreateLiabilityItem))
     }
     
     func setTableView() {
@@ -36,15 +39,15 @@ class CreateAssetSheetGenreTableViewController: UITableViewController {
         switch row {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "RightTextFieldTableViewCell", for: indexPath) as! RightTextFieldTableViewCell
-            cell.setup(leftLabelString: "資產名稱")
+            cell.setup(leftLabelString: "負債名稱")
             cell.focusTextField()
             cell.delegate = self
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "RightPickerTableViewCell", for: indexPath) as! RightPickerTableViewCell
-            cell.setup(leftLabelString: "資產類型")
-            cell.segment.setTitle("流動資產", forSegmentAt: 0)
-            cell.segment.setTitle("固定資產", forSegmentAt: 1)
+            cell.setup(leftLabelString: "負債類型")
+            cell.segment.setTitle("流動負債", forSegmentAt: 0)
+            cell.segment.setTitle("固定負債", forSegmentAt: 1)
             cell.delegate = self
             return cell
         default:
@@ -58,7 +61,7 @@ class CreateAssetSheetGenreTableViewController: UITableViewController {
     }
     
     // MARK: - Action
-    @IBAction func CreateAssetItem(_ sender: Any) {
+    @objc func CreateLiabilityItem(_ sender: Any) {
         let subGenre = newSubGenre ?? "current"
         
         if let accountName = newAccountName {
@@ -70,19 +73,19 @@ class CreateAssetSheetGenreTableViewController: UITableViewController {
     }
     
     func addAssetItem(subGenre: String, accountName: String) {
-        let genre = Genre(id: "000", mainGenre: "資產", subGenre: subGenre, accountName: accountName)
-        Database.assetGenres.append(genre)
-        print("add: \(Database.assetGenres)")
+        let genre = Genre(id: "000", mainGenre: "負債", subGenre: subGenre, accountName: accountName)
+        Database.liabilityGenres.append(genre)
+        print("add: \(Database.liabilityGenres)")
     }
 }
 
-extension CreateAssetSheetGenreTableViewController: RightTextFieldDelegate {
+extension CreateLiabilityGenreTableViewController: RightTextFieldDelegate {
     func getTextFieldValue(value: String) {
         newAccountName = value
     }
 }
 
-extension CreateAssetSheetGenreTableViewController: RightPickerDelegate {
+extension CreateLiabilityGenreTableViewController: RightPickerDelegate {
     func getPickerValue(value: String) {
         newSubGenre = value
     }

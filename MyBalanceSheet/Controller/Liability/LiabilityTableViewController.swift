@@ -1,21 +1,21 @@
 import UIKit
 
-class AssetTableViewController: UITableViewController {
-
-    @IBOutlet weak var createSheetBtn: UIBarButtonItem!
+class LiabilityTableViewController: UITableViewController {
+    
     @IBOutlet weak var dateSelector: DateSelector!
+    @IBOutlet weak var createSheetBtn: UIBarButtonItem!
     
     var sheetsData: [SheetListViewModel]?
     var data = [TableSection: [SheetListViewModel]]()
     let sheetManager = SheetManager.shareInstance
     
     enum TableSection: Int {
-        case current, fixed
+        case current, longterm
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         dateSelector.delegate = self
         
         setNavigation()
@@ -23,20 +23,20 @@ class AssetTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        sheetsData = sheetManager.getAssetList()
+        sheetsData = sheetManager.getLiabilityList()
         sortData(year: dateSelector.getYear(), month: dateSelector.getMonth())
         
         tableView.reloadData()
     }
     
     func setNavigation() {
-        self.title = "資產"
+        self.title = "負債"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .always
         
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithOpaqueBackground()
-        navBarAppearance.backgroundColor = UIColor._bootstrap_green
+        navBarAppearance.backgroundColor = UIColor._bootstrap_red
         navigationController?.navigationBar.standardAppearance = navBarAppearance
         navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
     }
@@ -51,7 +51,7 @@ class AssetTableViewController: UITableViewController {
         guard var filterSheetData = sheetsData else { return }
         
         filterSheetData = filterSheetData.filter( {$0.year == year && $0.month == month } )
-        data[.fixed] = filterSheetData.filter( {$0.genre.subGenre == "fixed"} )
+        data[.longterm] = filterSheetData.filter( {$0.genre.subGenre == "longterm"} )
         data[.current] = filterSheetData.filter( {$0.genre.subGenre == "current"} )
     }
 
@@ -68,6 +68,7 @@ class AssetTableViewController: UITableViewController {
         
         return 0
     }
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = indexPath.section
@@ -102,10 +103,10 @@ class AssetTableViewController: UITableViewController {
         guard sheets.count > 0 else { return "" }
         
         switch tableSection {
+        case .longterm:
+            return "長期負債"
         case .current:
-            return "流動資產"
-        case .fixed:
-            return "固定資產"
+            return "流動負債"
         }
     }
     
@@ -115,16 +116,14 @@ class AssetTableViewController: UITableViewController {
         return headerView
     }
     
-    
     // MARK: - Action
     
     @IBAction func createSheet(_ sender: Any) {
-        self.navigationController?.pushViewController(CreateAssetSheetTableViewController(), animated: false)
+        self.navigationController?.pushViewController(CreateLiabilitySheetTableViewController(), animated: false)
     }
-    
 }
 
-extension AssetTableViewController: DateSelectorDelegate {
+extension LiabilityTableViewController: DateSelectorDelegate {
     func prevMonth(year: Int, month: Int) {
         sortData(year: year, month: month)
         tableView.reloadData()

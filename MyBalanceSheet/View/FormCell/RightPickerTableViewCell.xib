@@ -26,10 +26,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="DpX-Js-YUd">
-                                <rect key="frame" x="145" y="11.5" width="145" height="32"/>
+                                <rect key="frame" x="173" y="11.5" width="117" height="32"/>
                                 <segments>
-                                    <segment title="流動資產"/>
-                                    <segment title="固定資產"/>
+                                    <segment title="Item 0"/>
+                                    <segment title="Item 1"/>
                                 </segments>
                                 <connections>
                                     <action selector="segmentChange:" destination="KGk-i7-Jjw" eventType="valueChanged" id="C6u-Pb-CI6"/>

@@ -1,6 +1,6 @@
 import Foundation
 
-class AssetGenreListViewModel {
+class SheetGenreListViewModel {
     
     let id: String
     let mainGenre: String

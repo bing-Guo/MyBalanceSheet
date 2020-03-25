@@ -1,11 +1,3 @@
-//
-//  Database.swift
-//  MyBalanceSheet
-//
-//  Created by Bing Guo on 2020/3/14.
-//  Copyright © 2020 Bing Guo. All rights reserved.
-//
-
 import Foundation
 
 class Database {
@@ -18,16 +10,26 @@ class Database {
     
     static var liabilityGenres: [Genre] = [
         Genre(id: "b0001", mainGenre: "負債", subGenre: "current", accountName: "信用卡"),
-        Genre(id: "b0002", mainGenre: "負債", subGenre: "long-term", accountName: "車貸")
+        Genre(id: "b0002", mainGenre: "負債", subGenre: "longterm", accountName: "車貸"),
+        Genre(id: "b0003", mainGenre: "負債", subGenre: "longterm", accountName: "房貸"),
+        Genre(id: "b0004", mainGenre: "負債", subGenre: "current", accountName: "孝親費")
     ]
     
-    static var assetSheets: [Sheet] = [
+    static var sheets: [Sheet] = [
         Sheet(year: 2020, month: 2, genre: assetGenres[0], amount: 2000),
         Sheet(year: 2020, month: 2, genre: assetGenres[1], amount: 15000),
         Sheet(year: 2020, month: 3, genre: assetGenres[0], amount: 25000),
         Sheet(year: 2020, month: 3, genre: assetGenres[1], amount: 20000),
         Sheet(year: 2020, month: 3, genre: assetGenres[2], amount: 400000),
-        Sheet(year: 2020, month: 3, genre: assetGenres[3], amount: 12000000)
+        Sheet(year: 2020, month: 3, genre: assetGenres[3], amount: 12000000),
+        Sheet(year: 2020, month: 2, genre: liabilityGenres[0], amount: 2000),
+        Sheet(year: 2020, month: 2, genre: liabilityGenres[1], amount: 15000),
+        Sheet(year: 2020, month: 2, genre: liabilityGenres[2], amount: 25000),
+        Sheet(year: 2020, month: 2, genre: liabilityGenres[3], amount: 5000),
+        Sheet(year: 2020, month: 3, genre: liabilityGenres[0], amount: 50000),
+        Sheet(year: 2020, month: 3, genre: liabilityGenres[1], amount: 15000),
+        Sheet(year: 2020, month: 3, genre: liabilityGenres[2], amount: 25000),
+        Sheet(year: 2020, month: 3, genre: liabilityGenres[3], amount: 5000)
     ]
     
     init() {}

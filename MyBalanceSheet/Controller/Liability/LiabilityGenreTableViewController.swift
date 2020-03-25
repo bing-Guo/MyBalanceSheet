@@ -1,13 +1,9 @@
 import UIKit
 
-protocol ChoseItemDelegate: NSObject {
-    func choseItem(genre: SheetGenreListViewModel)
-}
+class LiabilityGenreTableViewController: UITableViewController {
 
-class AssetGenreTableViewController: UITableViewController {
-    
     @IBOutlet weak var btnContainer: UIView!
-    @IBOutlet weak var createAssetSheetItemBtn: UIButton!
+    @IBOutlet weak var createLiabilitySheetItemBtn: UIButton!
     
     var genreData: [SheetGenreListViewModel]?
     var data = [TableSection: [SheetGenreListViewModel]]()
@@ -15,7 +11,7 @@ class AssetGenreTableViewController: UITableViewController {
     weak var delegate: ChoseItemDelegate?
     
     enum TableSection: Int {
-        case current, fixed
+        case current, longterm
     }
     
     override func viewDidLoad() {
@@ -27,7 +23,7 @@ class AssetGenreTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        genreData = genreManager.getAssetGenreList()
+        genreData = genreManager.getLiabilityGenreList()
         sortData()
         
         tableView.reloadData()
@@ -41,13 +37,13 @@ class AssetGenreTableViewController: UITableViewController {
     
     func setBtn() {
         btnContainer.backgroundColor = UIColor._standard_light_gray
-        createAssetSheetItemBtn.layer.cornerRadius = 8
+        createLiabilitySheetItemBtn.layer.cornerRadius = 8
     }
     
     func sortData() {
         guard let filterGenreData = genreData else { return }
         
-        data[.fixed] = filterGenreData.filter({ $0.subGenre == "fixed" })
+        data[.longterm] = filterGenreData.filter({ $0.subGenre == "longterm" })
         data[.current] = filterGenreData.filter({ $0.subGenre == "current" })
     }
     
@@ -98,10 +94,10 @@ class AssetGenreTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if let tableSection = TableSection(rawValue: section) {
             switch tableSection {
+            case .longterm:
+                return "長期負債"
             case .current:
-                return "流動資產"
-            case .fixed:
-                return "固定資產"
+                return "流動負債"
             }
         }
         return ""
@@ -114,9 +110,9 @@ class AssetGenreTableViewController: UITableViewController {
     }
     
     // MARK: - Action
-    @IBAction func toCreateAssetSheetItemPage(_ sender: Any) {
+    @IBAction func toCreateLiabilitySheetItemPage(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let vc = storyboard.instantiateViewController(withIdentifier: "CreateAssetItemPage") as? CreateAssetSheetGenreTableViewController {
+        if let vc = storyboard.instantiateViewController(withIdentifier: "CreateLiabilityItemPage") as? CreateLiabilityGenreTableViewController {
             self.navigationController?.pushViewController(vc, animated: true)
         }else{
             fatalError("page not found")

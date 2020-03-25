@@ -1,11 +1,11 @@
 import UIKit
 
-class CreateAssetSheetTableViewController: UITableViewController {
+class CreateLiabilitySheetTableViewController: UITableViewController {
 
     var choseGenre: SheetGenreListViewModel?
     var choseAmount: Int?
     let sheetManager = SheetManager.shareInstance
-   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -14,9 +14,9 @@ class CreateAssetSheetTableViewController: UITableViewController {
     }
 
     func setNavigation() {
-        self.title = "新增資產"
+        self.title = "新增負債"
         self.navigationItem.largeTitleDisplayMode = .never
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "儲存", style: .plain, target: self, action: #selector(saveAssetSheet))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "儲存", style: .plain, target: self, action: #selector(saveLiabilitySheet))
         self.navigationController?.navigationBar.tintColor = .black
     }
     
@@ -74,7 +74,7 @@ class CreateAssetSheetTableViewController: UITableViewController {
         switch row {
             case 0:
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                if let vc = storyboard.instantiateViewController(withIdentifier: "GenreItemPage") as? AssetGenreTableViewController {
+                if let vc = storyboard.instantiateViewController(withIdentifier: "LiabilityGenreItemPage") as? LiabilityGenreTableViewController {
                     vc.delegate = self
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
@@ -88,7 +88,7 @@ class CreateAssetSheetTableViewController: UITableViewController {
     }
     
     // MARK: - Action
-    @objc func saveAssetSheet() {
+    @objc func saveLiabilitySheet() {
         let amount = choseAmount ?? 0
         if let genreVM = choseGenre {
             // todo
@@ -97,23 +97,23 @@ class CreateAssetSheetTableViewController: UITableViewController {
             createSheet(sheet: sheet)
             navigationController?.popViewController(animated: true)
         }
-        print("amount: \(amount), genre: \(choseGenre)")
+        print("amount: \(choseAmount), genre: \(choseGenre)")
     }
     
     func createSheet(sheet: Sheet) {
         sheetManager.addSheet(sheet: sheet)
     }
-    
+
 }
 
-extension CreateAssetSheetTableViewController: ChoseItemDelegate {
+extension CreateLiabilitySheetTableViewController: ChoseItemDelegate {
     func choseItem(genre: SheetGenreListViewModel) {
         self.choseGenre = genre
         tableView.reloadData()
     }
 }
 
-extension CreateAssetSheetTableViewController: RightNumberFieldDelegate {
+extension CreateLiabilitySheetTableViewController: RightNumberFieldDelegate {
     func getNumberFieldValue(value: Int) {
         self.choseAmount = value
     }
