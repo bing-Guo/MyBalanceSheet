@@ -13,9 +13,11 @@ class RightDatePickerTableViewCell: UITableViewCell {
     private var datePickerView: MonthYearPickerView?
     private var toolbar = UIToolbar()
     
-    private var selectedYearMonth: String = String(format: "%d/%02d", Date.getYear(), Date.getMonth())
     private var selectedYear: Int = Date.getYear()
     private var selectedMonth: Int = Date.getMonth()
+    var selectedYearMonth: String {
+        return String(format: "%d/%02d", selectedYear, selectedMonth)
+    }
     
     weak var delegate: RightDatePickerDelegate?
     
@@ -24,8 +26,7 @@ class RightDatePickerTableViewCell: UITableViewCell {
         
         setTextField()
         setCell()
-        
-        dateTextField.text = selectedYearMonth
+        setup()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -53,7 +54,6 @@ class RightDatePickerTableViewCell: UITableViewCell {
     func setDatePickerView() {
         datePickerView = MonthYearPickerView()
         datePickerView?.onDateSelected = { (month: Int, year: Int) in
-            self.selectedYearMonth = String(format: "%d/%02d", year, month)
             self.selectedYear = year
             self.selectedMonth = month
         }
@@ -66,6 +66,21 @@ class RightDatePickerTableViewCell: UITableViewCell {
             UIBarButtonItem(title: "完成", style: .plain, target: self, action: #selector(doneButtonTapped))
         ]
         toolbar.sizeToFit()
+    }
+    
+    func setup(year: Int = Date.getYear(), month: Int = Date.getMonth() ) {
+        self.selectedYear = year
+        self.selectedMonth = month
+        dateTextField.text = selectedYearMonth
+        selectPickerRow(year: year, month: month)
+    }
+    
+    private func selectPickerRow(year: Int, month: Int) {
+        let currentYearIndex = 5
+        let yearIndex = currentYearIndex - (Date.getYear() - year)
+        
+        datePickerView?.selectRow(month-1, inComponent: 0, animated: false)
+        datePickerView?.selectRow(yearIndex, inComponent: 1, animated: false)
     }
     
     // MARK: - Action

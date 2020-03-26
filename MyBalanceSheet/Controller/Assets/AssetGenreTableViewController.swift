@@ -21,16 +21,29 @@ class AssetGenreTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setNavigation()
+        setTabBar()
         setTableView()
         sortData()
         setBtn()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        setTabBar()
+        
         genreData = genreManager.getAssetGenreList()
         sortData()
         
         tableView.reloadData()
+    }
+    
+    func setNavigation() {
+        self.title = "資產項目列表"
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+    }
+    
+    func setTabBar() {
+        self.tabBarController?.tabBar.tintColor = UIColor._asset_background
     }
     
     func setTableView() {

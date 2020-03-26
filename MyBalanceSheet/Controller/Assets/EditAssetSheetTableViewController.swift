@@ -1,27 +1,29 @@
 import UIKit
 
-class CreateLiabilitySheetTableViewController: UITableViewController {
+class EditAssetSheetTableViewController: UITableViewController {
 
+    var originData: SheetListViewModel?
     var choseGenre: SheetGenreListViewModel?
-    let sheetManager = SheetManager.shareInstance
     var choseAmount: Int?
     var choseYear: Int?
     var choseMonth: Int?
-    
+    let sheetManager = SheetManager.shareInstance
+   
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setDefaultData()
         setNavigation()
         setTabBar()
         setTableView()
     }
 
     func setNavigation() {
-        self.title = "新增負債"
+        self.title = "編輯資產"
         self.navigationItem.largeTitleDisplayMode = .never
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "save"), style: .plain, target: self, action: #selector(saveLiabilitySheet))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "save"), style: .plain, target: self, action: #selector(saveAssetSheet))
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        self.navigationController?.navigationBar.tintColor = ._liability_text
+        self.navigationController?.navigationBar.tintColor = ._asset_text
     }
     
     func setTabBar() {
@@ -34,6 +36,13 @@ class CreateLiabilitySheetTableViewController: UITableViewController {
         tableView.register(UINib(nibName: "RightTextTableViewCell", bundle: nil), forCellReuseIdentifier: "RightTextTableViewCell")
         tableView.register(UINib(nibName: "RightNumberFieldTableViewCell", bundle: nil), forCellReuseIdentifier: "RightNumberFieldTableViewCell")
         tableView.register(UINib(nibName: "RightDatePickerTableViewCell", bundle: nil), forCellReuseIdentifier: "RightDatePickerTableViewCell")
+    }
+    
+    func setDefaultData() {
+        choseAmount = originData?.amount
+        choseYear = originData?.year
+        choseMonth = originData?.month
+        choseGenre = originData?.genre
     }
     
     // MARK: - Table view data source
@@ -52,18 +61,19 @@ class CreateLiabilitySheetTableViewController: UITableViewController {
         switch row {
             case 0:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "RightTextTableViewCell", for: indexPath) as! RightTextTableViewCell
-                cell.setup(leftLabelString: "選擇類型", rightLabelString: "類型")
+                cell.setup(leftLabelString: "選擇類型", rightLabelString: originData?.genre.accountName ?? "類型")
+                cell.chosenStatus()
                 
-                if let genre = choseGenre {
-                    cell.rightTextLabel.text = genre.accountName
-                    cell.chosenStatus()
-                }
-
                 return cell
             case 1:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "RightDatePickerTableViewCell", for: indexPath) as! RightDatePickerTableViewCell
                 cell.leftTextLabel.text = "選擇日期"
                 cell.delegate = self
+                
+                if let year = originData?.year, let month = originData?.month {
+                    cell.setup(year: year, month: month)
+                }
+                
                 return cell
             case 2:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "RightTextTableViewCell", for: indexPath) as! RightTextTableViewCell
@@ -72,7 +82,7 @@ class CreateLiabilitySheetTableViewController: UITableViewController {
                 return cell
             case 3:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "RightNumberFieldTableViewCell", for: indexPath) as! RightNumberFieldTableViewCell
-                cell.setup(leftLabelString: "選擇金額")
+                cell.setup(leftLabelString: "選擇金額", rightTextFieldValue: String(originData?.amount ?? 0))
                 cell.delegate = self
                 
                 return cell
@@ -88,7 +98,7 @@ class CreateLiabilitySheetTableViewController: UITableViewController {
         switch row {
             case 0:
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                if let vc = storyboard.instantiateViewController(withIdentifier: "LiabilityGenreItemPage") as? LiabilityGenreTableViewController {
+                if let vc = storyboard.instantiateViewController(withIdentifier: "GenreItemPage") as? AssetGenreTableViewController {
                     vc.delegate = self
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
@@ -102,41 +112,43 @@ class CreateLiabilitySheetTableViewController: UITableViewController {
     }
     
     // MARK: - Action
-    @objc func saveLiabilitySheet() {
+    @objc func saveAssetSheet() {
         let amount = choseAmount ?? 0
         let year = choseYear ?? Date.getYear()
         let month = choseMonth ?? Date.getMonth()
         
         if let genreVM = choseGenre {
-            // todo
             let genre = Genre(id: genreVM.id, mainGenre: genreVM.mainGenre, subGenre: genreVM.subGenre, accountName: genreVM.accountName)
             let sheet = Sheet(year: year, month: month, genre: genre, amount: amount)
-            createSheet(sheet: sheet)
+            updateSheet(sheet: sheet)
             navigationController?.popViewController(animated: true)
         }
-        print("amount: \(year), genre: \(month), amount: \(choseAmount), genre: \(choseGenre)")
+        print("year: \(year), month: \(month), amount: \(choseAmount), genre: \(choseGenre)")
     }
     
-    func createSheet(sheet: Sheet) {
-        sheetManager.addSheet(sheet: sheet)
+    func updateSheet(sheet: Sheet) {
+        sheetManager.updateSheet(sheetData: sheet)
     }
-
+    
 }
 
-extension CreateLiabilitySheetTableViewController: ChoseItemDelegate {
+extension EditAssetSheetTableViewController: ChoseItemDelegate {
     func choseItem(genre: SheetGenreListViewModel) {
         self.choseGenre = genre
-        tableView.reloadData()
+        if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? RightTextTableViewCell {
+            cell.rightTextLabel.text = genre.accountName
+            cell.chosenStatus()
+        }
     }
 }
 
-extension CreateLiabilitySheetTableViewController: RightNumberFieldDelegate {
+extension EditAssetSheetTableViewController: RightNumberFieldDelegate {
     func getNumberFieldValue(value: Int) {
         self.choseAmount = value
     }
 }
 
-extension CreateLiabilitySheetTableViewController: RightDatePickerDelegate {
+extension EditAssetSheetTableViewController: RightDatePickerDelegate {
     func getDatePickerValue(year: Int, month: Int) {
         self.choseYear = year
         self.choseMonth = month

@@ -9,11 +9,18 @@ class CreateLiabilityGenreTableViewController: UITableViewController {
         super.viewDidLoad()
         
         setNavigation()
+        setTabBar()
         setTableView()
     }
     
     func setNavigation() {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "儲存", style: .plain, target: self, action: #selector(CreateLiabilityItem))
+        self.title = "新增負債項目"
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "save"), style: .plain, target: self, action: #selector(CreateLiabilityItem))
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+    }
+    
+    func setTabBar() {
+        self.tabBarController?.tabBar.tintColor = UIColor._asset_background
     }
     
     func setTableView() {

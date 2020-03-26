@@ -56,6 +56,7 @@
 		FCF5A9B3242B54F8008121BA /* RightDatePickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCF5A9B1242B54F8008121BA /* RightDatePickerTableViewCell.xib */; };
 		FCF5A9B6242B5A33008121BA /* MonthYearPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF5A9B5242B5A33008121BA /* MonthYearPickerView.swift */; };
 		FCF5A9B9242B69A3008121BA /* UIDate+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF5A9B8242B69A3008121BA /* UIDate+Ext.swift */; };
+		FCF5A9BB242C6440008121BA /* EditAssetSheetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF5A9BA242C6440008121BA /* EditAssetSheetTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +123,7 @@
 		FCF5A9B1242B54F8008121BA /* RightDatePickerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RightDatePickerTableViewCell.xib; sourceTree = "<group>"; };
 		FCF5A9B5242B5A33008121BA /* MonthYearPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthYearPickerView.swift; sourceTree = "<group>"; };
 		FCF5A9B8242B69A3008121BA /* UIDate+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDate+Ext.swift"; sourceTree = "<group>"; };
+		FCF5A9BA242C6440008121BA /* EditAssetSheetTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAssetSheetTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,6 +288,7 @@
 				FCF29DDE241CA18E007E93D2 /* CreateAssetSheetTableViewController.swift */,
 				FCF29DE7241CBBB6007E93D2 /* AssetGenreTableViewController.swift */,
 				FCF29DF8241E7A12007E93D2 /* CreateAssetGenreTableViewController.swift */,
+				FCF5A9BA242C6440008121BA /* EditAssetSheetTableViewController.swift */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -448,6 +451,7 @@
 				FCF29DF9241E7A12007E93D2 /* CreateAssetGenreTableViewController.swift in Sources */,
 				FCF5A99B242A0EC2008121BA /* CellHeaderView.swift in Sources */,
 				FCF5A9A2242AED66008121BA /* LiabilityTableViewController.swift in Sources */,
+				FCF5A9BB242C6440008121BA /* EditAssetSheetTableViewController.swift in Sources */,
 				FCF29DB52414D3B6007E93D2 /* UIColor+Ext.swift in Sources */,
 				FCF29DD9241C9890007E93D2 /* Genre.swift in Sources */,
 				FCF5A9AD242AFECC008121BA /* SummaryModelView.swift in Sources */,

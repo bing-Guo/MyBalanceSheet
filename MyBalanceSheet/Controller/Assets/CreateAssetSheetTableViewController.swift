@@ -12,14 +12,20 @@ class CreateAssetSheetTableViewController: UITableViewController {
         super.viewDidLoad()
 
         setNavigation()
+        setTabBar()
         setTableView()
     }
 
     func setNavigation() {
         self.title = "新增資產"
         self.navigationItem.largeTitleDisplayMode = .never
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "儲存", style: .plain, target: self, action: #selector(saveAssetSheet))
-        self.navigationController?.navigationBar.tintColor = .black
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "save"), style: .plain, target: self, action: #selector(saveAssetSheet))
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.navigationController?.navigationBar.tintColor = ._asset_text
+    }
+    
+    func setTabBar() {
+        self.tabBarController?.tabBar.tintColor = UIColor._asset_background
     }
     
     func setTableView() {

@@ -10,7 +10,19 @@ class CreateAssetSheetGenreTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setNavigation()
+        setTabBar()
         setTableView()
+    }
+    
+    func setNavigation() {
+        self.title = "新增資產項目"
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "save"), style: .plain, target: self, action: #selector(CreateAssetItem))
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+    }
+    
+    func setTabBar() {
+        self.tabBarController?.tabBar.tintColor = UIColor._asset_background
     }
     
     func setTableView() {
@@ -58,7 +70,7 @@ class CreateAssetSheetGenreTableViewController: UITableViewController {
     }
     
     // MARK: - Action
-    @IBAction func CreateAssetItem(_ sender: Any) {
+    @objc func CreateAssetItem(_ sender: Any) {
         let subGenre = newSubGenre ?? "current"
         
         if let accountName = newAccountName {

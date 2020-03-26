@@ -23,6 +23,7 @@ class SummaryTableViewController: UITableViewController {
         let date = dateSelector.getDate()
         sortData(year: Date.getYear(date), month: Date.getMonth(date))
         setTabBar()
+        print(data)
         tableView.reloadData()
     }
     
@@ -69,6 +70,8 @@ class SummaryTableViewController: UITableViewController {
         guard let filterData = summaryData else { return }
         
         data = filterData.filter( {$0.year == year && $0.month == month } )
+        let a = data
+        print(a)
     }
 
     // MARK: - Table view data source
@@ -98,19 +101,19 @@ class SummaryTableViewController: UITableViewController {
             switch data[row].type {
             case .networth:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "SheetTableViewCell", for: indexPath) as! SheetTableViewCell
-                cell.setup(genre: "淨值總計", total: summary.amountString, status: summary.rateString)
+                cell.setup(genre: "淨值總計", amount: summary.amountString, rate: summary.rateString, rateStatue: summary.rateStatue)
                 return cell
             case .asset:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "SheetTableViewCell", for: indexPath) as! SheetTableViewCell
-                cell.setup(genre: "資產總計", total: summary.amountString, status: summary.rateString)
+                cell.setup(genre: "資產總計", amount: summary.amountString, rate: summary.rateString, rateStatue: summary.rateStatue)
                 return cell
             case .liability:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "SheetTableViewCell", for: indexPath) as! SheetTableViewCell
-                cell.setup(genre: "負債總計", total: summary.amountString, status: summary.rateString)
+                cell.setup(genre: "負債總計", amount: summary.amountString, rate: summary.rateString, rateStatue: summary.rateStatue)
                 return cell
             case .debtRatio:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "SheetTableViewCell", for: indexPath) as! SheetTableViewCell
-                cell.setup(genre: "負債比率", total: summary.amountString, status: summary.rateString)
+                cell.setup(genre: "負債比率", amount: summary.amountString, rate: summary.rateString, rateStatue: summary.rateStatue)
                 return cell
             }
         }
@@ -119,7 +122,7 @@ class SummaryTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 90
+        return 100
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

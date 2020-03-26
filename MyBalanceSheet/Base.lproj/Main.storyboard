@@ -229,7 +229,7 @@
         <scene sceneID="Egd-gR-ixf">
             <objects>
                 <tableViewController id="QRF-uq-eCX" customClass="AssetTableViewController" customModule="MyBalanceSheet" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Z1M-Mc-KZm">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Z1M-Mc-KZm">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -257,6 +257,7 @@
                     <connections>
                         <outlet property="dateSelector" destination="mDe-l8-EJb" id="m9o-ov-yht"/>
                         <segue destination="ApA-ui-DnM" kind="show" identifier="toChoseAsset" id="5je-Q3-wW5"/>
+                        <segue destination="Doq-Ym-JIN" kind="show" id="BOd-Mm-wNl"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uTE-Tj-TAn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -294,6 +295,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sFj-HE-kdl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2817" y="311"/>
+        </scene>
+        <!--Edit Asset Sheet Table View Controller-->
+        <scene sceneID="c8g-TM-TZn">
+            <objects>
+                <tableViewController storyboardIdentifier="EditAssetPage" id="Doq-Ym-JIN" customClass="EditAssetSheetTableViewController" customModule="MyBalanceSheet" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="5Oo-uF-HaT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ivP-5D-WFU">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ivP-5D-WFU" id="NsW-0s-Hfi">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Doq-Ym-JIN" id="2db-VK-AEM"/>
+                            <outlet property="delegate" destination="Doq-Ym-JIN" id="K6S-vk-23k"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="ftV-Lw-fHr"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gg3-h8-1tl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3691" y="-389"/>
         </scene>
         <!--Asset Genre Table View Controller-->
         <scene sceneID="Ne6-jt-cex">
@@ -437,7 +467,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Mt7-G1-ael">
-                        <barButtonItem key="rightBarButtonItem" title="新增" id="1lg-4x-Uf7">
+                        <barButtonItem key="rightBarButtonItem" title="新增" image="save" id="1lg-4x-Uf7">
                             <connections>
                                 <action selector="CreateAssetItem:" destination="mYK-8j-xeY" id="iGh-20-KXy"/>
                             </connections>
@@ -460,5 +490,6 @@
         <image name="money" width="24" height="24"/>
         <image name="money.fill" width="24" height="24"/>
         <image name="plus.circle.fill" catalog="system" width="64" height="60"/>
+        <image name="save" width="25" height="25"/>
     </resources>
 </document>

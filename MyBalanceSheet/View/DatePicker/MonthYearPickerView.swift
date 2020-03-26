@@ -13,7 +13,7 @@ class MonthYearPickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataS
     
     var year = Calendar.current.component(.year, from: Date()) {
         didSet {
-            selectRow(years.firstIndex(of: year)!, inComponent: 1, animated: true)
+            selectRow(years.firstIndex(of: year)!, inComponent: 1, animated: false)
         }
     }
     
@@ -32,11 +32,11 @@ class MonthYearPickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataS
     func commonSetup() {
         // population years
         var years: [Int] = []
+        let currentYear = Date.getYear()
         if years.count == 0 {
-            var year = NSCalendar(identifier: NSCalendar.Identifier.gregorian)!.component(.year, from: NSDate() as Date)
-            for _ in 1...15 {
+            for i in -5...15 {
+                let year = currentYear + i
                 years.append(year)
-                year += 1
             }
         }
         self.years = years
@@ -55,6 +55,7 @@ class MonthYearPickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataS
         
         let currentMonth = NSCalendar(identifier: NSCalendar.Identifier.gregorian)!.component(.month, from: NSDate() as Date)
         self.selectRow(currentMonth - 1, inComponent: 0, animated: false)
+        self.selectRow(years.firstIndex(of: currentYear)!, inComponent: 1, animated: false)
     }
     
     // Mark: UIPicker Delegate / Data Source

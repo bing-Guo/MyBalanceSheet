@@ -55,8 +55,9 @@ class RightNumberFieldTableViewCell: UITableViewCell {
         numberToolbar.sizeToFit()
     }
     
-    func setup(leftLabelString: String) {
+    func setup(leftLabelString: String, rightTextFieldValue: String = "0") {
         self.leftTextLabel.text = leftLabelString
+        self.rightTextField.text = rightTextFieldValue
     }
     
     // MARK: - Action

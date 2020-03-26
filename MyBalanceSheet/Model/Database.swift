@@ -30,8 +30,8 @@ class Database {
         Sheet(year: 2020, month: 2, genre: liabilityGenres[3], amount: 500),
         Sheet(year: 2020, month: 3, genre: liabilityGenres[0], amount: 500),
         Sheet(year: 2020, month: 3, genre: liabilityGenres[1], amount: 150),
-        Sheet(year: 2020, month: 3, genre: liabilityGenres[2], amount: 250),
-        Sheet(year: 2020, month: 3, genre: liabilityGenres[3], amount: 50)
+        Sheet(year: 2020, month: 3, genre: liabilityGenres[2], amount: 500),
+        Sheet(year: 2020, month: 3, genre: liabilityGenres[3], amount: 500000000)
     ]
     
     init() {}

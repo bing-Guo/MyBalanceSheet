@@ -25,8 +25,11 @@ class AssetTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         sheetsData = sheetManager.getAssetList()
         let date = dateSelector.getDate()
-        sortData(year: Date.getYear(date), month: Date.getMonth(date))
+        let filter = filterData(year: Date.getYear(date), month: Date.getMonth(date))
+        setNoData( (filter.count == 0) )
+        sortData(filter)
         setTabBar()
+        
         tableView.reloadData()
     }
     
@@ -34,6 +37,7 @@ class AssetTableViewController: UITableViewController {
         self.title = "資產"
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.largeTitleDisplayMode = .always
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus.app.fill"), style: .plain, target: self, action: #selector(createSheet))
 
         let navBarAppearance = UINavigationBarAppearance()
@@ -71,14 +75,26 @@ class AssetTableViewController: UITableViewController {
         dateSelector.setGreenMode()
     }
     
-    func sortData(year: Int, month: Int) {
-        guard var filterSheetData = sheetsData else { return }
-        
+    func filterData(year: Int, month: Int) -> [SheetListViewModel] {
+        guard var filterSheetData = sheetsData else { return [] }
         filterSheetData = filterSheetData.filter( {$0.year == year && $0.month == month } )
-        data[.fixed] = filterSheetData.filter( {$0.genre.subGenre == "fixed"} )
-        data[.current] = filterSheetData.filter( {$0.genre.subGenre == "current"} )
+        
+        return filterSheetData
+    }
+    
+    func sortData(_ filter: [SheetListViewModel]) {
+        data[.fixed] = filter.filter( {$0.genre.subGenre == "fixed"} )
+        data[.current] = filter.filter( {$0.genre.subGenre == "current"} )
     }
 
+    func setNoData(_ isNoData: Bool) {
+        let noDataLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 20 ))
+        noDataLabel.text = (isNoData) ? "尚未有紀錄" : ""
+        noDataLabel.textAlignment = .center
+        
+        self.tableView.backgroundView = noDataLabel
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -104,8 +120,9 @@ class AssetTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SheetTableViewCell", for: indexPath) as! SheetTableViewCell
             
             cell.setup(genre: sheet.genre.accountName,
-                       total: sheet.amountString,
-                       status: sheet.rateString)
+                       amount: sheet.amountString,
+                       rate: sheet.rateString,
+                       rateStatue: sheet.rateStatue)
             
             return cell
         }
@@ -113,8 +130,20 @@ class AssetTableViewController: UITableViewController {
         return UITableViewCell()
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let tableSection = TableSection(rawValue: indexPath.section), let sheetData = data[tableSection]?[indexPath.row]  else { return }
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        if let vc = storyboard.instantiateViewController(withIdentifier: "EditAssetPage") as? EditAssetSheetTableViewController {
+            vc.originData = sheetData
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+            
+    }
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 90
+        return 100
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -162,12 +191,16 @@ class AssetTableViewController: UITableViewController {
 
 extension AssetTableViewController: DateSelectorDelegate {
     func prevMonth(year: Int, month: Int) {
-        sortData(year: year, month: month)
+        let filter = filterData(year: year, month: month)
+        setNoData( (filter.count == 0) )
+        sortData(filter)
         tableView.reloadData()
     }
     
     func nextMonth(year: Int, month: Int) {
-        sortData(year: year, month: month)
+        let filter = filterData(year: year, month: month)
+        setNoData( (filter.count == 0) )
+        sortData(filter)
         tableView.reloadData()
     }
 }

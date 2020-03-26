@@ -10,6 +10,24 @@ class SheetManager {
         Database.sheets.append(sheet)
     }
     
+    func updateSheet(sheetData: Sheet) -> Bool {
+        let year = sheetData.year
+        let month = sheetData.month
+        let genreID = sheetData.genre.id
+        
+        for index in 0..<Database.sheets.count {
+            let sheet = Database.sheets[index]
+            if sheet.year == year && sheet.month == month && sheet.genre.id == genreID {
+                Database.sheets[index].amount = sheetData.amount
+                Database.sheets[index].year = sheetData.year
+                Database.sheets[index].month = sheetData.month
+                Database.sheets[index].genre = sheetData.genre
+            }
+        }
+        
+        return true
+    }
+    
     func getAssetList() -> [SheetListViewModel] {
         var result = [SheetListViewModel]()
         let sheetsData = Database.sheets.filter( {$0.genre.mainGenre == "資產"} )
