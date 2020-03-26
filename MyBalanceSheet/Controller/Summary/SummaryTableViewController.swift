@@ -11,35 +11,58 @@ class SummaryTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        dateSelector.delegate = self
-        
         setNavigation()
+        setTabBar()
         setTableView()
+        setDateSelector()
+        setSwipeGesture()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         summaryData = sheetManager.getSummaryList()
         let date = dateSelector.getDate()
         sortData(year: Date.getYear(date), month: Date.getMonth(date))
-        
+        setTabBar()
         tableView.reloadData()
     }
     
     func setNavigation() {
         self.title = "總覽"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.largeTitleDisplayMode = .always
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationItem.largeTitleDisplayMode = .always
+        self.navigationController?.navigationBar.tintColor = UIColor._summary_text
         
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithOpaqueBackground()
-        navBarAppearance.backgroundColor = UIColor._bootstrap_yellow
+        navBarAppearance.backgroundColor = UIColor._summary_background
+        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor._summary_text]
+        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor._summary_text]
         navigationController?.navigationBar.standardAppearance = navBarAppearance
         navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+    }
+    
+    func setTabBar() {
+        self.tabBarController?.tabBar.tintColor = UIColor._summary_background
     }
     
     func setTableView() {
         tableView.backgroundColor = UIColor._app_background
         tableView.register(UINib(nibName: "SheetTableViewCell", bundle: nil), forCellReuseIdentifier: "SheetTableViewCell")
+    }
+    
+    func setSwipeGesture() {
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.swipe(_:)))
+        swipeRight.direction = .right
+        self.view.addGestureRecognizer(swipeRight)
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.swipe(_:)))
+        swipeLeft.direction = .left
+        self.view.addGestureRecognizer(swipeLeft)
+    }
+    
+    func setDateSelector() {
+        dateSelector.delegate = self
+        dateSelector.setYellowMode()
     }
     
     func sortData(year: Int, month: Int) {
@@ -55,7 +78,16 @@ class SummaryTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
+        if data.count > 0 {
+            return data.count
+        }else{
+            let noDataLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 20 ))
+            noDataLabel.text = "尚未有紀錄"
+            noDataLabel.textAlignment = .center
+            
+            self.tableView.backgroundView = noDataLabel
+            return 0
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -87,7 +119,7 @@ class SummaryTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 90
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -98,6 +130,21 @@ class SummaryTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 10
+    }
+    
+    // MARK: - Action
+    
+    @objc func swipe(_ recognizer:UISwipeGestureRecognizer) {
+        switch recognizer.direction {
+        case .left:
+           dateSelector.triggerRightButtonClick()
+           break
+        case .right:
+           dateSelector.triggerLeftButtonClick()
+           break
+        default:
+           break
+        }
     }
 }
 

@@ -13,7 +13,6 @@ class DateSelector: UIView {
     @IBOutlet weak var rightButton: UIButton!
     @IBOutlet weak var dateLabel: UILabel!
     
-    var color: UIColor = UIColor._standard_gray
     private var date = Date()
     
     weak var delegate: DateSelectorDelegate?
@@ -36,8 +35,8 @@ class DateSelector: UIView {
         let nibView = nib.instantiate(withOwner: self, options: nil).first as! UIView
         
         setView()
-        setButton()
-        setSelectorBackgroundView()
+        setButton(UIColor._standard_gray)
+        setSelectorBackgroundView(UIColor._standard_gray)
         setDateLabel()
         
         return nibView
@@ -47,18 +46,19 @@ class DateSelector: UIView {
         view.backgroundColor = UIColor._app_background
     }
     
-    func setButton() {
+    func setButton(_ color: UIColor) {
         leftButton.tintColor = color
         rightButton.tintColor = color
     }
     
-    func setSelectorBackgroundView() {
+    func setSelectorBackgroundView(_ color: UIColor) {
         selectorBackgroundView.layer.cornerRadius = 8
         selectorBackgroundView.backgroundColor = color
     }
     
     func setDateLabel() {
         dateLabel.text = dateToYearMonth(date: date)
+        dateLabel.font = UIFont.boldSystemFont(ofSize: CGFloat(17))
     }
     
     // MARK: - Action
@@ -72,6 +72,35 @@ class DateSelector: UIView {
         addMonth(1)
         setDateLabel()
         delegate?.nextMonth(year: Date.getYear(date), month: Date.getMonth(date))
+    }
+    
+    func triggerRightButtonClick() {
+        rightButton.sendActions(for: .touchUpInside)
+    }
+    
+    func triggerLeftButtonClick() {
+        leftButton.sendActions(for: .touchUpInside)
+    }
+    
+    func setGreenMode() {
+        let color: UIColor = UIColor._asset_background
+        setSelectorBackgroundView(color)
+        setButton(color)
+        dateLabel.textColor = UIColor._asset_text
+    }
+    
+    func setYellowMode() {
+        let color: UIColor = UIColor._summary_background
+        setSelectorBackgroundView(color)
+        setButton(color)
+        dateLabel.textColor = UIColor._summary_text
+    }
+    
+    func setRedMode() {
+        let color: UIColor = UIColor._liability_background
+        setSelectorBackgroundView(color)
+        setButton(color)
+        dateLabel.textColor = UIColor._liability_text
     }
     
     // MARK: - Helper

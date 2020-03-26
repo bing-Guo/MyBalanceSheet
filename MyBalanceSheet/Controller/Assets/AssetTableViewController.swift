@@ -2,7 +2,6 @@ import UIKit
 
 class AssetTableViewController: UITableViewController {
 
-    @IBOutlet weak var createSheetBtn: UIBarButtonItem!
     @IBOutlet weak var dateSelector: DateSelector!
     
     var sheetsData: [SheetListViewModel]?
@@ -16,36 +15,60 @@ class AssetTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dateSelector.delegate = self
-        
         setNavigation()
+        setTabBar()
         setTableView()
+        setDateSelector()
+        setSwipeGesture()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         sheetsData = sheetManager.getAssetList()
         let date = dateSelector.getDate()
         sortData(year: Date.getYear(date), month: Date.getMonth(date))
-        
+        setTabBar()
         tableView.reloadData()
     }
     
     func setNavigation() {
         self.title = "資產"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.largeTitleDisplayMode = .always
-        
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationItem.largeTitleDisplayMode = .always
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus.app.fill"), style: .plain, target: self, action: #selector(createSheet))
+
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithOpaqueBackground()
-        navBarAppearance.backgroundColor = UIColor._asset_background_green
-        navigationController?.navigationBar.standardAppearance = navBarAppearance
-        navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+        navBarAppearance.backgroundColor = UIColor._asset_background
+        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor._asset_text]
+        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor._asset_text]
+        self.navigationController?.navigationBar.standardAppearance = navBarAppearance
+        self.navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+        self.navigationController?.navigationBar.tintColor = UIColor._asset_text
+    }
+    
+    func setTabBar() {
+        self.tabBarController?.tabBar.tintColor = UIColor._asset_background
     }
     
     func setTableView() {
         tableView.backgroundColor = UIColor._app_background
         tableView.register(UINib(nibName: "SheetTableViewCell", bundle: nil), forCellReuseIdentifier: "SheetTableViewCell")
         tableView.register(UINib(nibName: "SeparateTableViewCell", bundle: nil), forCellReuseIdentifier: "SeparateTableViewCell")
+    }
+    
+    func setSwipeGesture() {
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.swipe(_:)))
+        swipeRight.direction = .right
+        self.view.addGestureRecognizer(swipeRight)
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.swipe(_:)))
+        swipeLeft.direction = .left
+        self.view.addGestureRecognizer(swipeLeft)
+    }
+    
+    func setDateSelector() {
+        dateSelector.delegate = self
+        dateSelector.setGreenMode()
     }
     
     func sortData(year: Int, month: Int) {
@@ -91,7 +114,7 @@ class AssetTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 90
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -119,10 +142,22 @@ class AssetTableViewController: UITableViewController {
     
     // MARK: - Action
     
-    @IBAction func createSheet(_ sender: Any) {
+    @objc func createSheet(_ sender: Any) {
         self.navigationController?.pushViewController(CreateAssetSheetTableViewController(), animated: false)
     }
     
+    @objc func swipe(_ recognizer:UISwipeGestureRecognizer) {
+        switch recognizer.direction {
+        case .left:
+           dateSelector.triggerRightButtonClick()
+           break
+        case .right:
+           dateSelector.triggerLeftButtonClick()
+           break
+        default:
+           break
+        }
+    }
 }
 
 extension AssetTableViewController: DateSelectorDelegate {

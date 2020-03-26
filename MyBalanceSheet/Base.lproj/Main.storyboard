@@ -92,16 +92,8 @@
                             <outlet property="delegate" destination="PZQ-Au-5ra" id="aub-eV-glc"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="AXc-u4-Hyg">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="plus.app" catalog="system" id="b9q-Ns-vuS">
-                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
-                            <connections>
-                                <action selector="createSheet:" destination="PZQ-Au-5ra" id="ySS-c9-gHh"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="AXc-u4-Hyg"/>
                     <connections>
-                        <outlet property="createSheetBtn" destination="b9q-Ns-vuS" id="99Y-JQ-Yn3"/>
                         <outlet property="dateSelector" destination="tWy-Nh-DLd" id="dQs-Xr-5AO"/>
                         <segue destination="Gtc-8L-sbH" kind="show" identifier="toChoseLiability" id="gUz-9T-8x9"/>
                     </connections>
@@ -261,16 +253,8 @@
                             <outlet property="delegate" destination="QRF-uq-eCX" id="Yuh-oX-5sD"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="b6B-cp-Vvh">
-                        <barButtonItem key="rightBarButtonItem" image="plus.app" catalog="system" id="YxM-4j-yFF">
-                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
-                            <connections>
-                                <action selector="createSheet:" destination="QRF-uq-eCX" id="wkx-Sv-Y2e"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="b6B-cp-Vvh"/>
                     <connections>
-                        <outlet property="createSheetBtn" destination="YxM-4j-yFF" id="BL5-r1-mOy"/>
                         <outlet property="dateSelector" destination="mDe-l8-EJb" id="m9o-ov-yht"/>
                         <segue destination="ApA-ui-DnM" kind="show" identifier="toChoseAsset" id="5je-Q3-wW5"/>
                     </connections>
@@ -475,7 +459,6 @@
         <image name="dollarsign.circle.fill" catalog="system" width="64" height="60"/>
         <image name="money" width="24" height="24"/>
         <image name="money.fill" width="24" height="24"/>
-        <image name="plus.app" catalog="system" width="64" height="56"/>
         <image name="plus.circle.fill" catalog="system" width="64" height="60"/>
     </resources>
 </document>

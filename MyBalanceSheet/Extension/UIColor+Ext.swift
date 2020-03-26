@@ -29,19 +29,27 @@ extension UIColor {
         return UIColor(hex: "#cccccc")
     }
     
-    class var _bootstrap_red: UIColor {
+    class var _summary_background: UIColor {
+        return UIColor(hex: "#F4C253")
+    }
+    
+    class var _summary_text: UIColor {
+        return UIColor(hex: "#000000")
+    }
+    
+    class var _asset_background: UIColor {
+        return UIColor(hex: "#008972")
+    }
+    
+    class var _asset_text: UIColor {
+        return UIColor(hex: "#ffffff")
+    }
+    
+    class var _liability_background: UIColor {
         return UIColor(hex: "#E1455E")
     }
     
-    class var _bootstrap_yellow: UIColor {
-        return UIColor(hex: "#F7C64B")
-    }
-    
-    class var _asset_background_green: UIColor {
-        return UIColor(hex: "#36C489")
-    }
-    
-    class var _asset_green: UIColor {
-        return UIColor(hex: "#299E6E")
+    class var _liability_text: UIColor {
+        return UIColor(hex: "#ffffff")
     }
 }
