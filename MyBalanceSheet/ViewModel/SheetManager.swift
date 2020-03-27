@@ -56,7 +56,6 @@ class SheetManager {
     func getLiabilityList() -> [SheetListViewModel] {
         var result = [SheetListViewModel]()
         let sheetsData = Database.sheets.filter( {$0.genre.sheetType == .liability} )
-        var match = false
         
         for sheet in sheetsData {
             let vm = SheetListViewModel(sheet: sheet)

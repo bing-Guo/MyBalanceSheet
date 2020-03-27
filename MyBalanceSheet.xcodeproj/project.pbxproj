@@ -394,6 +394,11 @@
 		FCF29D5F2413889F007E93D2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					roundicons,
+					smashicons,
+					ultimatearm,
+				);
 				LastSwiftUpdateCheck = 1120;
 				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = "Bing Guo";

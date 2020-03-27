@@ -147,7 +147,7 @@ class CreateSheetTableViewController: UITableViewController {
         let month = choseMonth ?? Date.getMonth()
         
         if let genreVM = choseGenre, let name = choseName {
-            let genre = Genre(id: genreVM.id, sheetType: genreVM.sheetType, genreType: genreVM.genreType, accountName: genreVM.accountName)
+            let genre = Genre(id: genreVM.id, icon: "", sheetType: genreVM.sheetType, genreType: genreVM.genreType, accountName: genreVM.accountName)
             let sheet = Sheet(id: id, name: name, year: year, month: month, genre: genre, amount: amount)
             
             if editMode {

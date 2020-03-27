@@ -20,13 +20,13 @@
                         <rect key="frame" x="10" y="10" width="300" height="54"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xvD-HX-ZXe">
-                                <rect key="frame" x="20" y="16.5" width="42" height="21"/>
+                                <rect key="frame" x="10" y="16.5" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vl9-GL-Wob">
-                                <rect key="frame" x="130" y="18" width="150" height="18.5"/>
+                                <rect key="frame" x="140" y="18" width="150" height="18.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="an0-JO-qg3"/>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="250" id="tum-r4-DHy"/>
@@ -37,10 +37,10 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Vl9-GL-Wob" secondAttribute="trailing" constant="20" id="7Qp-d5-Us8"/>
+                            <constraint firstAttribute="trailing" secondItem="Vl9-GL-Wob" secondAttribute="trailing" constant="10" id="7Qp-d5-Us8"/>
                             <constraint firstItem="Vl9-GL-Wob" firstAttribute="centerY" secondItem="N3l-Rw-ge3" secondAttribute="centerY" id="Dum-cj-suG"/>
                             <constraint firstItem="xvD-HX-ZXe" firstAttribute="centerY" secondItem="N3l-Rw-ge3" secondAttribute="centerY" id="uWQ-0P-L5K"/>
-                            <constraint firstItem="xvD-HX-ZXe" firstAttribute="leading" secondItem="N3l-Rw-ge3" secondAttribute="leading" constant="20" id="xtH-CJ-0jK"/>
+                            <constraint firstItem="xvD-HX-ZXe" firstAttribute="leading" secondItem="N3l-Rw-ge3" secondAttribute="leading" constant="10" id="xtH-CJ-0jK"/>
                         </constraints>
                     </view>
                 </subviews>

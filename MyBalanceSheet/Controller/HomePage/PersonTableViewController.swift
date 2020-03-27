@@ -31,7 +31,7 @@ class PersonTableViewController: UITableViewController {
     
     func setTableView() {
         tableView.backgroundColor = UIColor._app_background
-        tableView.register(UINib(nibName: "ItemTableViewCell", bundle: nil), forCellReuseIdentifier: "ItemTableViewCell")
+        tableView.register(UINib(nibName: "RightTextTableViewCell", bundle: nil), forCellReuseIdentifier: "RightTextTableViewCell")
     }
     // MARK: - Table view data source
 
@@ -44,8 +44,8 @@ class PersonTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ItemTableViewCell", for: indexPath) as! ItemTableViewCell
-        cell.setup(itemLabelString: "感謝")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RightTextTableViewCell", for: indexPath) as! RightTextTableViewCell
+        cell.setup(leftLabelString: "感謝", rightLabelString: "")
         
         return cell
     }

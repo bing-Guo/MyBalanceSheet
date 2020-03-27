@@ -109,7 +109,7 @@ class ItemListTableViewController: UITableViewController {
         
         if let tableSection = GenreType(rawValue: section), let genre = data[tableSection]?[row] {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ItemTableViewCell", for: indexPath) as! ItemTableViewCell
-            cell.setup(itemLabelString: genre.accountName)
+            cell.setup(itemLabelString: genre.accountName, iconString: genre.icon)
             return cell
         }
         

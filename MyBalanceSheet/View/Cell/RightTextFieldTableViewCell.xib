@@ -20,13 +20,13 @@
                         <rect key="frame" x="10" y="10" width="300" height="54"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tZh-cV-s51">
-                                <rect key="frame" x="20" y="16.5" width="42" height="21"/>
+                                <rect key="frame" x="10" y="16.5" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wma-Z2-IHu">
-                                <rect key="frame" x="130" y="18" width="150" height="18.5"/>
+                                <rect key="frame" x="140" y="18" width="150" height="18.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="250" id="6iD-Wg-OTt"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="Tkk-mD-vJh"/>
@@ -39,8 +39,8 @@
                         <constraints>
                             <constraint firstItem="tZh-cV-s51" firstAttribute="centerY" secondItem="5vx-eZ-5os" secondAttribute="centerY" id="24X-SP-1SZ"/>
                             <constraint firstItem="Wma-Z2-IHu" firstAttribute="centerY" secondItem="5vx-eZ-5os" secondAttribute="centerY" id="3I1-fd-tHU"/>
-                            <constraint firstAttribute="trailing" secondItem="Wma-Z2-IHu" secondAttribute="trailing" constant="20" id="Ipz-Qv-iID"/>
-                            <constraint firstItem="tZh-cV-s51" firstAttribute="leading" secondItem="5vx-eZ-5os" secondAttribute="leading" constant="20" id="PmL-iS-0Fp"/>
+                            <constraint firstAttribute="trailing" secondItem="Wma-Z2-IHu" secondAttribute="trailing" constant="10" id="Ipz-Qv-iID"/>
+                            <constraint firstItem="tZh-cV-s51" firstAttribute="leading" secondItem="5vx-eZ-5os" secondAttribute="leading" constant="10" id="PmL-iS-0Fp"/>
                         </constraints>
                     </view>
                 </subviews>

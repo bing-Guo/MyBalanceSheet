@@ -94,7 +94,7 @@ class CreateItemTableViewController: UITableViewController {
     func addAssetItem(genreType: GenreType, accountName: String) {
         guard let type = sheetType else { return }
         
-        let genre = Genre(id: "000", sheetType: type, genreType: genreType, accountName: accountName)
+        let genre = Genre(id: "000", icon: "money-1", sheetType: type, genreType: genreType, accountName: accountName)
         Database.genres.append(genre)
     }
 }

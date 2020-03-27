@@ -114,7 +114,7 @@ class AssetTableViewController: UITableViewController {
             let sheet = sheetData[row]
             let cell = tableView.dequeueReusableCell(withIdentifier: "ItemTableViewCell", for: indexPath) as! ItemTableViewCell
             
-            cell.setup(itemLabelString: sheet.name, describeLabelString: sheet.amountString)
+            cell.setup(itemLabelString: sheet.name, iconString: sheet.genre.icon, describeLabelString: sheet.amountString)
             
             return cell
         }
