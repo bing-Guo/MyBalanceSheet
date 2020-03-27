@@ -20,11 +20,9 @@ class CreateSheetTableViewController: UITableViewController {
         setTableView()
         if(editMode) { setDefaultData() }
     }
-
+    
     func setNavigation() {
-        guard let type = sheetType else {
-            return
-        }
+        guard let type = sheetType else { return }
         
         self.navigationItem.largeTitleDisplayMode = .never
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "save"), style: .plain, target: self, action: #selector(saveAssetSheet))
@@ -36,12 +34,10 @@ class CreateSheetTableViewController: UITableViewController {
         case .asset:
             self.title = "\(titleMode)資產"
             self.navigationController?.navigationBar.tintColor = ._asset_text
-            self.tabBarController?.tabBar.tintColor = UIColor._asset_background
             break
         case .liability:
             self.title = "\(titleMode)負債"
             self.navigationController?.navigationBar.tintColor = ._liability_text
-            self.tabBarController?.tabBar.tintColor = UIColor._liability_background
             break
         }
         

@@ -22,7 +22,6 @@ class SummaryTableViewController: UITableViewController {
         summaryData = sheetManager.getSummaryList()
         let date = dateSelector.getDate()
         sortData(year: Date.getYear(date), month: Date.getMonth(date))
-        setTabBar()
         tableView.reloadData()
     }
     
@@ -42,7 +41,7 @@ class SummaryTableViewController: UITableViewController {
     }
     
     func setTabBar() {
-        self.tabBarController?.tabBar.tintColor = UIColor._summary_background
+        self.tabBarController?.tabBar.tintColor = ._summary_background
     }
     
     func setTableView() {

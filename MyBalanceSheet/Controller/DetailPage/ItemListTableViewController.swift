@@ -43,11 +43,9 @@ class ItemListTableViewController: UITableViewController {
         switch type {
         case .asset:
             self.title = "資產項目列表"
-            self.tabBarController?.tabBar.tintColor = UIColor._asset_background
             break
         case .liability:
             self.title = "負債項目列表"
-            self.tabBarController?.tabBar.tintColor = UIColor._liability_background
             break
         }
         

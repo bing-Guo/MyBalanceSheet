@@ -55,6 +55,7 @@
 		FCF5A9BD242D0751008121BA /* RightDatePickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF5A9BC242D0751008121BA /* RightDatePickerTableViewCell.swift */; };
 		FCF5A9C1242DAE17008121BA /* SheetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF5A9C0242DAE17008121BA /* SheetType.swift */; };
 		FCF5A9C3242DB44B008121BA /* GenreType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF5A9C2242DB44B008121BA /* GenreType.swift */; };
+		FCF5A9C7242DD13B008121BA /* CustomTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF5A9C6242DD13B008121BA /* CustomTabBarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +121,7 @@
 		FCF5A9BC242D0751008121BA /* RightDatePickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightDatePickerTableViewCell.swift; sourceTree = "<group>"; };
 		FCF5A9C0242DAE17008121BA /* SheetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetType.swift; sourceTree = "<group>"; };
 		FCF5A9C2242DB44B008121BA /* GenreType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreType.swift; sourceTree = "<group>"; };
+		FCF5A9C6242DD13B008121BA /* CustomTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +202,7 @@
 				FCF5A9A9242AFCCB008121BA /* HomePage */,
 				FCF29DF7241E78A3007E93D2 /* DetailPage */,
 				FCF29DE9241CF6A1007E93D2 /* CurrencyTableViewController.swift */,
+				FCF5A9C6242DD13B008121BA /* CustomTabBarViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -432,6 +435,7 @@
 				FCF5A9C3242DB44B008121BA /* GenreType.swift in Sources */,
 				FCF29DED241CF7CE007E93D2 /* RightTextFieldTableViewCell.swift in Sources */,
 				FCF29DCD2415400C007E93D2 /* StorgeManager.swift in Sources */,
+				FCF5A9C7242DD13B008121BA /* CustomTabBarViewController.swift in Sources */,
 				FCF5A9952429DEBD008121BA /* SheetManager.swift in Sources */,
 				FCF29DD7241C95F5007E93D2 /* Sheet.swift in Sources */,
 				FCF29DF9241E7A12007E93D2 /* CreateAssetGenreTableViewController.swift in Sources */,

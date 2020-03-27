@@ -24,7 +24,6 @@ class LiabilityTableViewController: UITableViewController {
         let filter = filterData(year: Date.getYear(date), month: Date.getMonth(date))
         setNoData( (filter.count == 0) )
         sortData(filter)
-        setTabBar()
         tableView.reloadData()
     }
     

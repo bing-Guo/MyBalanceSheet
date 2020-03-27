@@ -24,11 +24,9 @@ class CreateItemTableViewController: UITableViewController {
         switch type {
         case .asset:
             self.title = "新增資產項目"
-            self.tabBarController?.tabBar.tintColor = ._asset_background
             break
         case .liability:
             self.title = "新增負債項目"
-            self.tabBarController?.tabBar.tintColor = ._liability_background
             break
         }
     }

@@ -12,6 +12,9 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4A6-60-njX" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="總覽" image="doc" catalog="system" selectedImage="doc.fill" springLoaded="YES" id="GiV-AW-FlC">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="SaB-7U-YyH">
@@ -255,15 +258,16 @@
             </objects>
             <point key="canvasLocation" x="3691" y="311"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Custom Tab Bar View Controller-->
         <scene sceneID="28J-OA-h93">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="TcE-Rd-jAy" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="TcE-Rd-jAy" customClass="CustomTabBarViewController" customModule="MyBalanceSheet" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="doJ-3r-zzc">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="4A6-60-njX" kind="relationship" relationship="viewControllers" id="Ggt-Sw-AM7"/>
@@ -279,7 +283,9 @@
         <scene sceneID="8zo-uL-KW5">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9mD-x1-5TW" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="資產" image="dollarsign.circle" catalog="system" selectedImage="dollarsign.circle.fill" id="oH7-cG-58r"/>
+                    <tabBarItem key="tabBarItem" title="資產" image="dollarsign.circle" catalog="system" selectedImage="dollarsign.circle.fill" id="oH7-cG-58r">
+                        <color key="badgeColor" red="0.86879706379999999" green="0.42101430890000002" blue="0.32938355209999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="f4w-xB-GCk">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
