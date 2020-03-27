@@ -11,13 +11,9 @@ class ItemListTableViewController: UITableViewController {
     
     var sheetType: SheetType?
     var genreData: [SheetGenreListViewModel]?
-    var data = [TableSection: [SheetGenreListViewModel]]()
+    var data = [GenreType: [SheetGenreListViewModel]]()
     let genreManager = GenreManager()
     weak var delegate: ChoseItemDelegate?
-    
-    enum TableSection: Int {
-        case current, fixed
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,7 +97,7 @@ class ItemListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let tableSection = TableSection(rawValue: section), let genre = data[tableSection] {
+        if let tableSection = GenreType(rawValue: section), let genre = data[tableSection] {
             return genre.count
         }
         return 0
@@ -111,7 +107,7 @@ class ItemListTableViewController: UITableViewController {
         let section = indexPath.section
         let row = indexPath.row
         
-        if let tableSection = TableSection(rawValue: section), let genre = data[tableSection]?[row] {
+        if let tableSection = GenreType(rawValue: section), let genre = data[tableSection]?[row] {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ItemTableViewCell", for: indexPath) as! ItemTableViewCell
             cell.setup(itemLabelString: genre.accountName)
             return cell
@@ -124,7 +120,7 @@ class ItemListTableViewController: UITableViewController {
         let section = indexPath.section
         let row = indexPath.row
         
-        if let tableSection = TableSection(rawValue: section), let genre = data[tableSection]?[row], let d = delegate {
+        if let tableSection = GenreType(rawValue: section), let genre = data[tableSection]?[row], let d = delegate {
             d.choseItem(genre: genre)
             self.navigationController?.popViewController(animated: true)
         }
@@ -139,7 +135,7 @@ class ItemListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if let tableSection = TableSection(rawValue: section), let type = sheetType {
+        if let tableSection = GenreType(rawValue: section), let type = sheetType {
             switch tableSection {
             case .current:
                 return (type == .asset) ? "流動資產" : "流動負債"

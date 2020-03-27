@@ -56,6 +56,13 @@
 		FCF5A9C1242DAE17008121BA /* SheetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF5A9C0242DAE17008121BA /* SheetType.swift */; };
 		FCF5A9C3242DB44B008121BA /* GenreType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF5A9C2242DB44B008121BA /* GenreType.swift */; };
 		FCF5A9C7242DD13B008121BA /* CustomTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF5A9C6242DD13B008121BA /* CustomTabBarViewController.swift */; };
+		FCF5A9C9242DD9DA008121BA /* PersonTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF5A9C8242DD9DA008121BA /* PersonTableViewController.swift */; };
+		FCF5A9CC242DDDA1008121BA /* ThanksForTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF5A9CB242DDDA1008121BA /* ThanksForTableViewController.swift */; };
+		FCF5A9CE242DE2A7008121BA /* Thanks.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF5A9CD242DE2A7008121BA /* Thanks.swift */; };
+		FCF5A9D0242DE34F008121BA /* ThanksModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF5A9CF242DE34F008121BA /* ThanksModelView.swift */; };
+		FCF5A9D2242DE504008121BA /* ThanksManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF5A9D1242DE504008121BA /* ThanksManager.swift */; };
+		FCF5A9D4242DEFE4008121BA /* ThanksDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF5A9D3242DEFE4008121BA /* ThanksDetailViewController.swift */; };
+		FCF5A9D6242DF9D5008121BA /* NSAttributedString+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF5A9D5242DF9D5008121BA /* NSAttributedString+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +129,13 @@
 		FCF5A9C0242DAE17008121BA /* SheetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetType.swift; sourceTree = "<group>"; };
 		FCF5A9C2242DB44B008121BA /* GenreType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreType.swift; sourceTree = "<group>"; };
 		FCF5A9C6242DD13B008121BA /* CustomTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarViewController.swift; sourceTree = "<group>"; };
+		FCF5A9C8242DD9DA008121BA /* PersonTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonTableViewController.swift; sourceTree = "<group>"; };
+		FCF5A9CB242DDDA1008121BA /* ThanksForTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThanksForTableViewController.swift; sourceTree = "<group>"; };
+		FCF5A9CD242DE2A7008121BA /* Thanks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thanks.swift; sourceTree = "<group>"; };
+		FCF5A9CF242DE34F008121BA /* ThanksModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThanksModelView.swift; sourceTree = "<group>"; };
+		FCF5A9D1242DE504008121BA /* ThanksManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThanksManager.swift; sourceTree = "<group>"; };
+		FCF5A9D3242DEFE4008121BA /* ThanksDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThanksDetailViewController.swift; sourceTree = "<group>"; };
+		FCF5A9D5242DF9D5008121BA /* NSAttributedString+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,10 +213,10 @@
 		FCF29D8F241389CE007E93D2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				FCF5A9CA242DDA60008121BA /* Navigation */,
 				FCF5A9A9242AFCCB008121BA /* HomePage */,
 				FCF29DF7241E78A3007E93D2 /* DetailPage */,
 				FCF29DE9241CF6A1007E93D2 /* CurrencyTableViewController.swift */,
-				FCF5A9C6242DD13B008121BA /* CustomTabBarViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -251,6 +265,7 @@
 				FCF5A9AE242B0D61008121BA /* Summary.swift */,
 				FCF5A9C0242DAE17008121BA /* SheetType.swift */,
 				FCF5A9C2242DB44B008121BA /* GenreType.swift */,
+				FCF5A9CD242DE2A7008121BA /* Thanks.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -269,6 +284,7 @@
 			children = (
 				FCF29DB42414D3B6007E93D2 /* UIColor+Ext.swift */,
 				FCF5A9B8242B69A3008121BA /* UIDate+Ext.swift */,
+				FCF5A9D5242DF9D5008121BA /* NSAttributedString+Ext.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -287,6 +303,8 @@
 				FCF29DDE241CA18E007E93D2 /* CreateSheetTableViewController.swift */,
 				FCF29DE7241CBBB6007E93D2 /* ItemListTableViewController.swift */,
 				FCF29DF8241E7A12007E93D2 /* CreateAssetGenreTableViewController.swift */,
+				FCF5A9CB242DDDA1008121BA /* ThanksForTableViewController.swift */,
+				FCF5A9D3242DEFE4008121BA /* ThanksDetailViewController.swift */,
 			);
 			path = DetailPage;
 			sourceTree = "<group>";
@@ -294,11 +312,13 @@
 		FCF5A9912429DE58008121BA /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				FCF5A9922429DE79008121BA /* SheetListViewModel.swift */,
-				FCF5A9942429DEBD008121BA /* SheetManager.swift */,
-				FCF5A99C242A146A008121BA /* SheetGenreListViewModel.swift */,
-				FCF5A99E242A15FF008121BA /* GenreManager.swift */,
 				FCF5A9AC242AFECC008121BA /* SummaryModelView.swift */,
+				FCF5A9922429DE79008121BA /* SheetListViewModel.swift */,
+				FCF5A99C242A146A008121BA /* SheetGenreListViewModel.swift */,
+				FCF5A9CF242DE34F008121BA /* ThanksModelView.swift */,
+				FCF5A9942429DEBD008121BA /* SheetManager.swift */,
+				FCF5A99E242A15FF008121BA /* GenreManager.swift */,
+				FCF5A9D1242DE504008121BA /* ThanksManager.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -309,6 +329,7 @@
 				FCF5A9AA242AFE1E008121BA /* SummaryTableViewController.swift */,
 				FCF5A9A1242AED66008121BA /* LiabilityTableViewController.swift */,
 				FCF29DB624150E20007E93D2 /* AssetTableViewController.swift */,
+				FCF5A9C8242DD9DA008121BA /* PersonTableViewController.swift */,
 			);
 			path = HomePage;
 			sourceTree = "<group>";
@@ -319,6 +340,14 @@
 				FCF5A99A242A0EC2008121BA /* CellHeaderView.swift */,
 			);
 			path = TableHeader;
+			sourceTree = "<group>";
+		};
+		FCF5A9CA242DDA60008121BA /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				FCF5A9C6242DD13B008121BA /* CustomTabBarViewController.swift */,
+			);
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -439,22 +468,29 @@
 				FCF5A9952429DEBD008121BA /* SheetManager.swift in Sources */,
 				FCF29DD7241C95F5007E93D2 /* Sheet.swift in Sources */,
 				FCF29DF9241E7A12007E93D2 /* CreateAssetGenreTableViewController.swift in Sources */,
+				FCF5A9D4242DEFE4008121BA /* ThanksDetailViewController.swift in Sources */,
 				FCF5A99B242A0EC2008121BA /* CellHeaderView.swift in Sources */,
 				FCF5A9A2242AED66008121BA /* LiabilityTableViewController.swift in Sources */,
+				FCF5A9CC242DDDA1008121BA /* ThanksForTableViewController.swift in Sources */,
 				FCF29DB52414D3B6007E93D2 /* UIColor+Ext.swift in Sources */,
 				FCF29DD9241C9890007E93D2 /* Genre.swift in Sources */,
 				FCF5A9AD242AFECC008121BA /* SummaryModelView.swift in Sources */,
 				FCF5A99D242A146A008121BA /* SheetGenreListViewModel.swift in Sources */,
 				FCF29D752413889F007E93D2 /* MyBalanceSheet.xcdatamodeld in Sources */,
+				FCF5A9D6242DF9D5008121BA /* NSAttributedString+Ext.swift in Sources */,
 				FCF5A9BD242D0751008121BA /* RightDatePickerTableViewCell.swift in Sources */,
 				FCF29DB02414B9F6007E93D2 /* DateSelector.swift in Sources */,
 				FCF29D6B2413889F007E93D2 /* AppDelegate.swift in Sources */,
 				FCF29DFC241E7BAA007E93D2 /* RightNumberFieldTableViewCell.swift in Sources */,
 				FCF29DF1241E5892007E93D2 /* ItemTableViewCell.swift in Sources */,
 				FCF5A9B9242B69A3008121BA /* UIDate+Ext.swift in Sources */,
+				FCF5A9CE242DE2A7008121BA /* Thanks.swift in Sources */,
 				FCF5A9AF242B0D61008121BA /* Summary.swift in Sources */,
+				FCF5A9D0242DE34F008121BA /* ThanksModelView.swift in Sources */,
 				FCF5A99F242A15FF008121BA /* GenreManager.swift in Sources */,
 				FCF5A9B6242B5A33008121BA /* MonthYearPickerView.swift in Sources */,
+				FCF5A9D2242DE504008121BA /* ThanksManager.swift in Sources */,
+				FCF5A9C9242DD9DA008121BA /* PersonTableViewController.swift in Sources */,
 				FC85D11A2420E450008512DB /* IconCollectionViewCell.swift in Sources */,
 				FC85D1152420DFA0008512DB /* RightPickerTableViewCell.swift in Sources */,
 				FCF29D9624138FC0007E93D2 /* SheetTableViewCell.swift in Sources */,

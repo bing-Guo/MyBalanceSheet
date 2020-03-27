@@ -31,5 +31,16 @@ class Database {
         Sheet(id: "S0016", name: "孝親費", year: 2020, month: 3, genre: genres[7], amount: 500000000)
     ]
     
+    static var thanks: [Thanks] = [
+        Thanks(type: .icons,
+               format: "Icon made by %@ perfect from %@",
+               links: [Link(string: "Eucalyp", link: "https://www.flaticon.com/authors/eucalyp"),
+                       Link(string: "www.flaticon.com", link: "https://www.flaticon.com/")]),
+        Thanks(type: .icons,
+        format: "Icon made by %@ perfect from %@",
+        links: [Link(string: "Those Icons", link: "https://www.flaticon.com/authors/those-icons"),
+                Link(string: "www.flaticon.com", link: "https://www.flaticon.com/")])
+    ]
+    
     init() {}
 }
