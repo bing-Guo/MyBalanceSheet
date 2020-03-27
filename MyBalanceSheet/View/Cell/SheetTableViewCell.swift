@@ -86,4 +86,9 @@ class SheetTableViewCell: UITableViewCell {
         self.statusLabel.textColor = .black
         rateStatueImageView.tintColor = .black
     }
+    
+    func setErrorStatus() {
+        let errorView = CellHeaderView()
+        addSubview(errorView)
+    }
 }

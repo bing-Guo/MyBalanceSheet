@@ -5,12 +5,8 @@ class LiabilityTableViewController: UITableViewController {
     @IBOutlet weak var dateSelector: DateSelector!
     
     var sheetsData: [SheetListViewModel]?
-    var data = [TableSection: [SheetListViewModel]]()
+    var data = [GenreType: [SheetListViewModel]]()
     let sheetManager = SheetManager.shareInstance
-    
-    enum TableSection: Int {
-        case current, longterm
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,8 +52,7 @@ class LiabilityTableViewController: UITableViewController {
     
     func setTableView() {
         tableView.backgroundColor = UIColor._app_background
-        tableView.register(UINib(nibName: "SheetTableViewCell", bundle: nil), forCellReuseIdentifier: "SheetTableViewCell")
-        tableView.register(UINib(nibName: "SeparateTableViewCell", bundle: nil), forCellReuseIdentifier: "SeparateTableViewCell")
+        tableView.register(UINib(nibName: "ItemTableViewCell", bundle: nil), forCellReuseIdentifier: "ItemTableViewCell")
     }
     
     func setSwipeGesture() {
@@ -83,8 +78,8 @@ class LiabilityTableViewController: UITableViewController {
     }
     
     func sortData(_ filter: [SheetListViewModel]) {
-        data[.longterm] = filter.filter( {$0.genre.subGenre == "longterm"} )
-        data[.current] = filter.filter( {$0.genre.subGenre == "current"} )
+        data[.fixed] = filter.filter( {$0.genre.genreType == .fixed} )
+        data[.current] = filter.filter( {$0.genre.genreType == . current} )
     }
     
     func setNoData(_ isNoData: Bool) {
@@ -102,7 +97,7 @@ class LiabilityTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let tableSection = TableSection(rawValue: section), let sheets = data[tableSection] {
+        if let tableSection = GenreType(rawValue: section), let sheets = data[tableSection] {
             return sheets.count
         }
         
@@ -114,17 +109,13 @@ class LiabilityTableViewController: UITableViewController {
         let section = indexPath.section
         let row = indexPath.row
         
-        guard let tableSection = TableSection(rawValue: section), let sheetData = data[tableSection]  else { return UITableViewCell() }
+        guard let tableSection = GenreType(rawValue: section), let sheetData = data[tableSection]  else { return UITableViewCell() }
 
         if sheetData.count > 0 {
             let sheet = sheetData[row]
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SheetTableViewCell", for: indexPath) as! SheetTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ItemTableViewCell", for: indexPath) as! ItemTableViewCell
             
-            cell.setup(genre: sheet.genre.accountName,
-                       amount: sheet.amountString,
-                       rate: sheet.rateString,
-                       rateStatue: sheet.rateStatue,
-                       reverse: true)
+            cell.setup(itemLabelString: sheet.name, describeLabelString: sheet.amountString)
             
             return cell
         }
@@ -132,8 +123,22 @@ class LiabilityTableViewController: UITableViewController {
         return UITableViewCell()
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let tableSection = GenreType(rawValue: indexPath.section), let sheetData = data[tableSection]?[indexPath.row]  else { return }
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        if let vc = storyboard.instantiateViewController(withIdentifier: "CreateSheetPage") as? CreateSheetTableViewController {
+            vc.editData = sheetData
+            vc.editMode = true
+            vc.sheetType = .asset
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+            
+    }
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 64
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -141,11 +146,11 @@ class LiabilityTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        guard let tableSection = TableSection(rawValue: section), let sheets = data[tableSection] else { return "" }
+        guard let tableSection = GenreType(rawValue: section), let sheets = data[tableSection] else { return "" }
         guard sheets.count > 0 else { return "" }
         
         switch tableSection {
-        case .longterm:
+        case .fixed:
             return "長期負債"
         case .current:
             return "流動負債"
@@ -161,7 +166,11 @@ class LiabilityTableViewController: UITableViewController {
     // MARK: - Action
     
     @objc func createSheet(_ sender: Any) {
-        self.navigationController?.pushViewController(CreateLiabilitySheetTableViewController(), animated: false)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "CreateSheetPage") as? CreateSheetTableViewController {
+            vc.sheetType = .liability
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     @objc func swipe(_ recognizer:UISwipeGestureRecognizer) {

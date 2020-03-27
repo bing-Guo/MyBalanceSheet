@@ -20,13 +20,13 @@
                         <rect key="frame" x="10" y="10" width="300" height="54"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="資產類型" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="58a-wg-QTB">
-                                <rect key="frame" x="10" y="16.5" width="70" height="21"/>
+                                <rect key="frame" x="20" y="16.5" width="70" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="DpX-Js-YUd">
-                                <rect key="frame" x="173" y="11.5" width="117" height="32"/>
+                                <rect key="frame" x="163" y="11.5" width="117" height="32"/>
                                 <segments>
                                     <segment title="Item 0"/>
                                     <segment title="Item 1"/>
@@ -38,8 +38,8 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="DpX-Js-YUd" secondAttribute="trailing" constant="10" id="KSp-Jm-9uh"/>
-                            <constraint firstItem="58a-wg-QTB" firstAttribute="leading" secondItem="FSq-HH-Y0e" secondAttribute="leading" constant="10" id="Na8-Og-fQM"/>
+                            <constraint firstAttribute="trailing" secondItem="DpX-Js-YUd" secondAttribute="trailing" constant="20" id="KSp-Jm-9uh"/>
+                            <constraint firstItem="58a-wg-QTB" firstAttribute="leading" secondItem="FSq-HH-Y0e" secondAttribute="leading" constant="20" id="Na8-Og-fQM"/>
                             <constraint firstItem="DpX-Js-YUd" firstAttribute="centerY" secondItem="FSq-HH-Y0e" secondAttribute="centerY" id="UZx-Wm-bsx"/>
                             <constraint firstItem="58a-wg-QTB" firstAttribute="centerY" secondItem="FSq-HH-Y0e" secondAttribute="centerY" id="hVK-FL-n2j"/>
                         </constraints>

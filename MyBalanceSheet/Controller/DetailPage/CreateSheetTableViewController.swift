@@ -1,33 +1,50 @@
 import UIKit
 
-class EditAssetSheetTableViewController: UITableViewController {
-
-    var originData: SheetListViewModel?
+class CreateSheetTableViewController: UITableViewController {
+    
+    var sheetType: SheetType?
+    var editMode: Bool = false
+    var editData: SheetListViewModel?
+    var choseID: String?
     var choseGenre: SheetGenreListViewModel?
     var choseAmount: Int?
     var choseYear: Int?
     var choseMonth: Int?
+    var choseName: String?
     let sheetManager = SheetManager.shareInstance
    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setDefaultData()
         setNavigation()
-        setTabBar()
         setTableView()
+        if(editMode) { setDefaultData() }
     }
 
     func setNavigation() {
-        self.title = "編輯資產"
+        guard let type = sheetType else {
+            return
+        }
+        
         self.navigationItem.largeTitleDisplayMode = .never
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "save"), style: .plain, target: self, action: #selector(saveAssetSheet))
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        self.navigationController?.navigationBar.tintColor = ._asset_text
-    }
-    
-    func setTabBar() {
-        self.tabBarController?.tabBar.tintColor = UIColor._asset_background
+        
+        let titleMode = (editMode) ? "編輯" : "新增"
+        
+        switch type {
+        case .asset:
+            self.title = "\(titleMode)資產"
+            self.navigationController?.navigationBar.tintColor = ._asset_text
+            self.tabBarController?.tabBar.tintColor = UIColor._asset_background
+            break
+        case .liability:
+            self.title = "\(titleMode)負債"
+            self.navigationController?.navigationBar.tintColor = ._liability_text
+            self.tabBarController?.tabBar.tintColor = UIColor._liability_background
+            break
+        }
+        
     }
     
     func setTableView() {
@@ -36,13 +53,16 @@ class EditAssetSheetTableViewController: UITableViewController {
         tableView.register(UINib(nibName: "RightTextTableViewCell", bundle: nil), forCellReuseIdentifier: "RightTextTableViewCell")
         tableView.register(UINib(nibName: "RightNumberFieldTableViewCell", bundle: nil), forCellReuseIdentifier: "RightNumberFieldTableViewCell")
         tableView.register(UINib(nibName: "RightDatePickerTableViewCell", bundle: nil), forCellReuseIdentifier: "RightDatePickerTableViewCell")
+        tableView.register(UINib(nibName: "RightTextFieldTableViewCell", bundle: nil), forCellReuseIdentifier: "RightTextFieldTableViewCell")
     }
     
     func setDefaultData() {
-        choseAmount = originData?.amount
-        choseYear = originData?.year
-        choseMonth = originData?.month
-        choseGenre = originData?.genre
+        choseID = editData?.id
+        choseAmount = editData?.amount
+        choseYear = editData?.year
+        choseMonth = editData?.month
+        choseGenre = editData?.genre
+        choseName = editData?.name
     }
     
     // MARK: - Table view data source
@@ -52,7 +72,7 @@ class EditAssetSheetTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 5
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -61,28 +81,37 @@ class EditAssetSheetTableViewController: UITableViewController {
         switch row {
             case 0:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "RightTextTableViewCell", for: indexPath) as! RightTextTableViewCell
-                cell.setup(leftLabelString: "選擇類型", rightLabelString: originData?.genre.accountName ?? "類型")
-                cell.chosenStatus()
+                cell.setup(leftLabelString: "類型", rightLabelString: editData?.genre.accountName ?? "類型")
                 
+                if let genre = choseGenre {
+                    cell.rightTextLabel.text = genre.accountName
+                    cell.chosenStatus()
+                }
                 return cell
             case 1:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "RightDatePickerTableViewCell", for: indexPath) as! RightDatePickerTableViewCell
-                cell.leftTextLabel.text = "選擇日期"
+                let cell = tableView.dequeueReusableCell(withIdentifier: "RightTextFieldTableViewCell", for: indexPath) as! RightTextFieldTableViewCell
+                cell.setup(leftLabelString: "名稱", rightTextFieldValue: editData?.name ?? "")
                 cell.delegate = self
                 
-                if let year = originData?.year, let month = originData?.month {
+                return cell
+            case 2:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "RightDatePickerTableViewCell", for: indexPath) as! RightDatePickerTableViewCell
+                cell.leftTextLabel.text = "日期"
+                cell.delegate = self
+                
+                if let year = editData?.year, let month = editData?.month {
                     cell.setup(year: year, month: month)
                 }
                 
                 return cell
-            case 2:
+            case 3:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "RightTextTableViewCell", for: indexPath) as! RightTextTableViewCell
-                cell.setup(leftLabelString: "選擇貨幣", rightLabelString: "貨幣")
+                cell.setup(leftLabelString: "貨幣", rightLabelString: "貨幣")
                 
                 return cell
-            case 3:
+            case 4:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "RightNumberFieldTableViewCell", for: indexPath) as! RightNumberFieldTableViewCell
-                cell.setup(leftLabelString: "選擇金額", rightTextFieldValue: String(originData?.amount ?? 0))
+                cell.setup(leftLabelString: "金額", rightTextFieldValue: String(editData?.amount ?? 0))
                 cell.delegate = self
                 
                 return cell
@@ -93,13 +122,16 @@ class EditAssetSheetTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let type = sheetType else { return }
+        
         let row = indexPath.row
         
         switch row {
             case 0:
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                if let vc = storyboard.instantiateViewController(withIdentifier: "GenreItemPage") as? AssetGenreTableViewController {
+                if let vc = storyboard.instantiateViewController(withIdentifier: "ItemListPage") as? ItemListTableViewController {
                     vc.delegate = self
+                    vc.sheetType = type
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
             default:
@@ -113,44 +145,56 @@ class EditAssetSheetTableViewController: UITableViewController {
     
     // MARK: - Action
     @objc func saveAssetSheet() {
+        let id = choseID ?? "S9999"
         let amount = choseAmount ?? 0
         let year = choseYear ?? Date.getYear()
         let month = choseMonth ?? Date.getMonth()
         
-        if let genreVM = choseGenre {
-            let genre = Genre(id: genreVM.id, mainGenre: genreVM.mainGenre, subGenre: genreVM.subGenre, accountName: genreVM.accountName)
-            let sheet = Sheet(year: year, month: month, genre: genre, amount: amount)
-            updateSheet(sheet: sheet)
+        if let genreVM = choseGenre, let name = choseName {
+            let genre = Genre(id: genreVM.id, sheetType: genreVM.sheetType, genreType: genreVM.genreType, accountName: genreVM.accountName)
+            let sheet = Sheet(id: id, name: name, year: year, month: month, genre: genre, amount: amount)
+            
+            if editMode {
+                updateSheet(sheet: sheet)
+            }else {
+                createSheet(sheet: sheet)
+            }
             navigationController?.popViewController(animated: true)
         }
-        print("year: \(year), month: \(month), amount: \(choseAmount), genre: \(choseGenre)")
+        print("id: \(choseID), name: \(choseName), year: \(year), month: \(month), amount: \(choseAmount), genre: \(choseGenre)")
+    }
+    
+    func createSheet(sheet: Sheet) {
+        sheetManager.addSheet(sheet: sheet)
     }
     
     func updateSheet(sheet: Sheet) {
         sheetManager.updateSheet(sheetData: sheet)
     }
-    
 }
 
-extension EditAssetSheetTableViewController: ChoseItemDelegate {
+extension CreateSheetTableViewController: ChoseItemDelegate {
     func choseItem(genre: SheetGenreListViewModel) {
         self.choseGenre = genre
-        if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? RightTextTableViewCell {
-            cell.rightTextLabel.text = genre.accountName
-            cell.chosenStatus()
-        }
+        tableView.reloadData()
     }
 }
 
-extension EditAssetSheetTableViewController: RightNumberFieldDelegate {
+extension CreateSheetTableViewController: RightNumberFieldDelegate {
     func getNumberFieldValue(value: Int) {
         self.choseAmount = value
     }
 }
 
-extension EditAssetSheetTableViewController: RightDatePickerDelegate {
+extension CreateSheetTableViewController: RightDatePickerDelegate {
     func getDatePickerValue(year: Int, month: Int) {
         self.choseYear = year
         self.choseMonth = month
+    }
+}
+
+extension CreateSheetTableViewController: RightTextFieldDelegate {
+    func getTextFieldValue(value: String) {
+        self.choseName = value
     }
 }

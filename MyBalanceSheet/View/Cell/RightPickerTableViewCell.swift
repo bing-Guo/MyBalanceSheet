@@ -1,7 +1,7 @@
 import UIKit
 
 protocol RightPickerDelegate: NSObject {
-    func getPickerValue(value: String)
+    func getPickerValue(value: GenreType)
 }
 
 class RightPickerTableViewCell: UITableViewCell {
@@ -9,7 +9,7 @@ class RightPickerTableViewCell: UITableViewCell {
     @IBOutlet weak var leftTextLabel: UILabel!
     @IBOutlet weak var segment: UISegmentedControl!
     @IBOutlet weak var container: UIView!
-    let segmentValue = ["currenct", "fixed"]
+    let segmentValue: [GenreType] = [.current, .fixed]
     
     weak var delegate: RightPickerDelegate?
     

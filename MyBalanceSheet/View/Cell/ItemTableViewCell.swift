@@ -4,7 +4,8 @@ class ItemTableViewCell: UITableViewCell {
 
     @IBOutlet weak var container: UIView!
     @IBOutlet weak var itemLabel: UILabel!
-
+    @IBOutlet weak var describeLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -24,8 +25,9 @@ class ItemTableViewCell: UITableViewCell {
         selectionStyle = .none
     }
     
-    func setup(itemLabelString: String) {
+    func setup(itemLabelString: String, describeLabelString: String = "") {
         self.itemLabel.text = itemLabelString
+        self.describeLabel.text = describeLabelString
     }
     
 }

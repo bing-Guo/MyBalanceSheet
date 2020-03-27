@@ -3,14 +3,14 @@ import Foundation
 class SheetGenreListViewModel {
     
     let id: String
-    let mainGenre: String
-    let subGenre: String
+    let sheetType: SheetType
+    let genreType: GenreType
     let accountName: String
     
     init(genre: Genre) {
         self.id = genre.id
-        self.mainGenre = genre.mainGenre
-        self.subGenre = genre.subGenre
+        self.sheetType = genre.sheetType
+        self.genreType = genre.genreType
         self.accountName = genre.accountName
     }
 }

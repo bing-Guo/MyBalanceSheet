@@ -6,18 +6,31 @@ class SheetManager {
     
     private init() {}
     
+    func isSheetExisted(sheetData: Sheet) -> Bool {
+        let year = sheetData.year
+        let month = sheetData.month
+        let genreID = sheetData.genre.id
+        
+        let filterData = Database.sheets.filter( {
+            $0.year == year &&
+            $0.month == month &&
+            $0.genre.id == genreID
+        } )
+        
+        return ( filterData.count > 0 )
+    }
+    
     func addSheet(sheet: Sheet) {
         Database.sheets.append(sheet)
     }
     
     func updateSheet(sheetData: Sheet) -> Bool {
-        let year = sheetData.year
-        let month = sheetData.month
-        let genreID = sheetData.genre.id
+        let id = sheetData.id
         
         for index in 0..<Database.sheets.count {
             let sheet = Database.sheets[index]
-            if sheet.year == year && sheet.month == month && sheet.genre.id == genreID {
+            if sheet.id == id {
+                Database.sheets[index].name = sheetData.name
                 Database.sheets[index].amount = sheetData.amount
                 Database.sheets[index].year = sheetData.year
                 Database.sheets[index].month = sheetData.month
@@ -30,30 +43,11 @@ class SheetManager {
     
     func getAssetList() -> [SheetListViewModel] {
         var result = [SheetListViewModel]()
-        let sheetsData = Database.sheets.filter( {$0.genre.mainGenre == "資產"} )
-        var match = false
+        let sheetsData = Database.sheets.filter( {$0.genre.sheetType == .asset} )
         
-        for first in sheetsData {
-            match = false
-            
-            for second in sheetsData {
-                if isLastMonth(firstYear: first.year, secondYear: second.year, firstMonth: first.month, secondMonth: second.month)
-                    && first.genre.id == second.genre.id {
-                    
-                    let vm = SheetListViewModel(sheet: first, prevMonthSheet: second)
-                    result.append(vm)
-                    
-                    match = true
-                    break
-                }
-            }
-            if match {
-                continue
-            } else {
-                let vm = SheetListViewModel(sheet: first, prevMonthSheet: nil)
-                result.append(vm)
-            }
-            
+        for sheet in sheetsData {
+            let vm = SheetListViewModel(sheet: sheet)
+            result.append(vm)
         }
         
         return result
@@ -61,30 +55,12 @@ class SheetManager {
     
     func getLiabilityList() -> [SheetListViewModel] {
         var result = [SheetListViewModel]()
-        let sheetsData = Database.sheets.filter( {$0.genre.mainGenre == "負債"} )
+        let sheetsData = Database.sheets.filter( {$0.genre.sheetType == .liability} )
         var match = false
         
-        for first in sheetsData {
-            match = false
-            
-            for second in sheetsData {
-                if isLastMonth(firstYear: first.year, secondYear: second.year, firstMonth: first.month, secondMonth: second.month)
-                    && first.genre.id == second.genre.id {
-                    
-                    let vm = SheetListViewModel(sheet: first, prevMonthSheet: second)
-                    result.append(vm)
-                    
-                    match = true
-                    break
-                }
-            }
-            if match {
-                continue
-            } else {
-                let vm = SheetListViewModel(sheet: first, prevMonthSheet: nil)
-                result.append(vm)
-            }
-            
+        for sheet in sheetsData {
+            let vm = SheetListViewModel(sheet: sheet)
+            result.append(vm)
         }
         
         return result
@@ -167,7 +143,7 @@ class SheetManager {
     
     private func caculateTotalAsset(_ sheets: [Sheet]) -> Int {
         var result = 0
-        let filterSheet = sheets.filter( {$0.genre.mainGenre == "資產" } )
+        let filterSheet = sheets.filter( {$0.genre.sheetType == .asset } )
         
         for sheet in filterSheet {
             result += sheet.amount
@@ -178,7 +154,7 @@ class SheetManager {
     
     private func caculateTotalLiability(_ sheets: [Sheet]) -> Int {
         var result = 0
-        let filterSheet = sheets.filter( {$0.genre.mainGenre == "負債" } )
+        let filterSheet = sheets.filter( {$0.genre.sheetType == .liability } )
         
         for sheet in filterSheet {
             result += sheet.amount

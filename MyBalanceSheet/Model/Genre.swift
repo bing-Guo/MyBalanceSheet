@@ -8,30 +8,16 @@
 
 import Foundation
 
-struct Genre: GenreDisplay {
+struct Genre {
     let id: String
-    let mainGenre: String
-    let subGenre: String
+    let sheetType: SheetType
+    let genreType: GenreType
     let accountName: String
     
-    init(id: String, mainGenre: String, subGenre: String, accountName: String) {
+    init(id: String, sheetType: SheetType, genreType: GenreType, accountName: String) {
         self.id = id
-        self.mainGenre = mainGenre
-        self.subGenre = subGenre
+        self.sheetType = sheetType
+        self.genreType = genreType
         self.accountName = accountName
     }
 }
-
-protocol GenreDisplay {
-    
-}
-
-struct GenreSectionName: GenreDisplay {
-    let sectionName: String
-    
-    init(sectionName: String) {
-        self.sectionName = sectionName
-    }
-}
-
-struct GenreCreateSection: GenreDisplay {}

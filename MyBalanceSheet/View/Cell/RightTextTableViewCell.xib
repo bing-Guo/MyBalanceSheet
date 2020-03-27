@@ -20,19 +20,19 @@
                         <rect key="frame" x="10" y="10" width="300" height="34"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ydP-qI-KIH">
-                                <rect key="frame" x="10" y="6.5" width="42" height="21"/>
+                                <rect key="frame" x="20" y="6.5" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xfj-Ny-RPy">
-                                <rect key="frame" x="196" y="6.5" width="42" height="21"/>
+                                <rect key="frame" x="186" y="6.5" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Un-Pl-ZPO">
-                                <rect key="frame" x="248" y="6.5" width="42" height="21"/>
+                                <rect key="frame" x="238" y="6.5" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -41,8 +41,8 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Xfj-Ny-RPy" firstAttribute="centerY" secondItem="mUI-DH-jPS" secondAttribute="centerY" id="BIn-QG-mPG"/>
-                            <constraint firstAttribute="trailing" secondItem="5Un-Pl-ZPO" secondAttribute="trailing" constant="10" id="IQr-wL-LX6"/>
-                            <constraint firstItem="ydP-qI-KIH" firstAttribute="leading" secondItem="mUI-DH-jPS" secondAttribute="leading" constant="10" id="mMx-Rt-nVM"/>
+                            <constraint firstAttribute="trailing" secondItem="5Un-Pl-ZPO" secondAttribute="trailing" constant="20" id="IQr-wL-LX6"/>
+                            <constraint firstItem="ydP-qI-KIH" firstAttribute="leading" secondItem="mUI-DH-jPS" secondAttribute="leading" constant="20" id="mMx-Rt-nVM"/>
                             <constraint firstItem="5Un-Pl-ZPO" firstAttribute="leading" secondItem="Xfj-Ny-RPy" secondAttribute="trailing" constant="10" id="q46-xB-b1B"/>
                             <constraint firstItem="5Un-Pl-ZPO" firstAttribute="centerY" secondItem="mUI-DH-jPS" secondAttribute="centerY" id="q4o-ed-e0K"/>
                             <constraint firstItem="ydP-qI-KIH" firstAttribute="centerY" secondItem="mUI-DH-jPS" secondAttribute="centerY" id="zsv-GZ-xlJ"/>

@@ -5,12 +5,8 @@ class AssetTableViewController: UITableViewController {
     @IBOutlet weak var dateSelector: DateSelector!
     
     var sheetsData: [SheetListViewModel]?
-    var data = [TableSection: [SheetListViewModel]]()
+    var data = [GenreType: [SheetListViewModel]]()
     let sheetManager = SheetManager.shareInstance
-    
-    enum TableSection: Int {
-        case current, fixed
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,9 +33,7 @@ class AssetTableViewController: UITableViewController {
         self.title = "資產"
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.largeTitleDisplayMode = .always
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus.app.fill"), style: .plain, target: self, action: #selector(createSheet))
-
+        
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithOpaqueBackground()
         navBarAppearance.backgroundColor = UIColor._asset_background
@@ -48,6 +42,9 @@ class AssetTableViewController: UITableViewController {
         self.navigationController?.navigationBar.standardAppearance = navBarAppearance
         self.navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
         self.navigationController?.navigationBar.tintColor = UIColor._asset_text
+        
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus.app.fill"), style: .plain, target: self, action: #selector(createSheet))
     }
     
     func setTabBar() {
@@ -56,8 +53,7 @@ class AssetTableViewController: UITableViewController {
     
     func setTableView() {
         tableView.backgroundColor = UIColor._app_background
-        tableView.register(UINib(nibName: "SheetTableViewCell", bundle: nil), forCellReuseIdentifier: "SheetTableViewCell")
-        tableView.register(UINib(nibName: "SeparateTableViewCell", bundle: nil), forCellReuseIdentifier: "SeparateTableViewCell")
+        tableView.register(UINib(nibName: "ItemTableViewCell", bundle: nil), forCellReuseIdentifier: "ItemTableViewCell")
     }
     
     func setSwipeGesture() {
@@ -83,8 +79,8 @@ class AssetTableViewController: UITableViewController {
     }
     
     func sortData(_ filter: [SheetListViewModel]) {
-        data[.fixed] = filter.filter( {$0.genre.subGenre == "fixed"} )
-        data[.current] = filter.filter( {$0.genre.subGenre == "current"} )
+        data[.fixed] = filter.filter( {$0.genre.genreType == .fixed} )
+        data[.current] = filter.filter( {$0.genre.genreType == .current} )
     }
 
     func setNoData(_ isNoData: Bool) {
@@ -102,7 +98,7 @@ class AssetTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let tableSection = TableSection(rawValue: section), let sheets = data[tableSection] {
+        if let tableSection = GenreType(rawValue: section), let sheets = data[tableSection] {
             return sheets.count
         }
         
@@ -113,16 +109,13 @@ class AssetTableViewController: UITableViewController {
         let section = indexPath.section
         let row = indexPath.row
         
-        guard let tableSection = TableSection(rawValue: section), let sheetData = data[tableSection]  else { return UITableViewCell() }
+        guard let tableSection = GenreType(rawValue: section), let sheetData = data[tableSection]  else { return UITableViewCell() }
 
         if sheetData.count > 0 {
             let sheet = sheetData[row]
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SheetTableViewCell", for: indexPath) as! SheetTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ItemTableViewCell", for: indexPath) as! ItemTableViewCell
             
-            cell.setup(genre: sheet.genre.accountName,
-                       amount: sheet.amountString,
-                       rate: sheet.rateString,
-                       rateStatue: sheet.rateStatue)
+            cell.setup(itemLabelString: sheet.name, describeLabelString: sheet.amountString)
             
             return cell
         }
@@ -131,19 +124,21 @@ class AssetTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let tableSection = TableSection(rawValue: indexPath.section), let sheetData = data[tableSection]?[indexPath.row]  else { return }
+        guard let tableSection = GenreType(rawValue: indexPath.section), let sheetData = data[tableSection]?[indexPath.row]  else { return }
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        if let vc = storyboard.instantiateViewController(withIdentifier: "EditAssetPage") as? EditAssetSheetTableViewController {
-            vc.originData = sheetData
+        if let vc = storyboard.instantiateViewController(withIdentifier: "CreateSheetPage") as? CreateSheetTableViewController {
+            vc.editData = sheetData
+            vc.editMode = true
+            vc.sheetType = .asset
             self.navigationController?.pushViewController(vc, animated: true)
         }
             
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 64
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -151,7 +146,7 @@ class AssetTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        guard let tableSection = TableSection(rawValue: section), let sheets = data[tableSection] else { return "" }
+        guard let tableSection = GenreType(rawValue: section), let sheets = data[tableSection] else { return "" }
         guard sheets.count > 0 else { return "" }
         
         switch tableSection {
@@ -172,7 +167,11 @@ class AssetTableViewController: UITableViewController {
     // MARK: - Action
     
     @objc func createSheet(_ sender: Any) {
-        self.navigationController?.pushViewController(CreateAssetSheetTableViewController(), animated: false)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "CreateSheetPage") as? CreateSheetTableViewController {
+            vc.sheetType = .asset
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     @objc func swipe(_ recognizer:UISwipeGestureRecognizer) {

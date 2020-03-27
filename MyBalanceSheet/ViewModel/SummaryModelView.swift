@@ -19,8 +19,8 @@ class SummaryModelView {
                 self.rateString = ""
                 self.rateStatue = .none
             }else{
-                let rate = Float(summary.amount - prev.amount) / Float(prev.amount)
-                print("\(rate), \(Float(summary.amount - prev.amount)), \(Float(prev.amount))")
+                let rate = Float(summary.amount - prev.amount) / Float(abs(prev.amount))
+//                print("\(rate), \(Float(summary.amount - prev.amount)), \(Float(abs(prev.amount)))")
                 if SummaryModelView.checkAvailableFloat(rate) {
                     let rateCeil = Int(ceil(rate * 100))
                     self.rateString = SummaryModelView.rateStringFormate(rateCeil)
@@ -46,7 +46,7 @@ class SummaryModelView {
     }
     
     static func rateStringFormate(_ value: Int) -> String {
-        if value < 10000 {
+        if value < 10000 && value > -10000{
             return "\(value)%"
         }else {
             return "超過10,000%"

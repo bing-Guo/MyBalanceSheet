@@ -35,8 +35,8 @@ class RightTextTableViewCell: UITableViewCell {
     }
     
     func setup(leftLabelString: String, rightLabelString: String) {
-        self.rightTextLabel.text = leftLabelString
-        self.leftTextLabel.text = rightLabelString
+        self.leftTextLabel.text = leftLabelString
+        self.rightTextLabel.text = rightLabelString
     }
 
     func chosenStatus() {

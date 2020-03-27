@@ -39,12 +39,13 @@ class RightTextFieldTableViewCell: UITableViewCell {
         rightTextField.delegate = self
         rightTextField.clearButtonMode = .whileEditing
         rightTextField.font = UIFont.systemFont(ofSize: CGFloat(17))
-        rightTextField.placeholder = "輸入資產名稱"
+        rightTextField.placeholder = "輸入名稱"
         rightTextField.returnKeyType = .done
     }
     
-    func setup(leftLabelString: String) {
+    func setup(leftLabelString: String, rightTextFieldValue: String = "") {
         self.leftTextLabel.text = leftLabelString
+        self.rightTextField.text = rightTextFieldValue
     }
     
     // MARK: - Action
