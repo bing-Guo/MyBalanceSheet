@@ -147,7 +147,7 @@ class CreateSheetTableViewController: UITableViewController {
         let month = choseMonth ?? Date.getMonth()
         
         if let genreVM = choseGenre, let name = choseName {
-            let genre = Genre(id: genreVM.id, icon: "", sheetType: genreVM.sheetType, genreType: genreVM.genreType, accountName: genreVM.accountName)
+            let genre = Genre(id: genreVM.id, icon: genreVM.icon, sheetType: genreVM.sheetType, genreType: genreVM.genreType, accountName: genreVM.accountName)
             let sheet = Sheet(id: id, name: name, year: year, month: month, genre: genre, amount: amount)
             
             if editMode {
@@ -172,7 +172,9 @@ class CreateSheetTableViewController: UITableViewController {
 extension CreateSheetTableViewController: ChoseItemDelegate {
     func choseItem(genre: SheetGenreListViewModel) {
         self.choseGenre = genre
-        tableView.reloadData()
+        
+        let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! RightTextTableViewCell
+        cell.rightTextLabel.text = genre.accountName
     }
 }
 

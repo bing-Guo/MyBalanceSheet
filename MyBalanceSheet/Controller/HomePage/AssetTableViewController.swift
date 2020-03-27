@@ -15,7 +15,6 @@ class AssetTableViewController: UITableViewController {
         setTabBar()
         setTableView()
         setDateSelector()
-        setSwipeGesture()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,16 +52,6 @@ class AssetTableViewController: UITableViewController {
     func setTableView() {
         tableView.backgroundColor = UIColor._app_background
         tableView.register(UINib(nibName: "ItemTableViewCell", bundle: nil), forCellReuseIdentifier: "ItemTableViewCell")
-    }
-    
-    func setSwipeGesture() {
-        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.swipe(_:)))
-        swipeRight.direction = .right
-        self.view.addGestureRecognizer(swipeRight)
-        
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.swipe(_:)))
-        swipeLeft.direction = .left
-        self.view.addGestureRecognizer(swipeLeft)
     }
     
     func setDateSelector() {
@@ -134,6 +123,23 @@ class AssetTableViewController: UITableViewController {
             self.navigationController?.pushViewController(vc, animated: true)
         }
             
+    }
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let shareAction = UIContextualAction(style: .normal, title: "") { (action, sourceView, completionHandler) in
+            let defaultText = "Just checking in at "
+            let activityController = UIActivityViewController(activityItems: [defaultText], applicationActivities: nil)
+
+            self.present(activityController, animated: true, completion: nil)
+            completionHandler(true)
+        }
+        
+        shareAction.backgroundColor = ._app_background
+        shareAction.image = UIImage(named: "deleteBtn")
+
+        let swipeConfiguration = UISwipeActionsConfiguration(actions: [shareAction])
+
+        return swipeConfiguration
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

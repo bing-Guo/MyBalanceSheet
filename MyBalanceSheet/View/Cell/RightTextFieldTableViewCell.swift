@@ -41,6 +41,7 @@ class RightTextFieldTableViewCell: UITableViewCell {
         rightTextField.font = UIFont.systemFont(ofSize: CGFloat(17))
         rightTextField.placeholder = "輸入名稱"
         rightTextField.returnKeyType = .done
+        rightTextField.addTarget(self, action: #selector(textFieldChange), for: .editingChanged)
     }
     
     func setup(leftLabelString: String, rightTextFieldValue: String = "") {
@@ -61,6 +62,11 @@ class RightTextFieldTableViewCell: UITableViewCell {
     @objc func cancelButtonTapped () {
         rightTextField.text = ""
         rightTextField.resignFirstResponder()
+    }
+    
+    @objc func textFieldChange() {
+        print(rightTextField.text ?? "no")
+        delegate?.getTextFieldValue(value: rightTextField.text ?? "")
     }
     
     func focusTextField() {

@@ -43,6 +43,7 @@ class RightNumberFieldTableViewCell: UITableViewCell {
         rightTextField.text = "0"
         
         rightTextField.inputAccessoryView = numberToolbar
+        rightTextField.addTarget(self, action: #selector(textFieldChange), for: .editingChanged)
     }
     
     func setNumberToolBar() {
@@ -75,6 +76,15 @@ class RightNumberFieldTableViewCell: UITableViewCell {
     @objc func cancelButtonTapped () {
         rightTextField.text = "0"
         rightTextField.resignFirstResponder()
+    }
+    
+    @objc func textFieldChange() {
+        if let text = rightTextField.text {
+            let toNumber: Int = Int(text) ?? 0
+            rightTextField.text = String(toNumber)
+            
+            delegate?.getNumberFieldValue(value: toNumber)
+        }
     }
 }
 

@@ -59,6 +59,10 @@ class Database {
         Thanks(type: .icons,
         format: "Icon made by %@ perfect from %@",
         links: [Link(string: "Smashicons", link: "https://www.flaticon.com/authors/smashicons"),
+                Link(string: "www.flaticon.com", link: "https://www.flaticon.com/")]),
+        Thanks(type: .icons,
+        format: "Icon made by %@ perfect from %@",
+        links: [Link(string: "Freepik", link: "https://www.flaticon.com/authors/freepik"),
                 Link(string: "www.flaticon.com", link: "https://www.flaticon.com/")])
     ]
     

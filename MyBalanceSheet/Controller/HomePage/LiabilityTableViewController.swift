@@ -15,7 +15,6 @@ class LiabilityTableViewController: UITableViewController {
         setTabBar()
         setTableView()
         setDateSelector()
-        setSwipeGesture()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,16 +51,6 @@ class LiabilityTableViewController: UITableViewController {
     func setTableView() {
         tableView.backgroundColor = UIColor._app_background
         tableView.register(UINib(nibName: "ItemTableViewCell", bundle: nil), forCellReuseIdentifier: "ItemTableViewCell")
-    }
-    
-    func setSwipeGesture() {
-        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.swipe(_:)))
-        swipeRight.direction = .right
-        self.view.addGestureRecognizer(swipeRight)
-        
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.swipe(_:)))
-        swipeLeft.direction = .left
-        self.view.addGestureRecognizer(swipeLeft)
     }
     
     func setDateSelector() {
