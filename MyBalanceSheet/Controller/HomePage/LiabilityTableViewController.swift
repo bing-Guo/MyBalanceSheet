@@ -18,11 +18,9 @@ class LiabilityTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        sheetsData = sheetManager.getLiabilityList()
-        let date = dateSelector.getDate()
-        let filter = filterData(year: Date.getYear(date), month: Date.getMonth(date))
-        setNoData( (filter.count == 0) )
-        sortData(filter)
+        let count = fetchData()
+        setNoData( (count == 0) )
+        
         tableView.reloadData()
     }
     
@@ -55,6 +53,15 @@ class LiabilityTableViewController: UITableViewController {
     func setDateSelector() {
         dateSelector.delegate = self
         dateSelector.setRedMode()
+    }
+    
+    func fetchData() -> Int {
+        sheetsData = sheetManager.getLiabilityList()
+        let date = dateSelector.getDate()
+        let filter = filterData(year: Date.getYear(date), month: Date.getMonth(date))
+        sortData(filter)
+        
+        return filter.count
     }
     
     func filterData(year: Int, month: Int) -> [SheetListViewModel] {
@@ -124,6 +131,24 @@ class LiabilityTableViewController: UITableViewController {
             
     }
     
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        guard let tableSection = GenreType(rawValue: indexPath.section), let sheetData = data[tableSection]?[indexPath.row]  else { fatalError() }
+        
+        let shareAction = UIContextualAction(style: .normal, title: "") { (action, sourceView, completionHandler) in
+            print("delete \(sheetData.id), \(sheetData.name)")
+            self.deleteSheet(sheetVM: sheetData)
+            completionHandler(true)
+        }
+        
+        shareAction.backgroundColor = ._app_background
+        shareAction.image = UIImage(named: "deleteBtn")
+
+        let swipeConfiguration = UISwipeActionsConfiguration(actions: [shareAction])
+        swipeConfiguration.performsFirstActionWithFullSwipe = false
+
+        return swipeConfiguration
+    }
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 64
     }
@@ -160,17 +185,12 @@ class LiabilityTableViewController: UITableViewController {
         }
     }
     
-    @objc func swipe(_ recognizer:UISwipeGestureRecognizer) {
-        switch recognizer.direction {
-        case .left:
-           dateSelector.triggerRightButtonClick()
-           break
-        case .right:
-           dateSelector.triggerLeftButtonClick()
-           break
-        default:
-           break
-        }
+    func deleteSheet(sheetVM: SheetListViewModel) {
+        sheetManager.deleteSheet(sheetID: sheetVM.id)
+        let count = fetchData()
+        setNoData( (count == 0) )
+        
+        tableView.reloadData()
     }
 }
 

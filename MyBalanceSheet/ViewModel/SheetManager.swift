@@ -41,6 +41,22 @@ class SheetManager {
         return true
     }
     
+    func deleteSheet(sheetID: String) -> Bool {
+        for index in 0..<Database.sheets.count {
+            let sheet = Database.sheets[index]
+            if sheet.id == sheetID {
+                Database.sheets.remove(at: index)
+                break
+            }
+        }
+        
+        return true
+    }
+    
+    func deleteSheetByGenreID(genreID: String) {
+        Database.sheets = Database.sheets.filter( {$0.genre.id != genreID} )
+    }
+    
     func getAssetList() -> [SheetListViewModel] {
         var result = [SheetListViewModel]()
         let sheetsData = Database.sheets.filter( {$0.genre.sheetType == .asset} )

@@ -7,6 +7,7 @@ class CreateItemTableViewController: UITableViewController {
     var sheetType: SheetType?
     var newGenreType: GenreType?
     var newAccountName: String?
+    var newIconString: String = "money-1"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +37,7 @@ class CreateItemTableViewController: UITableViewController {
         tableView.separatorStyle = .none
         tableView.register(UINib(nibName: "RightTextFieldTableViewCell", bundle: nil), forCellReuseIdentifier: "RightTextFieldTableViewCell")
         tableView.register(UINib(nibName: "RightPickerTableViewCell", bundle: nil), forCellReuseIdentifier: "RightPickerTableViewCell")
+        tableView.register(UINib(nibName: "RightImageTableViewCell", bundle: nil), forCellReuseIdentifier: "RightImageTableViewCell")
     }
 
     // MARK: - Table view data source
@@ -45,7 +47,7 @@ class CreateItemTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 3
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -55,7 +57,7 @@ class CreateItemTableViewController: UITableViewController {
         switch row {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "RightTextFieldTableViewCell", for: indexPath) as! RightTextFieldTableViewCell
-            cell.setup(leftLabelString: "項目名稱")
+            cell.setup(leftLabelString: "名稱")
             cell.focusTextField()
             cell.delegate = self
             return cell
@@ -64,15 +66,39 @@ class CreateItemTableViewController: UITableViewController {
             let item0 = "流動"
             let item1 = (type == .asset) ? "固定" : "長期"
             
-            cell.setup(leftLabelString: "項目類型")
+            cell.setup(leftLabelString: "類型")
             cell.segment.setTitle(item0, forSegmentAt: 0)
             cell.segment.setTitle(item1, forSegmentAt: 1)
             cell.delegate = self
+            return cell
+        case 2:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "RightImageTableViewCell", for: indexPath) as! RightImageTableViewCell
+            
+            cell.setup(leftLabelString: "圖式")
+            if let image = UIImage(named: newIconString){
+                cell.setImage(image)
+            }
             return cell
         default:
             break
         }
         return UITableViewCell()
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let type = sheetType else { return }
+        
+        switch indexPath.row {
+        case 2:
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            if let vc = storyboard.instantiateViewController(withIdentifier: "choseIconPage") as? IconCollectionViewController {
+                vc.delegate = self
+                vc.chosenIcon = newIconString
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        default:
+            break
+        }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -94,7 +120,7 @@ class CreateItemTableViewController: UITableViewController {
     func addAssetItem(genreType: GenreType, accountName: String) {
         guard let type = sheetType else { return }
         
-        let genre = Genre(id: "000", icon: "money-1", sheetType: type, genreType: genreType, accountName: accountName)
+        let genre = Genre(id: "000", icon: newIconString, sheetType: type, genreType: genreType, accountName: accountName)
         Database.genres.append(genre)
     }
 }
@@ -110,5 +136,16 @@ extension CreateItemTableViewController: RightTextFieldDelegate {
 extension CreateItemTableViewController: RightPickerDelegate {
     func getPickerValue(value: GenreType) {
         newGenreType = value
+    }
+}
+
+extension CreateItemTableViewController: ChoseIconDelegate {
+    func choseIcon(iconString: String) {
+        newIconString = iconString
+        
+        let cell = tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as! RightImageTableViewCell
+        if let image = UIImage(named: newIconString){
+            cell.setImage(image)
+        }
     }
 }

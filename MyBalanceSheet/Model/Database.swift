@@ -26,7 +26,7 @@ class Database {
     
     static var sheets: [Sheet] = [
         Sheet(id: "S0001", name: "現金", year: 2019, month: 12, genre: genres[0], amount: 20),
-        Sheet(id: "S0002", name: "現金", year: 2020, month: 1, genre: genres[0], amount: 20),
+        Sheet(id: "S0002", name: "二手中古車", year: 2020, month: 1, genre: genres[9], amount: 2000),
         Sheet(id: "S0003", name: "現金", year: 2020, month: 2, genre: genres[0], amount: 20),
         Sheet(id: "S0004", name: "中信活存", year: 2020, month: 2, genre: genres[1], amount: 150),
         Sheet(id: "S0005", name: "現金", year: 2020, month: 3, genre: genres[0], amount: 250),
@@ -64,6 +64,10 @@ class Database {
         format: "Icon made by %@ perfect from %@",
         links: [Link(string: "Freepik", link: "https://www.flaticon.com/authors/freepik"),
                 Link(string: "www.flaticon.com", link: "https://www.flaticon.com/")])
+    ]
+    
+    static var icons: [String] = [
+        "money-1", "money-2", "bank", "bitcoin", "building", "coins", "financing", "stock", "stock-1", "wallet", "car", "credit-card-blue", "credit-card", "family", "insurance", "loan", "rice", "school"
     ]
     
     init() {}

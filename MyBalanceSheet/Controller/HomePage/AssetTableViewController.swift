@@ -18,11 +18,8 @@ class AssetTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        sheetsData = sheetManager.getAssetList()
-        let date = dateSelector.getDate()
-        let filter = filterData(year: Date.getYear(date), month: Date.getMonth(date))
-        setNoData( (filter.count == 0) )
-        sortData(filter)
+        let count = fetchData()
+        setNoData( (count == 0) )
         
         tableView.reloadData()
     }
@@ -58,6 +55,15 @@ class AssetTableViewController: UITableViewController {
         dateSelector.setGreenMode()
     }
     
+    func fetchData() -> Int {
+        sheetsData = sheetManager.getAssetList()
+        let date = dateSelector.getDate()
+        let filter = filterData(year: Date.getYear(date), month: Date.getMonth(date))
+        sortData(filter)
+        
+        return filter.count
+    }
+    
     func filterData(year: Int, month: Int) -> [SheetListViewModel] {
         guard var filterSheetData = sheetsData else { return [] }
         filterSheetData = filterSheetData.filter( {$0.year == year && $0.month == month } )
@@ -81,7 +87,7 @@ class AssetTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+       return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -125,11 +131,11 @@ class AssetTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        guard let tableSection = GenreType(rawValue: indexPath.section), let sheetData = data[tableSection]?[indexPath.row]  else { fatalError() }
+        
         let shareAction = UIContextualAction(style: .normal, title: "") { (action, sourceView, completionHandler) in
-            let defaultText = "Just checking in at "
-            let activityController = UIActivityViewController(activityItems: [defaultText], applicationActivities: nil)
-
-            self.present(activityController, animated: true, completion: nil)
+            print("delete \(sheetData.id), \(sheetData.name)")
+            self.deleteSheet(sheetVM: sheetData)
             completionHandler(true)
         }
         
@@ -137,6 +143,7 @@ class AssetTableViewController: UITableViewController {
         shareAction.image = UIImage(named: "deleteBtn")
 
         let swipeConfiguration = UISwipeActionsConfiguration(actions: [shareAction])
+        swipeConfiguration.performsFirstActionWithFullSwipe = false
 
         return swipeConfiguration
     }
@@ -146,6 +153,8 @@ class AssetTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        guard let tableSection = GenreType(rawValue: section), let sheets = data[tableSection] else { fatalError() }
+        guard sheets.count > 0 else { return 0 }
         return 40
     }
     
@@ -189,6 +198,14 @@ class AssetTableViewController: UITableViewController {
         default:
            break
         }
+    }
+    
+    func deleteSheet(sheetVM: SheetListViewModel) {
+        sheetManager.deleteSheet(sheetID: sheetVM.id)
+        let count = fetchData()
+        setNoData( (count == 0) )
+        
+        tableView.reloadData()
     }
 }
 
