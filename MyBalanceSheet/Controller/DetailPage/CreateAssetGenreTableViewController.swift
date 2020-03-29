@@ -100,8 +100,10 @@ class CreateItemTableViewController: UITableViewController {
 }
 
 extension CreateItemTableViewController: RightTextFieldDelegate {
-    func getTextFieldValue(value: String) {
-        newAccountName = value
+    func getTextField(_ field: UITextField) {
+        if let text = field.text{
+            newAccountName = text
+        }
     }
 }
 

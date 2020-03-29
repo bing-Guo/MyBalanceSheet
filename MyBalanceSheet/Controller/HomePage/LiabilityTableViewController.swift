@@ -28,7 +28,6 @@ class LiabilityTableViewController: UITableViewController {
     
     func setNavigation() {
         self.title = "負債"
-        self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.largeTitleDisplayMode = .always
         
         let navBarAppearance = UINavigationBarAppearance()

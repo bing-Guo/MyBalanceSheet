@@ -24,8 +24,8 @@ class CreateSheetTableViewController: UITableViewController {
     func setNavigation() {
         guard let type = sheetType else { return }
         
-        self.navigationItem.largeTitleDisplayMode = .never
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "save"), style: .plain, target: self, action: #selector(saveAssetSheet))
+        self.navigationController?.navigationItem.largeTitleDisplayMode = .never
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "save"), style: .plain, target: self, action: #selector(saveSheet))
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         let titleMode = (editMode) ? "編輯" : "新增"
@@ -140,7 +140,9 @@ class CreateSheetTableViewController: UITableViewController {
     }
     
     // MARK: - Action
-    @objc func saveAssetSheet() {
+    @objc func saveSheet() {
+        guard validation() else { return }
+        
         let id = choseID ?? "S9999"
         let amount = choseAmount ?? 0
         let year = choseYear ?? Date.getYear()
@@ -167,6 +169,29 @@ class CreateSheetTableViewController: UITableViewController {
     func updateSheet(sheet: Sheet) {
         sheetManager.updateSheet(sheetData: sheet)
     }
+    
+    func validation() -> Bool {
+        var isValidCount = 0
+        
+        let genreCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! RightTextTableViewCell
+        let nameCell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as! RightTextFieldTableViewCell
+        
+        if choseGenre == nil{
+            genreCell.errorStatus()
+            isValidCount += 1
+        }else{
+            genreCell.normalStatus()
+        }
+        
+        if choseName == nil || choseName == ""{
+            nameCell.errorStatus()
+            isValidCount += 1
+        }else{
+            nameCell.normalStatus()
+        }
+        
+        return (isValidCount == 0)
+    }
 }
 
 extension CreateSheetTableViewController: ChoseItemDelegate {
@@ -175,6 +200,7 @@ extension CreateSheetTableViewController: ChoseItemDelegate {
         
         let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! RightTextTableViewCell
         cell.rightTextLabel.text = genre.accountName
+        cell.chosenStatus()
     }
 }
 
@@ -192,7 +218,9 @@ extension CreateSheetTableViewController: RightDatePickerDelegate {
 }
 
 extension CreateSheetTableViewController: RightTextFieldDelegate {
-    func getTextFieldValue(value: String) {
-        self.choseName = value
+    func getTextField(_ field: UITextField) {
+        if let text = field.text{
+            self.choseName = text
+        }
     }
 }

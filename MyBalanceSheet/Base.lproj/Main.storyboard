@@ -99,6 +99,7 @@
                     <navigationItem key="navigationItem" id="AXc-u4-Hyg"/>
                     <connections>
                         <outlet property="dateSelector" destination="tWy-Nh-DLd" id="dQs-Xr-5AO"/>
+                        <segue destination="ApA-ui-DnM" kind="show" id="f0a-7e-rLR"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rUq-nO-dye" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -133,9 +134,10 @@
                             <outlet property="delegate" destination="QRF-uq-eCX" id="Yuh-oX-5sD"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="b6B-cp-Vvh"/>
+                    <navigationItem key="navigationItem" id="b6B-cp-Vvh"/>
                     <connections>
                         <outlet property="dateSelector" destination="mDe-l8-EJb" id="m9o-ov-yht"/>
+                        <segue destination="ApA-ui-DnM" kind="show" id="iKv-ft-0kx"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uTE-Tj-TAn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -165,7 +167,10 @@
                             <outlet property="delegate" destination="ApA-ui-DnM" id="dCT-7u-0to"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="SQ7-v2-SFH"/>
+                    <navigationItem key="navigationItem" id="SQ7-v2-SFH"/>
+                    <connections>
+                        <segue destination="58k-1N-lhv" kind="show" id="Vre-6L-mNL"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sFj-HE-kdl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -253,6 +258,7 @@
                     <connections>
                         <outlet property="btnContainer" destination="x7p-jy-sAU" id="dZJ-DR-flZ"/>
                         <outlet property="createAssetSheetItemBtn" destination="g0d-S4-zpE" id="z2k-fu-0MI"/>
+                        <segue destination="mYK-8j-xeY" kind="show" id="JhA-Ln-xTQ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JSv-TU-dyB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -500,4 +506,7 @@
         <image name="plus.circle.fill" catalog="system" width="64" height="60"/>
         <image name="save" width="16" height="16"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="iKv-ft-0kx"/>
+    </inferredMetricsTieBreakers>
 </document>

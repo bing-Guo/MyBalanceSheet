@@ -29,8 +29,7 @@ class AssetTableViewController: UITableViewController {
     
     func setNavigation() {
         self.title = "資產"
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.navigationItem.largeTitleDisplayMode = .always
+        self.navigationController?.navigationItem.largeTitleDisplayMode = .always
         
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithOpaqueBackground()

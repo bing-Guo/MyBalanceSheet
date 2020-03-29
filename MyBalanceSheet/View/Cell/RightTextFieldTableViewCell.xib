@@ -43,19 +43,44 @@
                             <constraint firstItem="tZh-cV-s51" firstAttribute="leading" secondItem="5vx-eZ-5os" secondAttribute="leading" constant="10" id="PmL-iS-0Fp"/>
                         </constraints>
                     </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fYk-EY-DzX">
+                        <rect key="frame" x="218" y="1" width="87" height="20"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="不可為空白" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xTe-13-8wj">
+                                <rect key="frame" x="10" y="2" width="67" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="8F7-6w-Tbf"/>
+                            <constraint firstAttribute="bottom" secondItem="xTe-13-8wj" secondAttribute="bottom" constant="2" id="Eyt-yl-HXv"/>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="200" id="Sv7-wh-U0O"/>
+                            <constraint firstItem="xTe-13-8wj" firstAttribute="top" secondItem="fYk-EY-DzX" secondAttribute="top" constant="2" id="gVT-G4-PnA"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="87" id="hSN-tj-wfl"/>
+                            <constraint firstItem="xTe-13-8wj" firstAttribute="leading" secondItem="fYk-EY-DzX" secondAttribute="leading" constant="10" id="oDI-uP-ghK"/>
+                            <constraint firstAttribute="trailing" secondItem="xTe-13-8wj" secondAttribute="trailing" constant="10" id="vFq-ze-so8"/>
+                        </constraints>
+                    </view>
                 </subviews>
-                <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="5vx-eZ-5os" secondAttribute="bottom" id="2dw-a9-ovN"/>
                     <constraint firstItem="5vx-eZ-5os" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="4Tq-d8-bC1"/>
                     <constraint firstAttribute="trailing" secondItem="5vx-eZ-5os" secondAttribute="trailing" constant="10" id="GFn-QQ-UHa"/>
+                    <constraint firstItem="fYk-EY-DzX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="1" id="IHU-4g-Q7e"/>
                     <constraint firstItem="5vx-eZ-5os" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="RwH-uo-VsJ"/>
+                    <constraint firstAttribute="trailing" secondItem="fYk-EY-DzX" secondAttribute="trailing" constant="15" id="buC-YA-jV4"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="RightTextField" destination="Wma-Z2-IHu" id="4ob-pi-ABy"/>
                 <outlet property="container" destination="5vx-eZ-5os" id="z4h-Dt-KRL"/>
+                <outlet property="errorContainer" destination="fYk-EY-DzX" id="9CX-nJ-sEw"/>
+                <outlet property="errorLabel" destination="xTe-13-8wj" id="x3K-Jd-yOx"/>
                 <outlet property="leftTextLabel" destination="tZh-cV-s51" id="atS-az-aty"/>
             </connections>
             <point key="canvasLocation" x="140.57971014492756" y="124.55357142857142"/>

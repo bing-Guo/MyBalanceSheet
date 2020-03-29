@@ -1,14 +1,16 @@
 import UIKit
 
 protocol RightTextFieldDelegate: NSObject {
-    func getTextFieldValue(value: String)
+    func getTextField(_ field: UITextField)
 }
 
-class RightTextFieldTableViewCell: UITableViewCell {
+class RightTextFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
 
     @IBOutlet weak var container: UIView!
     @IBOutlet weak var leftTextLabel: UILabel!
     @IBOutlet weak var rightTextField: UITextField!
+    @IBOutlet weak var errorContainer: UIView!
+    @IBOutlet weak var errorLabel: UILabel!
     
     weak var delegate: RightTextFieldDelegate?
     
@@ -19,6 +21,7 @@ class RightTextFieldTableViewCell: UITableViewCell {
         
         setTextField()
         setCell()
+        setErrorView()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -44,42 +47,45 @@ class RightTextFieldTableViewCell: UITableViewCell {
         rightTextField.addTarget(self, action: #selector(textFieldChange), for: .editingChanged)
     }
     
+    func setErrorView() {
+        errorContainer.backgroundColor = ._liability_background
+        errorContainer.layer.cornerRadius = 8
+        errorContainer.clipsToBounds = true
+        errorLabel.textColor = .white
+        errorContainer.isHidden = true
+    }
+    
     func setup(leftLabelString: String, rightTextFieldValue: String = "") {
         self.leftTextLabel.text = leftLabelString
         self.rightTextField.text = rightTextFieldValue
     }
     
+    func errorStatus() {
+        container.layer.borderColor = UIColor._liability_background.cgColor
+        container.layer.borderWidth = 2
+        errorContainer.isHidden = false
+    }
+    
+    func normalStatus() {
+        container.layer.borderWidth = 0
+        errorContainer.isHidden = true
+    }
+    
     // MARK: - Action
     
-    @objc func doneButtonTapped () {
-        if let text = rightTextField.text {
-            let toNumber: Int = Int(text) ?? 0
-            rightTextField.text = String(toNumber)
-            rightTextField.resignFirstResponder()
-        }
-    }
-
-    @objc func cancelButtonTapped () {
-        rightTextField.text = ""
-        rightTextField.resignFirstResponder()
+    @objc func textFieldChange() {
+        delegate?.getTextField(rightTextField)
     }
     
-    @objc func textFieldChange() {
-        print(rightTextField.text ?? "no")
-        delegate?.getTextFieldValue(value: rightTextField.text ?? "")
-    }
+    // MARK: - TextField Delegate
     
     func focusTextField() {
         rightTextField.becomeFirstResponder()
     }
-}
-
-extension RightTextFieldTableViewCell: UITextFieldDelegate {
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if string == "\n" {
-            delegate?.getTextFieldValue(value: rightTextField.text ?? "")
-            rightTextField.resignFirstResponder()
-        }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        delegate?.getTextField(rightTextField)
+        rightTextField.resignFirstResponder()
         return true
     }
 }
