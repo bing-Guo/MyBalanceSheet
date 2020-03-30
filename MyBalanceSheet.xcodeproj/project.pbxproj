@@ -12,7 +12,6 @@
 		FCF29D6B2413889F007E93D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF29D6A2413889F007E93D2 /* AppDelegate.swift */; };
 		FCF29D6D2413889F007E93D2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF29D6C2413889F007E93D2 /* SceneDelegate.swift */; };
 		FCF29D722413889F007E93D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCF29D702413889F007E93D2 /* Main.storyboard */; };
-		FCF29D752413889F007E93D2 /* MyBalanceSheet.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FCF29D732413889F007E93D2 /* MyBalanceSheet.xcdatamodeld */; };
 		FCF29D77241388A3007E93D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCF29D76241388A3007E93D2 /* Assets.xcassets */; };
 		FCF29D7A241388A3007E93D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCF29D78241388A3007E93D2 /* LaunchScreen.storyboard */; };
 		FCF29D85241388A3007E93D2 /* MyBalanceSheetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF29D84241388A3007E93D2 /* MyBalanceSheetTests.swift */; };
@@ -66,6 +65,7 @@
 		FCF5A9EB243082EC008121BA /* IconCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCF5A9E9243082EC008121BA /* IconCollectionViewCell.xib */; };
 		FCF5A9EE243092CD008121BA /* RightImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF5A9EC243092CD008121BA /* RightImageTableViewCell.swift */; };
 		FCF5A9EF243092CD008121BA /* RightImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCF5A9ED243092CD008121BA /* RightImageTableViewCell.xib */; };
+		FCF5A9F224318B21008121BA /* MyBalanceSheet.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FCF5A9F024318B21008121BA /* MyBalanceSheet.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,7 +87,6 @@
 		FCF29D6A2413889F007E93D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCF29D6C2413889F007E93D2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		FCF29D712413889F007E93D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		FCF29D742413889F007E93D2 /* MyBalanceSheet.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyBalanceSheet.xcdatamodel; sourceTree = "<group>"; };
 		FCF29D76241388A3007E93D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FCF29D79241388A3007E93D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FCF29D7B241388A3007E93D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -144,6 +143,7 @@
 		FCF5A9E9243082EC008121BA /* IconCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IconCollectionViewCell.xib; sourceTree = "<group>"; };
 		FCF5A9EC243092CD008121BA /* RightImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightImageTableViewCell.swift; sourceTree = "<group>"; };
 		FCF5A9ED243092CD008121BA /* RightImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RightImageTableViewCell.xib; sourceTree = "<group>"; };
+		FCF5A9F124318B21008121BA /* MyBalanceSheet.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyBalanceSheet.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,7 +268,6 @@
 		FCF29D9824139085007E93D2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				FCF29D732413889F007E93D2 /* MyBalanceSheet.xcdatamodeld */,
 				FCF29DCC2415400C007E93D2 /* StorgeManager.swift */,
 				FCF29DD6241C95F5007E93D2 /* Sheet.swift */,
 				FCF29DD8241C9890007E93D2 /* Genre.swift */,
@@ -277,6 +276,7 @@
 				FCF5A9C0242DAE17008121BA /* SheetType.swift */,
 				FCF5A9C2242DB44B008121BA /* GenreType.swift */,
 				FCF5A9CD242DE2A7008121BA /* Thanks.swift */,
+				FCF5A9F024318B21008121BA /* MyBalanceSheet.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -499,11 +499,11 @@
 				FCF5A99B242A0EC2008121BA /* CellHeaderView.swift in Sources */,
 				FCF5A9A2242AED66008121BA /* LiabilityTableViewController.swift in Sources */,
 				FCF5A9CC242DDDA1008121BA /* ThanksForTableViewController.swift in Sources */,
+				FCF5A9F224318B21008121BA /* MyBalanceSheet.xcdatamodeld in Sources */,
 				FCF29DB52414D3B6007E93D2 /* UIColor+Ext.swift in Sources */,
 				FCF29DD9241C9890007E93D2 /* Genre.swift in Sources */,
 				FCF5A9AD242AFECC008121BA /* SummaryModelView.swift in Sources */,
 				FCF5A99D242A146A008121BA /* SheetGenreListViewModel.swift in Sources */,
-				FCF29D752413889F007E93D2 /* MyBalanceSheet.xcdatamodeld in Sources */,
 				FCF5A9D6242DF9D5008121BA /* NSAttributedString+Ext.swift in Sources */,
 				FCF5A9BD242D0751008121BA /* RightDatePickerTableViewCell.swift in Sources */,
 				FCF29DB02414B9F6007E93D2 /* DateSelector.swift in Sources */,
@@ -800,14 +800,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		FCF29D732413889F007E93D2 /* MyBalanceSheet.xcdatamodeld */ = {
+		FCF5A9F024318B21008121BA /* MyBalanceSheet.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				FCF29D742413889F007E93D2 /* MyBalanceSheet.xcdatamodel */,
+				FCF5A9F124318B21008121BA /* MyBalanceSheet.xcdatamodel */,
 			);
-			currentVersion = FCF29D742413889F007E93D2 /* MyBalanceSheet.xcdatamodel */;
-			name = MyBalanceSheet.xcdatamodeld;
-			path = ../MyBalanceSheet.xcdatamodeld;
+			currentVersion = FCF5A9F124318B21008121BA /* MyBalanceSheet.xcdatamodel */;
+			path = MyBalanceSheet.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
