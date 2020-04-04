@@ -134,7 +134,6 @@ class AssetTableViewController: UITableViewController {
         guard let tableSection = GenreType(rawValue: indexPath.section), let sheetData = data[tableSection]?[indexPath.row]  else { fatalError() }
         
         let shareAction = UIContextualAction(style: .normal, title: "") { (action, sourceView, completionHandler) in
-            print("delete \(sheetData.id), \(sheetData.name)")
             self.deleteSheet(sheetVM: sheetData)
             completionHandler(true)
         }
@@ -201,7 +200,7 @@ class AssetTableViewController: UITableViewController {
     }
     
     func deleteSheet(sheetVM: SheetListViewModel) {
-        sheetManager.deleteSheet(sheetID: sheetVM.id)
+        sheetManager.deleteSheet(id: sheetVM.id!)
         let count = fetchData()
         setNoData( (count == 0) )
         

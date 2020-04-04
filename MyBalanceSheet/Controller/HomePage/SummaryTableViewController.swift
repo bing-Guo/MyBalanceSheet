@@ -10,7 +10,7 @@ class SummaryTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+//        sheetManager.deleteAll()
         setNavigation()
         setTabBar()
         setTableView()

@@ -12,7 +12,7 @@ class ItemListTableViewController: UITableViewController {
     var sheetType: SheetType?
     var genreData: [SheetGenreListViewModel]?
     var data = [GenreType: [SheetGenreListViewModel]]()
-    let genreManager = GenreManager()
+    let genreManager = GenreManager.shareInstance
     weak var delegate: ChoseItemDelegate?
     
     override func viewDidLoad() {
@@ -130,7 +130,6 @@ class ItemListTableViewController: UITableViewController {
         guard let tableSection = GenreType(rawValue: indexPath.section), let genre = data[tableSection]?[indexPath.row]  else { fatalError() }
         
         let shareAction = UIContextualAction(style: .normal, title: "") { (action, sourceView, completionHandler) in
-            print("delete \(genre.id), \(genre.accountName)")
             self.deleteGenre(genreVM: genre)
             completionHandler(true)
         }
@@ -148,14 +147,14 @@ class ItemListTableViewController: UITableViewController {
         let existed = genreManager.checkGenreExistInSheet(genre: genreVM)
         
         if existed == false {
-            genreManager.deleteGenre(genreID: genreVM.id)
+            genreManager.deleteGenre(id: genreVM.id!)
             self.genreData = self.getData()
             self.sortData()
             self.tableView.reloadData()
         }else {
             let controller = UIAlertController(title: "注意", message: "該類別正在被使用中，若點選「確定」將會把該類別的紀錄都刪除，若是不想刪除，請選「取消」，先將過去紀錄更換類別在進行刪除", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "確定刪除", style: .default) { (_) in
-                self.genreManager.deleteGenre(genreID: genreVM.id)
+                self.genreManager.deleteGenre(id: genreVM.id!)
                 self.genreData = self.getData()
                 self.sortData()
                 self.tableView.reloadData()

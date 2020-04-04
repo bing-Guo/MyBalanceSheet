@@ -1,4 +1,6 @@
 import Foundation
+import UIKit
+import CoreData
 
 class SheetManager {
     
@@ -6,62 +8,43 @@ class SheetManager {
     
     private init() {}
     
-    func isSheetExisted(sheetData: Sheet) -> Bool {
-        let year = sheetData.year
-        let month = sheetData.month
-        let genreID = sheetData.genre.id
-        
-        let filterData = Database.sheets.filter( {
-            $0.year == year &&
-            $0.month == month &&
-            $0.genre.id == genreID
-        } )
-        
-        return ( filterData.count > 0 )
-    }
-    
-    func addSheet(sheet: Sheet) {
-        Database.sheets.append(sheet)
-    }
-    
-    func updateSheet(sheetData: Sheet) -> Bool {
-        let id = sheetData.id
-        
-        for index in 0..<Database.sheets.count {
-            let sheet = Database.sheets[index]
-            if sheet.id == id {
-                Database.sheets[index].name = sheetData.name
-                Database.sheets[index].amount = sheetData.amount
-                Database.sheets[index].year = sheetData.year
-                Database.sheets[index].month = sheetData.month
-                Database.sheets[index].genre = sheetData.genre
+    func getSheetFromCoreData() -> [Sheet]{
+        if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
+            let request: NSFetchRequest<Sheet> = Sheet.fetchRequest()
+            let context = appDelegate.persistentContainer.viewContext
+            do {
+                return try context.fetch(request)
+            } catch {
+                fatalError("An Error occurred to fetch sheet data from core date")
             }
         }
-        
-        return true
+        return [Sheet]()
     }
     
-    func deleteSheet(sheetID: String) -> Bool {
-        for index in 0..<Database.sheets.count {
-            let sheet = Database.sheets[index]
-            if sheet.id == sheetID {
-                Database.sheets.remove(at: index)
-                break
-            }
-        }
+    func getSheetByID(id: UUID) -> Sheet {
+        let data = getSheetFromCoreData()
         
-        return true
+        let result = data.filter( {$0.id == id} )
+        
+        return result[0]
     }
     
-    func deleteSheetByGenreID(genreID: String) {
-        Database.sheets = Database.sheets.filter( {$0.genre.id != genreID} )
+    func getSheetByGenreID(genreID: UUID) -> [Sheet] {
+        let data = getSheetFromCoreData()
+        
+        let result = data.filter( {$0.genre!.id == genreID} )
+        
+        return result
     }
+    
+    // MARK: - 轉換ViewModel
     
     func getAssetList() -> [SheetListViewModel] {
         var result = [SheetListViewModel]()
-        let sheetsData = Database.sheets.filter( {$0.genre.sheetType == .asset} )
+        let sheetsData = getSheetFromCoreData()
+        let assetSheetsData = sheetsData.filter( {$0.genre?.sheetEnum == .asset } )
         
-        for sheet in sheetsData {
+        for sheet in assetSheetsData {
             let vm = SheetListViewModel(sheet: sheet)
             result.append(vm)
         }
@@ -71,14 +54,95 @@ class SheetManager {
     
     func getLiabilityList() -> [SheetListViewModel] {
         var result = [SheetListViewModel]()
-        let sheetsData = Database.sheets.filter( {$0.genre.sheetType == .liability} )
+        let sheetsData = getSheetFromCoreData()
+        let liabilitySheetsData = sheetsData.filter( {$0.genre?.sheetEnum == .liability } )
         
-        for sheet in sheetsData {
+        for sheet in liabilitySheetsData {
             let vm = SheetListViewModel(sheet: sheet)
             result.append(vm)
         }
         
         return result
+    }
+    
+    
+    // MARK: -
+    
+    func addSheet(name: String, year: Int, month: Int, genre: Genre, amount: Int) {
+        if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
+            let sheet = Sheet(context: appDelegate.persistentContainer.viewContext)
+            sheet.id = UUID()
+            sheet.name = name
+            sheet.year = Int16(year)
+            sheet.month = Int16(month)
+            sheet.genre = genre
+            sheet.amount = Int16(amount)
+            
+            appDelegate.saveContext()
+        }
+    }
+    
+    func updateSheet(id: UUID, name: String, year: Int, month: Int, genre: Genre, amount: Int) {
+        if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
+            let request: NSFetchRequest<Sheet> = Sheet.fetchRequest()
+            let context = appDelegate.persistentContainer.viewContext
+            request.predicate = NSPredicate(format: "id = %@", argumentArray: [id])
+            
+            do {
+                let sheet = try context.fetch(request)
+                
+                let objectUpdate = sheet[0] as NSManagedObject
+                objectUpdate.setValue(name, forKey: "name")
+                objectUpdate.setValue(Int(year), forKey: "year")
+                objectUpdate.setValue(Int(month), forKey: "month")
+                objectUpdate.setValue(genre, forKey: "genre")
+                objectUpdate.setValue(Int(amount), forKey: "amount")
+                do{
+                    try context.save()
+                }catch{
+                    fatalError("An Error occurred to fetch sheet data from core date")
+                }
+            } catch {
+                fatalError("An Error occurred to fetch sheet data from core date")
+            }
+        }
+    }
+    
+    func deleteSheet(id: UUID) {
+        if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
+            let request: NSFetchRequest<Sheet> = Sheet.fetchRequest()
+            let context = appDelegate.persistentContainer.viewContext
+            request.predicate = NSPredicate(format: "id = %@", argumentArray: [id])
+            
+            do {
+                let sheet = try context.fetch(request)
+                
+                let objectDelete = sheet[0] as NSManagedObject
+                context.delete(objectDelete)
+                
+                do{
+                    try context.save()
+                }catch{
+                    fatalError("An Error occurred to fetch sheet data from core date")
+                }
+            } catch {
+                fatalError("An Error occurred to fetch sheet data from core date")
+            }
+        }
+    }
+    
+    func deleteAll() {
+        if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
+            let request: NSFetchRequest<Sheet> = Sheet.fetchRequest()
+            let context = appDelegate.persistentContainer.viewContext
+            let deleterequest = NSBatchDeleteRequest(fetchRequest: request as! NSFetchRequest<NSFetchRequestResult>)
+            
+            do {
+                try context.execute(deleterequest)
+            } catch {
+                fatalError("An Error occurred to fetch sheet data from core date")
+            }
+        }
     }
     
     func getSummaryList() -> [SummaryModelView] {
@@ -116,7 +180,7 @@ class SheetManager {
     
     private func generateSummarySheet() -> [Summary]{
         var result = [Summary]()
-        let sheetData = Database.sheets
+        let sheetData = getSheetFromCoreData()
         let groupDict = groupSameDateSheet(sheetData)
         
         for group in groupDict {
@@ -158,10 +222,10 @@ class SheetManager {
     
     private func caculateTotalAsset(_ sheets: [Sheet]) -> Int {
         var result = 0
-        let filterSheet = sheets.filter( {$0.genre.sheetType == .asset } )
+        let filterSheet = sheets.filter( {$0.genre?.sheetEnum == .asset } )
         
         for sheet in filterSheet {
-            result += sheet.amount
+            result += Int(sheet.amount)
         }
         
         return result
@@ -169,10 +233,10 @@ class SheetManager {
     
     private func caculateTotalLiability(_ sheets: [Sheet]) -> Int {
         var result = 0
-        let filterSheet = sheets.filter( {$0.genre.sheetType == .liability } )
+        let filterSheet = sheets.filter( {$0.genre?.sheetEnum == .liability } )
         
         for sheet in filterSheet {
-            result += sheet.amount
+            result += Int(sheet.amount)
         }
         
         return result

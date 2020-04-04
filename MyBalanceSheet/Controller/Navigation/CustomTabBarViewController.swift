@@ -23,7 +23,7 @@ class CustomTabBarViewController: UITabBarController, UITabBarControllerDelegate
     // UITabBarControllerDelegate
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         let selectedIndex = tabBarController.viewControllers?.firstIndex(of: viewController)!
-        print(selectedIndex)
+        
         switch selectedIndex {
         case 0:
             tabBarController.tabBar.tintColor = ._summary_background

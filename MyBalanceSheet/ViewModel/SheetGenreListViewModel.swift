@@ -2,7 +2,7 @@ import Foundation
 
 class SheetGenreListViewModel {
     
-    let id: String
+    let id: UUID?
     let sheetType: SheetType
     let genreType: GenreType
     let accountName: String
@@ -10,9 +10,10 @@ class SheetGenreListViewModel {
     
     init(genre: Genre) {
         self.id = genre.id
-        self.sheetType = genre.sheetType
-        self.genreType = genre.genreType
-        self.accountName = genre.accountName
-        self.icon = genre.icon
+        self.sheetType = genre.sheetEnum
+        self.genreType = genre.genreEnum
+        // todo
+        self.accountName = genre.accountName ?? ""
+        self.icon = genre.icon ?? ""
     }
 }

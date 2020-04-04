@@ -5,7 +5,7 @@ enum RateStatue: Int {
 }
 
 class SheetListViewModel {
-    let id: String
+    let id: UUID?
     let name: String
     let year: Int
     let month: Int
@@ -15,12 +15,12 @@ class SheetListViewModel {
     
     init(sheet: Sheet) {
         self.id = sheet.id
-        self.name = sheet.name
-        self.year = sheet.year
-        self.month = sheet.month
-        self.genre = SheetGenreListViewModel(genre: sheet.genre)
-        self.amount = sheet.amount
-        self.amountString = SheetListViewModel.moneyFormat(sheet.amount)
+        self.name = sheet.name ?? ""
+        self.year = Int(sheet.year)
+        self.month = Int(sheet.month)
+        self.genre = SheetGenreListViewModel(genre: sheet.genre!)
+        self.amount = Int(sheet.amount)
+        self.amountString = SheetListViewModel.moneyFormat(Int(sheet.amount))
     }
     
     static func moneyFormat(_ value: Int) -> String {

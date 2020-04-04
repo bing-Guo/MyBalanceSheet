@@ -5,13 +5,14 @@ class CreateSheetTableViewController: UITableViewController {
     var sheetType: SheetType?
     var editMode: Bool = false
     var editData: SheetListViewModel?
-    var choseID: String?
+    var choseID: UUID?
     var choseGenre: SheetGenreListViewModel?
     var choseAmount: Int?
     var choseYear: Int?
     var choseMonth: Int?
     var choseName: String?
     let sheetManager = SheetManager.shareInstance
+    let genreManager = GenreManager.shareInstance
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,7 +69,7 @@ class CreateSheetTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 4
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -101,11 +102,6 @@ class CreateSheetTableViewController: UITableViewController {
                 
                 return cell
             case 3:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "RightTextTableViewCell", for: indexPath) as! RightTextTableViewCell
-                cell.setup(leftLabelString: "貨幣", rightLabelString: "貨幣")
-                
-                return cell
-            case 4:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "RightNumberFieldTableViewCell", for: indexPath) as! RightNumberFieldTableViewCell
                 cell.setup(leftLabelString: "金額", rightTextFieldValue: String(editData?.amount ?? 0))
                 cell.delegate = self
@@ -143,31 +139,22 @@ class CreateSheetTableViewController: UITableViewController {
     @objc func saveSheet() {
         guard validation() else { return }
         
-        let id = choseID ?? "S9999"
+        let id = choseID ?? UUID()
         let amount = choseAmount ?? 0
         let year = choseYear ?? Date.getYear()
         let month = choseMonth ?? Date.getMonth()
         
         if let genreVM = choseGenre, let name = choseName {
-            let genre = Genre(id: genreVM.id, icon: genreVM.icon, sheetType: genreVM.sheetType, genreType: genreVM.genreType, accountName: genreVM.accountName)
-            let sheet = Sheet(id: id, name: name, year: year, month: month, genre: genre, amount: amount)
+            let genre = genreManager.getGenreByID(id: genreVM.id!)
             
             if editMode {
-                updateSheet(sheet: sheet)
+                sheetManager.updateSheet(id: id, name: name, year: year, month: month, genre: genre, amount: amount)
             }else {
-                createSheet(sheet: sheet)
+                sheetManager.addSheet(name: name, year: year, month: month, genre: genre, amount: amount)
             }
+                        
             navigationController?.popViewController(animated: true)
         }
-        print("id: \(choseID), name: \(choseName), year: \(year), month: \(month), amount: \(choseAmount), genre: \(choseGenre)")
-    }
-    
-    func createSheet(sheet: Sheet) {
-        sheetManager.addSheet(sheet: sheet)
-    }
-    
-    func updateSheet(sheet: Sheet) {
-        sheetManager.updateSheet(sheetData: sheet)
     }
     
     func validation() -> Bool {

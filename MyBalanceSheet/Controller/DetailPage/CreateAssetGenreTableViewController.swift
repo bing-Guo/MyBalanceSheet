@@ -8,6 +8,7 @@ class CreateItemTableViewController: UITableViewController {
     var newGenreType: GenreType?
     var newAccountName: String?
     var newIconString: String = "money-1"
+    let genreManager = GenreManager.shareInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,7 +87,7 @@ class CreateItemTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let type = sheetType else { return }
+        guard sheetType != nil else { return }
         
         switch indexPath.row {
         case 2:
@@ -112,16 +113,13 @@ class CreateItemTableViewController: UITableViewController {
         if let accountName = newAccountName {
             addAssetItem(genreType: genreType, accountName: accountName)
             self.navigationController?.popViewController(animated: true)
-        }else{
-            print("subGenre: \(newGenreType), accountName: \(newAccountName)")
         }
     }
     
     func addAssetItem(genreType: GenreType, accountName: String) {
         guard let type = sheetType else { return }
         
-        let genre = Genre(id: "000", icon: newIconString, sheetType: type, genreType: genreType, accountName: accountName)
-        Database.genres.append(genre)
+        genreManager.addGenre(accountName: accountName, genreType: genreType, icon: newIconString, sheetType: type)
     }
 }
 
