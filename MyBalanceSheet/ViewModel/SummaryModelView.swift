@@ -9,10 +9,12 @@ class SummaryModelView {
     let rateString: String
     
     init(summary: Summary, prevSummary: Summary?) {
+        let amountString = String(Int(summary.amount)).moneyFormat()
+        
         self.year = summary.year
         self.month = summary.month
         self.type = summary.type
-        self.amountString = (summary.type == .debtRatio) ? "\(summary.amount)%" : SheetListViewModel.moneyFormat(summary.amount)
+        self.amountString = (summary.type == .debtRatio) ? "\(summary.amount)%" : amountString
         
         if let prev = prevSummary {
             if summary.type == .debtRatio {

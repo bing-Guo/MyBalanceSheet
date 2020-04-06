@@ -76,7 +76,7 @@ class SheetManager {
             sheet.year = Int16(year)
             sheet.month = Int16(month)
             sheet.genre = genre
-            sheet.amount = Int16(amount)
+            sheet.amount = Int32(amount)
             
             appDelegate.saveContext()
         }
@@ -93,10 +93,10 @@ class SheetManager {
                 
                 let objectUpdate = sheet[0] as NSManagedObject
                 objectUpdate.setValue(name, forKey: "name")
-                objectUpdate.setValue(Int(year), forKey: "year")
-                objectUpdate.setValue(Int(month), forKey: "month")
+                objectUpdate.setValue(Int16(year), forKey: "year")
+                objectUpdate.setValue(Int16(month), forKey: "month")
                 objectUpdate.setValue(genre, forKey: "genre")
-                objectUpdate.setValue(Int(amount), forKey: "amount")
+                objectUpdate.setValue(Int32(amount), forKey: "amount")
                 do{
                     try context.save()
                 }catch{
@@ -247,7 +247,13 @@ class SheetManager {
     }
     
     private func caculateDebtRatio(totalAsset: Int, totalLiability: Int) -> Int {
-        return Int(ceil(Float(totalLiability) / Float(totalAsset) * 100))
+        let r = ceil(Float(totalLiability) / Float(totalAsset) * 100)
+        if r.isInfinite || r.isNaN{
+            return 0
+        }else{
+            return Int(r)
+        }
+        
     }
     
     private func isLastMonth(firstYear: Int, secondYear: Int, firstMonth: Int, secondMonth: Int) -> Bool {

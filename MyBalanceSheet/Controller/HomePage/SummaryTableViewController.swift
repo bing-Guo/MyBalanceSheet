@@ -4,17 +4,18 @@ class SummaryTableViewController: UITableViewController {
     
     @IBOutlet weak var dateSelector: DateSelector!
     
+    var noDataView: UIView?
     var summaryData: [SummaryModelView]?
     var data = [SummaryModelView]()
     let sheetManager = SheetManager.shareInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        sheetManager.deleteAll()
         setNavigation()
         setTabBar()
         setTableView()
         setDateSelector()
+        setNoDataView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,6 +38,16 @@ class SummaryTableViewController: UITableViewController {
         navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor._summary_text]
         navigationController?.navigationBar.standardAppearance = navBarAppearance
         navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+    }
+    
+    func setNoDataView() {
+        noDataView = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: self.tableView.frame.height))
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 350, height: 480))
+        imageView.image = UIImage(named: "nodata2")
+        noDataView!.addSubview(imageView)
+        imageView.center = tableView.center
+        
+        self.tableView.backgroundView = noDataView
     }
     
     func setTabBar() {
@@ -67,13 +78,10 @@ class SummaryTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if data.count > 0 {
+            self.tableView.backgroundView?.isHidden = true
             return data.count
         }else{
-            let noDataLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 20 ))
-            noDataLabel.text = "尚未有紀錄"
-            noDataLabel.textAlignment = .center
-            
-            self.tableView.backgroundView = noDataLabel
+            self.tableView.backgroundView?.isHidden = false
             return 0
         }
     }
@@ -92,6 +100,7 @@ class SummaryTableViewController: UITableViewController {
             case .asset:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "SheetTableViewCell", for: indexPath) as! SheetTableViewCell
                 cell.setup(genre: "資產總計", amount: summary.amountString, rate: summary.rateString, rateStatue: summary.rateStatue)
+                print(summary.amountString)
                 return cell
             case .liability:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "SheetTableViewCell", for: indexPath) as! SheetTableViewCell

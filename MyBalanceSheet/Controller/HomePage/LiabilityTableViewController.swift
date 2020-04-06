@@ -4,6 +4,7 @@ class LiabilityTableViewController: UITableViewController {
     
     @IBOutlet weak var dateSelector: DateSelector!
     
+    var noDataView: UIView?
     var sheetsData: [SheetListViewModel]?
     var data = [GenreType: [SheetListViewModel]]()
     let sheetManager = SheetManager.shareInstance
@@ -15,6 +16,7 @@ class LiabilityTableViewController: UITableViewController {
         setTabBar()
         setTableView()
         setDateSelector()
+        setNoDataView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,12 +78,18 @@ class LiabilityTableViewController: UITableViewController {
         data[.current] = filter.filter( {$0.genre.genreType == . current} )
     }
     
-    func setNoData(_ isNoData: Bool) {
-        let noDataLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 20 ))
-        noDataLabel.text = (isNoData) ? "尚未有紀錄" : ""
-        noDataLabel.textAlignment = .center
+    func setNoDataView() {
+        noDataView = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: self.tableView.frame.height))
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 350, height: 480))
+        imageView.image = UIImage(named: "nodata")
+        noDataView!.addSubview(imageView)
+        imageView.center = tableView.center
         
-        self.tableView.backgroundView = noDataLabel
+        self.tableView.backgroundView = noDataView
+    }
+    
+    func setNoData(_ isNoData: Bool) {
+        self.tableView.backgroundView?.isHidden = !isNoData
     }
 
     // MARK: - Table view data source

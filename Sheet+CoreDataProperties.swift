@@ -17,7 +17,7 @@ extension Sheet {
         return NSFetchRequest<Sheet>(entityName: "Sheet")
     }
 
-    @NSManaged public var amount: Int16
+    @NSManaged public var amount: Int32
     @NSManaged public var id: UUID?
     @NSManaged public var month: Int16
     @NSManaged public var name: String?

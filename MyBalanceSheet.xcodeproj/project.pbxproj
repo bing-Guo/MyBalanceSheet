@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC674DDD243ACE0200BD29E2 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC674DDC243ACE0200BD29E2 /* String+Ext.swift */; };
 		FC85D1152420DFA0008512DB /* RightPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC85D1132420DFA0008512DB /* RightPickerTableViewCell.swift */; };
 		FC85D1162420DFA0008512DB /* RightPickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC85D1142420DFA0008512DB /* RightPickerTableViewCell.xib */; };
 		FCF29D6B2413889F007E93D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF29D6A2413889F007E93D2 /* AppDelegate.swift */; };
@@ -82,6 +83,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FC674DDC243ACE0200BD29E2 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		FC85D1132420DFA0008512DB /* RightPickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightPickerTableViewCell.swift; sourceTree = "<group>"; };
 		FC85D1142420DFA0008512DB /* RightPickerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RightPickerTableViewCell.xib; sourceTree = "<group>"; };
 		FC85D1182420E450008512DB /* IconCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 				FCF5A9B8242B69A3008121BA /* UIDate+Ext.swift */,
 				FCF5A9D5242DF9D5008121BA /* NSAttributedString+Ext.swift */,
 				FCF5AA2524330A06008121BA /* UserDefaults+isFirstLaunch.swift */,
+				FC674DDC243ACE0200BD29E2 /* String+Ext.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -527,6 +530,7 @@
 				FCF5A9D0242DE34F008121BA /* ThanksModelView.swift in Sources */,
 				FCF5A99F242A15FF008121BA /* GenreManager.swift in Sources */,
 				FCF5A9B6242B5A33008121BA /* MonthYearPickerView.swift in Sources */,
+				FC674DDD243ACE0200BD29E2 /* String+Ext.swift in Sources */,
 				FCF5A9D2242DE504008121BA /* ThanksManager.swift in Sources */,
 				FCF5A9C9242DD9DA008121BA /* PersonTableViewController.swift in Sources */,
 				FC85D1152420DFA0008512DB /* RightPickerTableViewCell.swift in Sources */,
