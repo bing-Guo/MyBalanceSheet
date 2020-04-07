@@ -149,7 +149,7 @@ class CreateSheetTableViewController: UITableViewController {
             
             if editMode {
                 sheetManager.updateSheet(id: id, name: name, year: year, month: month, genre: genre, amount: amount)
-            }else {
+            } else {
                 sheetManager.addSheet(name: name, year: year, month: month, genre: genre, amount: amount)
             }
                         
@@ -166,14 +166,14 @@ class CreateSheetTableViewController: UITableViewController {
         if choseGenre == nil{
             genreCell.errorStatus()
             isValidCount += 1
-        }else{
+        } else {
             genreCell.normalStatus()
         }
         
         if choseName == nil || choseName == ""{
             nameCell.errorStatus()
             isValidCount += 1
-        }else{
+        } else {
             nameCell.normalStatus()
         }
         

@@ -40,21 +40,38 @@ class PersonTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 2
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "RightTextTableViewCell", for: indexPath) as! RightTextTableViewCell
-        cell.setup(leftLabelString: "感謝", rightLabelString: "")
+        switch indexPath.row {
+        case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "RightTextTableViewCell", for: indexPath) as! RightTextTableViewCell
+            cell.setup(leftLabelString: "隱私權", rightLabelString: "")
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "RightTextTableViewCell", for: indexPath) as! RightTextTableViewCell
+            cell.setup(leftLabelString: "感謝", rightLabelString: "")
+        default:
+            break
+        }
         
-        return cell
+        return UITableViewCell()
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        if let vc = storyboard.instantiateViewController(withIdentifier: "thanksPage") as? ThanksForTableViewController {
-            self.navigationController?.pushViewController(vc, animated: true)
+                switch indexPath.row {
+        case 0:
+            if let vc = storyboard.instantiateViewController(withIdentifier: "privacyPage") as? PrivacyTableViewController {
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        case 1:
+            if let vc = storyboard.instantiateViewController(withIdentifier: "thanksPage") as? ThanksForTableViewController {
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        default:
+            break
         }
     }
     

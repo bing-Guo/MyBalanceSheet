@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		FC674DDD243ACE0200BD29E2 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC674DDC243ACE0200BD29E2 /* String+Ext.swift */; };
+		FC674DE0243B83F000BD29E2 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC674DDF243B83F000BD29E2 /* LocalAuthentication.framework */; };
+		FC674DE2243B856B00BD29E2 /* PrivacyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC674DE1243B856B00BD29E2 /* PrivacyTableViewController.swift */; };
+		FC674DE5243B861600BD29E2 /* RightSwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC674DE3243B861600BD29E2 /* RightSwitchTableViewCell.swift */; };
+		FC674DE6243B861600BD29E2 /* RightSwitchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC674DE4243B861600BD29E2 /* RightSwitchTableViewCell.xib */; };
+		FC674DE8243C3E6C00BD29E2 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC674DE7243C3E6C00BD29E2 /* Authentication.swift */; };
+		FC674DEA243C424300BD29E2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC674DE9243C424300BD29E2 /* LoginViewController.swift */; };
 		FC85D1152420DFA0008512DB /* RightPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC85D1132420DFA0008512DB /* RightPickerTableViewCell.swift */; };
 		FC85D1162420DFA0008512DB /* RightPickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC85D1142420DFA0008512DB /* RightPickerTableViewCell.xib */; };
 		FCF29D6B2413889F007E93D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF29D6A2413889F007E93D2 /* AppDelegate.swift */; };
@@ -27,7 +33,6 @@
 		FCF29DE3241CB71E007E93D2 /* RightTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF29DE1241CB71E007E93D2 /* RightTextTableViewCell.swift */; };
 		FCF29DE4241CB71E007E93D2 /* RightTextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCF29DE2241CB71E007E93D2 /* RightTextTableViewCell.xib */; };
 		FCF29DE8241CBBB6007E93D2 /* ItemListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF29DE7241CBBB6007E93D2 /* ItemListTableViewController.swift */; };
-		FCF29DEA241CF6A1007E93D2 /* CurrencyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF29DE9241CF6A1007E93D2 /* CurrencyTableViewController.swift */; };
 		FCF29DED241CF7CE007E93D2 /* RightTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF29DEB241CF7CE007E93D2 /* RightTextFieldTableViewCell.swift */; };
 		FCF29DEE241CF7CE007E93D2 /* RightTextFieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCF29DEC241CF7CE007E93D2 /* RightTextFieldTableViewCell.xib */; };
 		FCF29DF1241E5892007E93D2 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF29DEF241E5892007E93D2 /* ItemTableViewCell.swift */; };
@@ -69,7 +74,7 @@
 		FCF5AA212432E45F008121BA /* Sheet+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF5AA1D2432E45E008121BA /* Sheet+CoreDataClass.swift */; };
 		FCF5AA222432E45F008121BA /* Sheet+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF5AA1E2432E45E008121BA /* Sheet+CoreDataProperties.swift */; };
 		FCF5AA2424330308008121BA /* Genre.plist in Resources */ = {isa = PBXBuildFile; fileRef = FCF5AA2324330308008121BA /* Genre.plist */; };
-		FCF5AA2624330A06008121BA /* UserDefaults+isFirstLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF5AA2524330A06008121BA /* UserDefaults+isFirstLaunch.swift */; };
+		FCF5AA2624330A06008121BA /* UserDefaults+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF5AA2524330A06008121BA /* UserDefaults+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +89,12 @@
 
 /* Begin PBXFileReference section */
 		FC674DDC243ACE0200BD29E2 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
+		FC674DDF243B83F000BD29E2 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
+		FC674DE1243B856B00BD29E2 /* PrivacyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyTableViewController.swift; sourceTree = "<group>"; };
+		FC674DE3243B861600BD29E2 /* RightSwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightSwitchTableViewCell.swift; sourceTree = "<group>"; };
+		FC674DE4243B861600BD29E2 /* RightSwitchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RightSwitchTableViewCell.xib; sourceTree = "<group>"; };
+		FC674DE7243C3E6C00BD29E2 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
+		FC674DE9243C424300BD29E2 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FC85D1132420DFA0008512DB /* RightPickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightPickerTableViewCell.swift; sourceTree = "<group>"; };
 		FC85D1142420DFA0008512DB /* RightPickerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RightPickerTableViewCell.xib; sourceTree = "<group>"; };
 		FC85D1182420E450008512DB /* IconCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -109,7 +120,6 @@
 		FCF29DE1241CB71E007E93D2 /* RightTextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightTextTableViewCell.swift; sourceTree = "<group>"; };
 		FCF29DE2241CB71E007E93D2 /* RightTextTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RightTextTableViewCell.xib; sourceTree = "<group>"; };
 		FCF29DE7241CBBB6007E93D2 /* ItemListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListTableViewController.swift; sourceTree = "<group>"; };
-		FCF29DE9241CF6A1007E93D2 /* CurrencyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewController.swift; sourceTree = "<group>"; };
 		FCF29DEB241CF7CE007E93D2 /* RightTextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightTextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		FCF29DEC241CF7CE007E93D2 /* RightTextFieldTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RightTextFieldTableViewCell.xib; sourceTree = "<group>"; };
 		FCF29DEF241E5892007E93D2 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
@@ -151,7 +161,7 @@
 		FCF5AA1D2432E45E008121BA /* Sheet+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sheet+CoreDataClass.swift"; sourceTree = "<group>"; };
 		FCF5AA1E2432E45E008121BA /* Sheet+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sheet+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		FCF5AA2324330308008121BA /* Genre.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Genre.plist; sourceTree = "<group>"; };
-		FCF5AA2524330A06008121BA /* UserDefaults+isFirstLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+isFirstLaunch.swift"; sourceTree = "<group>"; };
+		FCF5AA2524330A06008121BA /* UserDefaults+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +169,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC674DE0243B83F000BD29E2 /* LocalAuthentication.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,6 +183,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FC674DDE243B83EF00BD29E2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FC674DDF243B83F000BD29E2 /* LocalAuthentication.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FC85D1172420E408008512DB /* IconCollection */ = {
 			isa = PBXGroup;
 			children = (
@@ -191,6 +210,7 @@
 				FCF29D692413889F007E93D2 /* MyBalanceSheet */,
 				FCF29D83241388A3007E93D2 /* MyBalanceSheetTests */,
 				FCF29D682413889F007E93D2 /* Products */,
+				FC674DDE243B83EF00BD29E2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -237,7 +257,6 @@
 				FCF5A9CA242DDA60008121BA /* Navigation */,
 				FCF5A9A9242AFCCB008121BA /* HomePage */,
 				FCF29DF7241E78A3007E93D2 /* DetailPage */,
-				FCF29DE9241CF6A1007E93D2 /* CurrencyTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -274,6 +293,8 @@
 				FCF29DF0241E5892007E93D2 /* ItemTableViewCell.xib */,
 				FCF5A9EC243092CD008121BA /* RightImageTableViewCell.swift */,
 				FCF5A9ED243092CD008121BA /* RightImageTableViewCell.xib */,
+				FC674DE3243B861600BD29E2 /* RightSwitchTableViewCell.swift */,
+				FC674DE4243B861600BD29E2 /* RightSwitchTableViewCell.xib */,
 			);
 			path = TableCell;
 			sourceTree = "<group>";
@@ -306,7 +327,7 @@
 				FCF29DB42414D3B6007E93D2 /* UIColor+Ext.swift */,
 				FCF5A9B8242B69A3008121BA /* UIDate+Ext.swift */,
 				FCF5A9D5242DF9D5008121BA /* NSAttributedString+Ext.swift */,
-				FCF5AA2524330A06008121BA /* UserDefaults+isFirstLaunch.swift */,
+				FCF5AA2524330A06008121BA /* UserDefaults+Ext.swift */,
 				FC674DDC243ACE0200BD29E2 /* String+Ext.swift */,
 			);
 			path = Extension;
@@ -329,6 +350,7 @@
 				FCF5A9CB242DDDA1008121BA /* ThanksForTableViewController.swift */,
 				FCF5A9D3242DEFE4008121BA /* ThanksDetailViewController.swift */,
 				FCF5A9D7243072BD008121BA /* IconCollectionViewController.swift */,
+				FC674DE1243B856B00BD29E2 /* PrivacyTableViewController.swift */,
 			);
 			path = DetailPage;
 			sourceTree = "<group>";
@@ -343,6 +365,7 @@
 				FCF5A99E242A15FF008121BA /* GenreManager.swift */,
 				FCF5A9CF242DE34F008121BA /* ThanksModelView.swift */,
 				FCF5A9D1242DE504008121BA /* ThanksManager.swift */,
+				FC674DE7243C3E6C00BD29E2 /* Authentication.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -350,10 +373,11 @@
 		FCF5A9A9242AFCCB008121BA /* HomePage */ = {
 			isa = PBXGroup;
 			children = (
+				FCF5A9AA242AFE1E008121BA /* SummaryTableViewController.swift */,
 				FCF29DB624150E20007E93D2 /* AssetTableViewController.swift */,
 				FCF5A9A1242AED66008121BA /* LiabilityTableViewController.swift */,
-				FCF5A9AA242AFE1E008121BA /* SummaryTableViewController.swift */,
 				FCF5A9C8242DD9DA008121BA /* PersonTableViewController.swift */,
+				FC674DE9243C424300BD29E2 /* LoginViewController.swift */,
 			);
 			path = HomePage;
 			sourceTree = "<group>";
@@ -476,6 +500,7 @@
 				FC85D1162420DFA0008512DB /* RightPickerTableViewCell.xib in Resources */,
 				FCF29D77241388A3007E93D2 /* Assets.xcassets in Resources */,
 				FCF5AA2424330308008121BA /* Genre.plist in Resources */,
+				FC674DE6243B861600BD29E2 /* RightSwitchTableViewCell.xib in Resources */,
 				FCF29DF2241E5892007E93D2 /* ItemTableViewCell.xib in Resources */,
 				FCF29D9724138FC0007E93D2 /* SheetTableViewCell.xib in Resources */,
 				FCF5A9B3242B54F8008121BA /* RightDatePickerTableViewCell.xib in Resources */,
@@ -506,7 +531,9 @@
 				FCF5AA1F2432E45F008121BA /* Genre+CoreDataClass.swift in Sources */,
 				FCF5A9C7242DD13B008121BA /* CustomTabBarViewController.swift in Sources */,
 				FCF5A9952429DEBD008121BA /* SheetManager.swift in Sources */,
+				FC674DE5243B861600BD29E2 /* RightSwitchTableViewCell.swift in Sources */,
 				FCF29DF9241E7A12007E93D2 /* CreateAssetGenreTableViewController.swift in Sources */,
+				FC674DE8243C3E6C00BD29E2 /* Authentication.swift in Sources */,
 				FCF5A9D4242DEFE4008121BA /* ThanksDetailViewController.swift in Sources */,
 				FCF5A99B242A0EC2008121BA /* CellHeaderView.swift in Sources */,
 				FCF5A9A2242AED66008121BA /* LiabilityTableViewController.swift in Sources */,
@@ -518,6 +545,7 @@
 				FCF5A9D6242DF9D5008121BA /* NSAttributedString+Ext.swift in Sources */,
 				FCF5A9BD242D0751008121BA /* RightDatePickerTableViewCell.swift in Sources */,
 				FCF29DB02414B9F6007E93D2 /* DateSelector.swift in Sources */,
+				FC674DE2243B856B00BD29E2 /* PrivacyTableViewController.swift in Sources */,
 				FCF29D6B2413889F007E93D2 /* AppDelegate.swift in Sources */,
 				FCF5A9D8243072BD008121BA /* IconCollectionViewController.swift in Sources */,
 				FCF29DFC241E7BAA007E93D2 /* RightNumberFieldTableViewCell.swift in Sources */,
@@ -527,6 +555,7 @@
 				FCF5A9EE243092CD008121BA /* RightImageTableViewCell.swift in Sources */,
 				FCF5AA222432E45F008121BA /* Sheet+CoreDataProperties.swift in Sources */,
 				FCF5A9AF242B0D61008121BA /* Summary.swift in Sources */,
+				FC674DEA243C424300BD29E2 /* LoginViewController.swift in Sources */,
 				FCF5A9D0242DE34F008121BA /* ThanksModelView.swift in Sources */,
 				FCF5A99F242A15FF008121BA /* GenreManager.swift in Sources */,
 				FCF5A9B6242B5A33008121BA /* MonthYearPickerView.swift in Sources */,
@@ -535,7 +564,6 @@
 				FCF5A9C9242DD9DA008121BA /* PersonTableViewController.swift in Sources */,
 				FC85D1152420DFA0008512DB /* RightPickerTableViewCell.swift in Sources */,
 				FCF29D9624138FC0007E93D2 /* SheetTableViewCell.swift in Sources */,
-				FCF29DEA241CF6A1007E93D2 /* CurrencyTableViewController.swift in Sources */,
 				FCF29DDB241C9A06007E93D2 /* Database.swift in Sources */,
 				FCF5A9AB242AFE1E008121BA /* SummaryTableViewController.swift in Sources */,
 				FCF5A9932429DE79008121BA /* SheetListViewModel.swift in Sources */,
@@ -544,7 +572,7 @@
 				FCF29D6D2413889F007E93D2 /* SceneDelegate.swift in Sources */,
 				FCF29DE8241CBBB6007E93D2 /* ItemListTableViewController.swift in Sources */,
 				FCF5A9C1242DAE17008121BA /* SheetType.swift in Sources */,
-				FCF5AA2624330A06008121BA /* UserDefaults+isFirstLaunch.swift in Sources */,
+				FCF5AA2624330A06008121BA /* UserDefaults+Ext.swift in Sources */,
 				FCF5AA202432E45F008121BA /* Genre+CoreDataProperties.swift in Sources */,
 				FCF29DDF241CA18E007E93D2 /* CreateSheetTableViewController.swift in Sources */,
 				FCF5A9EA243082EC008121BA /* IconCollectionViewCell.swift in Sources */,

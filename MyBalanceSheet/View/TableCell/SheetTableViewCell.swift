@@ -50,7 +50,7 @@ class SheetTableViewCell: UITableViewCell {
             rateStatueImageView.image = UIImage(systemName: "arrowtriangle.up.fill")
             if reverse {
                 setDangerColor()
-            }else{
+            } else {
                 setBetterColor()
             }
             break
@@ -58,7 +58,7 @@ class SheetTableViewCell: UITableViewCell {
             rateStatueImageView.image = UIImage(systemName: "arrowtriangle.down.fill")
             if reverse {
                 setBetterColor()
-            }else{
+            } else {
                 setDangerColor()
             }
             break

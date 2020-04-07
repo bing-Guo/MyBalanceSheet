@@ -250,7 +250,7 @@ class SheetManager {
         let r = ceil(Float(totalLiability) / Float(totalAsset) * 100)
         if r.isInfinite || r.isNaN{
             return 0
-        }else{
+        } else {
             return Int(r)
         }
         

@@ -80,7 +80,7 @@ class SummaryTableViewController: UITableViewController {
         if data.count > 0 {
             self.tableView.backgroundView?.isHidden = true
             return data.count
-        }else{
+        } else {
             self.tableView.backgroundView?.isHidden = false
             return 0
         }
@@ -95,16 +95,14 @@ class SummaryTableViewController: UITableViewController {
             case .networth:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "SheetTableViewCell", for: indexPath) as! SheetTableViewCell
                 cell.setup(genre: "淨值總計", amount: summary.amountString, rate: summary.rateString, rateStatue: summary.rateStatue)
-                
                 return cell
             case .asset:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "SheetTableViewCell", for: indexPath) as! SheetTableViewCell
                 cell.setup(genre: "資產總計", amount: summary.amountString, rate: summary.rateString, rateStatue: summary.rateStatue)
-                print(summary.amountString)
                 return cell
             case .liability:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "SheetTableViewCell", for: indexPath) as! SheetTableViewCell
-                cell.setup(genre: "負債總計", amount: summary.amountString, rate: summary.rateString, rateStatue: summary.rateStatue)
+                cell.setup(genre: "負債總計", amount: summary.amountString, rate: summary.rateString, rateStatue: summary.rateStatue, reverse: true)
                 return cell
             case .debtRatio:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "SheetTableViewCell", for: indexPath) as! SheetTableViewCell

@@ -5,10 +5,12 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var optionallyStoreTheFirstLaunchFlag = false
-
+    var userDefaults: UserDefaults!
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        optionallyStoreTheFirstLaunchFlag = UserDefaults.isFirstLaunch()
-        print("optionallyStoreTheFirstLaunchFlag: \(optionallyStoreTheFirstLaunchFlag)")
+        userDefaults = UserDefaults.standard
+        
+        optionallyStoreTheFirstLaunchFlag = userDefaults.isFirstLaunch()
         if optionallyStoreTheFirstLaunchFlag {
             loadDefault()
         }

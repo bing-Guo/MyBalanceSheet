@@ -151,7 +151,7 @@ class ItemListTableViewController: UITableViewController {
             self.genreData = self.getData()
             self.sortData()
             self.tableView.reloadData()
-        }else {
+        } else {
             let controller = UIAlertController(title: "注意", message: "該類別正在被使用中，若點選「確定」將會把該類別的紀錄都刪除，若是不想刪除，請選「取消」，先將過去紀錄更換類別在進行刪除", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "確定刪除", style: .default) { (_) in
                 self.genreManager.deleteGenre(id: genreVM.id!)
@@ -200,7 +200,7 @@ class ItemListTableViewController: UITableViewController {
         if let vc = storyboard.instantiateViewController(withIdentifier: "CreateItemPage") as? CreateItemTableViewController {
             vc.sheetType = type
             self.navigationController?.pushViewController(vc, animated: true)
-        }else{
+        } else {
             fatalError("page not found")
         }
     }
