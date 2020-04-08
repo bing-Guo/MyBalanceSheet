@@ -44,32 +44,36 @@ class PersonTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         switch indexPath.row {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "RightTextTableViewCell", for: indexPath) as! RightTextTableViewCell
             cell.setup(leftLabelString: "隱私權", rightLabelString: "")
+            return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "RightTextTableViewCell", for: indexPath) as! RightTextTableViewCell
             cell.setup(leftLabelString: "感謝", rightLabelString: "")
+            return cell
         default:
             break
         }
-        
         return UITableViewCell()
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-                switch indexPath.row {
+        switch indexPath.row {
         case 0:
             if let vc = storyboard.instantiateViewController(withIdentifier: "privacyPage") as? PrivacyTableViewController {
                 self.navigationController?.pushViewController(vc, animated: true)
             }
+            break
         case 1:
             if let vc = storyboard.instantiateViewController(withIdentifier: "thanksPage") as? ThanksForTableViewController {
                 self.navigationController?.pushViewController(vc, animated: true)
             }
+            break
         default:
             break
         }

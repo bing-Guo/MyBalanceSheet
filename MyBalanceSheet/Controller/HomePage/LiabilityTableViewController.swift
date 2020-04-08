@@ -133,7 +133,7 @@ class LiabilityTableViewController: UITableViewController {
         if let vc = storyboard.instantiateViewController(withIdentifier: "CreateSheetPage") as? CreateSheetTableViewController {
             vc.editData = sheetData
             vc.editMode = true
-            vc.sheetType = .asset
+            vc.sheetType = .liability
             self.navigationController?.pushViewController(vc, animated: true)
         }
             
