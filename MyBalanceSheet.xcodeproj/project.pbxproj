@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC4BCA6E2448383400D57C00 /* Summary.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC4BCA6C2448383400D57C00 /* Summary.storyboard */; };
+		FC4BCA752448397500D57C00 /* Personal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC4BCA732448397500D57C00 /* Personal.storyboard */; };
+		FC4BCA7724483EA500D57C00 /* AssetSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC4BCA7624483EA500D57C00 /* AssetSheet.storyboard */; };
+		FC4BCA7A24483F2100D57C00 /* LiabilitySheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC4BCA7824483F2100D57C00 /* LiabilitySheet.storyboard */; };
+		FC4BCA7C24483F8C00D57C00 /* SheetManagement.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC4BCA7B24483F8C00D57C00 /* SheetManagement.storyboard */; };
+		FC4BCA7F24483FD900D57C00 /* ItemList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC4BCA7D24483FD900D57C00 /* ItemList.storyboard */; };
+		FC4BCA8124483FF400D57C00 /* ItemManagement.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC4BCA8024483FF400D57C00 /* ItemManagement.storyboard */; };
 		FC674DDD243ACE0200BD29E2 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC674DDC243ACE0200BD29E2 /* String+Ext.swift */; };
 		FC674DE0243B83F000BD29E2 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC674DDF243B83F000BD29E2 /* LocalAuthentication.framework */; };
 		FC674DE2243B856B00BD29E2 /* PrivacyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC674DE1243B856B00BD29E2 /* PrivacyTableViewController.swift */; };
@@ -88,6 +95,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FC4BCA6D2448383400D57C00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = MyBalanceSheet/Base.lproj/Summary.storyboard; sourceTree = "<group>"; };
+		FC4BCA742448397500D57C00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = MyBalanceSheet/Base.lproj/Personal.storyboard; sourceTree = "<group>"; };
+		FC4BCA7624483EA500D57C00 /* AssetSheet.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AssetSheet.storyboard; sourceTree = "<group>"; };
+		FC4BCA7924483F2100D57C00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = MyBalanceSheet/Base.lproj/LiabilitySheet.storyboard; sourceTree = "<group>"; };
+		FC4BCA7B24483F8C00D57C00 /* SheetManagement.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SheetManagement.storyboard; sourceTree = "<group>"; };
+		FC4BCA7E24483FD900D57C00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = MyBalanceSheet/Base.lproj/ItemList.storyboard; sourceTree = "<group>"; };
+		FC4BCA8024483FF400D57C00 /* ItemManagement.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ItemManagement.storyboard; sourceTree = "<group>"; };
 		FC674DDC243ACE0200BD29E2 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		FC674DDF243B83F000BD29E2 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		FC674DE1243B856B00BD29E2 /* PrivacyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyTableViewController.swift; sourceTree = "<group>"; };
@@ -190,8 +204,8 @@
 				FC4BCA4C244826E800D57C00 /* SummarySheet */,
 				FC4BCA5D24482A0D00D57C00 /* SheetList */,
 				FC4BCA6924482CCA00D57C00 /* SheetManagement */,
-				FC4BCA6224482AC800D57C00 /* ItemManagement */,
 				FC4BCA5F24482A4900D57C00 /* ItemList */,
+				FC4BCA6224482AC800D57C00 /* ItemManagement */,
 				FC4BCA512448281000D57C00 /* Personal */,
 				FC4BCA572448293600D57C00 /* ThanksList */,
 				FC4BCA582448295800D57C00 /* ThanksDetail */,
@@ -217,6 +231,7 @@
 		FC4BCA4C244826E800D57C00 /* SummarySheet */ = {
 			isa = PBXGroup;
 			children = (
+				FC4BCA6F2448384300D57C00 /* View */,
 				FC4BCA4E244827C000D57C00 /* ViewController */,
 				FC4BCA6424482B1C00D57C00 /* ViewModel */,
 			);
@@ -234,6 +249,7 @@
 		FC4BCA512448281000D57C00 /* Personal */ = {
 			isa = PBXGroup;
 			children = (
+				FC4BCA72244838A300D57C00 /* View */,
 				FC4BCA532448284900D57C00 /* ViewController */,
 			);
 			path = Personal;
@@ -336,6 +352,7 @@
 		FC4BCA5D24482A0D00D57C00 /* SheetList */ = {
 			isa = PBXGroup;
 			children = (
+				FC4BCA852448410000D57C00 /* View */,
 				FC4BCA5E24482A3500D57C00 /* ViewController */,
 				FC4BCA6524482BA300D57C00 /* ViewModel */,
 			);
@@ -354,6 +371,7 @@
 		FC4BCA5F24482A4900D57C00 /* ItemList */ = {
 			isa = PBXGroup;
 			children = (
+				FC4BCA82244840D600D57C00 /* View */,
 				FC4BCA6024482A5F00D57C00 /* ViewController */,
 			);
 			path = ItemList;
@@ -378,6 +396,7 @@
 		FC4BCA6224482AC800D57C00 /* ItemManagement */ = {
 			isa = PBXGroup;
 			children = (
+				FC4BCA84244840EB00D57C00 /* View */,
 				FC4BCA6324482ADF00D57C00 /* ViewController */,
 				FC4BCA6624482BC900D57C00 /* ViewModel */,
 			);
@@ -439,6 +458,7 @@
 		FC4BCA6924482CCA00D57C00 /* SheetManagement */ = {
 			isa = PBXGroup;
 			children = (
+				FC4BCA83244840E100D57C00 /* View */,
 				FC4BCA6A24482CED00D57C00 /* ViewController */,
 			);
 			path = SheetManagement;
@@ -461,6 +481,55 @@
 				FCF5AA1E2432E45E008121BA /* Sheet+CoreDataProperties.swift */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		FC4BCA6F2448384300D57C00 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FC4BCA6C2448383400D57C00 /* Summary.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FC4BCA72244838A300D57C00 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FC4BCA732448397500D57C00 /* Personal.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FC4BCA82244840D600D57C00 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FC4BCA7D24483FD900D57C00 /* ItemList.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FC4BCA83244840E100D57C00 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FC4BCA7B24483F8C00D57C00 /* SheetManagement.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FC4BCA84244840EB00D57C00 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FC4BCA8024483FF400D57C00 /* ItemManagement.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FC4BCA852448410000D57C00 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FC4BCA7624483EA500D57C00 /* AssetSheet.storyboard */,
+				FC4BCA7824483F2100D57C00 /* LiabilitySheet.storyboard */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		FC674DDE243B83EF00BD29E2 /* Frameworks */ = {
@@ -699,11 +768,18 @@
 				FCF5A9EB243082EC008121BA /* IconCollectionViewCell.xib in Resources */,
 				FC85D1162420DFA0008512DB /* RightPickerTableViewCell.xib in Resources */,
 				FCF29D77241388A3007E93D2 /* Assets.xcassets in Resources */,
+				FC4BCA8124483FF400D57C00 /* ItemManagement.storyboard in Resources */,
 				FCF5AA2424330308008121BA /* Genre.plist in Resources */,
+				FC4BCA7C24483F8C00D57C00 /* SheetManagement.storyboard in Resources */,
+				FC4BCA6E2448383400D57C00 /* Summary.storyboard in Resources */,
+				FC4BCA7F24483FD900D57C00 /* ItemList.storyboard in Resources */,
 				FC674DE6243B861600BD29E2 /* RightSwitchTableViewCell.xib in Resources */,
 				FCF29DF2241E5892007E93D2 /* ItemTableViewCell.xib in Resources */,
+				FC4BCA752448397500D57C00 /* Personal.storyboard in Resources */,
 				FCF29D9724138FC0007E93D2 /* SheetTableViewCell.xib in Resources */,
 				FCF5A9B3242B54F8008121BA /* RightDatePickerTableViewCell.xib in Resources */,
+				FC4BCA7724483EA500D57C00 /* AssetSheet.storyboard in Resources */,
+				FC4BCA7A24483F2100D57C00 /* LiabilitySheet.storyboard in Resources */,
 				FCF29DFD241E7BAA007E93D2 /* RightNumberFieldTableViewCell.xib in Resources */,
 				FCF5A9EF243092CD008121BA /* RightImageTableViewCell.xib in Resources */,
 				FCF29DE4241CB71E007E93D2 /* RightTextTableViewCell.xib in Resources */,
@@ -798,6 +874,38 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		FC4BCA6C2448383400D57C00 /* Summary.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FC4BCA6D2448383400D57C00 /* Base */,
+			);
+			name = Summary.storyboard;
+			sourceTree = "<group>";
+		};
+		FC4BCA732448397500D57C00 /* Personal.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FC4BCA742448397500D57C00 /* Base */,
+			);
+			name = Personal.storyboard;
+			sourceTree = "<group>";
+		};
+		FC4BCA7824483F2100D57C00 /* LiabilitySheet.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FC4BCA7924483F2100D57C00 /* Base */,
+			);
+			name = LiabilitySheet.storyboard;
+			sourceTree = "<group>";
+		};
+		FC4BCA7D24483FD900D57C00 /* ItemList.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FC4BCA7E24483FD900D57C00 /* Base */,
+			);
+			name = ItemList.storyboard;
+			sourceTree = "<group>";
+		};
 		FCF29D702413889F007E93D2 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

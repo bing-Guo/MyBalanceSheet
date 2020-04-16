@@ -195,9 +195,9 @@ class ItemListTableViewController: UITableViewController {
     // MARK: - Action
     @IBAction func toCreateAssetSheetItemPage(_ sender: Any) {
         guard let type = sheetType else { return }
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "ItemManagement", bundle: nil)
         
-        if let vc = storyboard.instantiateViewController(withIdentifier: "CreateItemPage") as? CreateItemTableViewController {
+        if let vc = storyboard.instantiateViewController(withIdentifier: "ItemManagement") as? CreateItemTableViewController {
             vc.sheetType = type
             self.navigationController?.pushViewController(vc, animated: true)
         } else {

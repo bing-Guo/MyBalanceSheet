@@ -120,8 +120,8 @@ class CreateSheetTableViewController: UITableViewController {
         
         switch row {
             case 0:
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                if let vc = storyboard.instantiateViewController(withIdentifier: "ItemListPage") as? ItemListTableViewController {
+                let storyboard = UIStoryboard(name: "ItemList", bundle: nil)
+                if let vc = storyboard.instantiateViewController(withIdentifier: "ItemList") as? ItemListTableViewController {
                     vc.delegate = self
                     vc.sheetType = type
                     self.navigationController?.pushViewController(vc, animated: true)

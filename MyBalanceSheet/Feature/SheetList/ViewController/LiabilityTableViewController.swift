@@ -128,9 +128,9 @@ class LiabilityTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let tableSection = GenreType(rawValue: indexPath.section), let sheetData = data[tableSection]?[indexPath.row]  else { return }
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "SheetManagement", bundle: nil)
         
-        if let vc = storyboard.instantiateViewController(withIdentifier: "CreateSheetPage") as? CreateSheetTableViewController {
+        if let vc = storyboard.instantiateViewController(withIdentifier: "SheetManagement") as? CreateSheetTableViewController {
             vc.editData = sheetData
             vc.editMode = true
             vc.sheetType = .liability
@@ -185,8 +185,8 @@ class LiabilityTableViewController: UITableViewController {
     // MARK: - Action
     
     @objc func createSheet(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let vc = storyboard.instantiateViewController(withIdentifier: "CreateSheetPage") as? CreateSheetTableViewController {
+        let storyboard = UIStoryboard(name: "SheetManagement", bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "SheetManagement") as? CreateSheetTableViewController {
             vc.sheetType = .liability
             self.navigationController?.pushViewController(vc, animated: true)
         }

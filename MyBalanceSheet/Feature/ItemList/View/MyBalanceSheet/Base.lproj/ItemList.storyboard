@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Item List Table View Controller-->
+        <scene sceneID="Ne6-jt-cex">
+            <objects>
+                <tableViewController storyboardIdentifier="ItemList" id="58k-1N-lhv" customClass="ItemListTableViewController" customModule="MyBalanceSheet" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="pmd-HG-7Fo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="x7p-jy-sAU">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0d-S4-zpE">
+                                    <rect key="frame" x="10" y="10" width="394" height="54"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="tintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <state key="normal" title="Title" image="plus.circle.fill" catalog="system">
+                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="toCreateAssetSheetItemPage:" destination="58k-1N-lhv" eventType="touchUpInside" id="6ud-uy-MS5"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="g0d-S4-zpE" secondAttribute="trailing" constant="10" id="AVu-Gr-ZCS"/>
+                                <constraint firstItem="g0d-S4-zpE" firstAttribute="top" secondItem="x7p-jy-sAU" secondAttribute="top" constant="10" id="Xiu-pL-dYc"/>
+                                <constraint firstItem="g0d-S4-zpE" firstAttribute="leading" secondItem="x7p-jy-sAU" secondAttribute="leading" constant="10" id="c5O-j9-dSn"/>
+                                <constraint firstAttribute="bottom" secondItem="g0d-S4-zpE" secondAttribute="bottom" id="wzv-Iu-tyj"/>
+                            </constraints>
+                        </view>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="Ram-2A-vcv">
+                                <rect key="frame" x="0.0" y="119.5" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ram-2A-vcv" id="qja-rT-JUe">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="58k-1N-lhv" id="He9-lE-xlC"/>
+                            <outlet property="delegate" destination="58k-1N-lhv" id="9Fn-58-wdb"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="9mq-Hu-oo5"/>
+                    <connections>
+                        <outlet property="btnContainer" destination="x7p-jy-sAU" id="dZJ-DR-flZ"/>
+                        <outlet property="createAssetSheetItemBtn" destination="g0d-S4-zpE" id="z2k-fu-0MI"/>
+                        <segue destination="iv8-ML-QZc" kind="show" identifier="d" id="JhA-Ln-xTQ"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JSv-TU-dyB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3691" y="311"/>
+        </scene>
+        <!--ItemManagement-->
+        <scene sceneID="iQF-tK-xcD">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="ItemManagement" storyboardName="ItemManagement" referencedIdentifier="ItemManagement" id="iv8-ML-QZc" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cgJ-jy-92n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4513" y="311"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="plus.circle.fill" catalog="system" width="64" height="60"/>
+    </resources>
+</document>

@@ -12,7 +12,6 @@ class CustomTabBarViewController: UITabBarController, UITabBarControllerDelegate
         _ = tabBar.items?.firstIndex(of: item)
     }
 
-    // UITabBarControllerDelegate
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         let selectedIndex = tabBarController.viewControllers?.firstIndex(of: viewController)!
         
@@ -34,3 +33,4 @@ class CustomTabBarViewController: UITabBarController, UITabBarControllerDelegate
         }
     }
 }
+
