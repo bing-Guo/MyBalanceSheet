@@ -183,6 +183,286 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FC4BCA49244823DE00D57C00 /* Feature */ = {
+			isa = PBXGroup;
+			children = (
+				FC4BCA522448283B00D57C00 /* Login */,
+				FC4BCA4C244826E800D57C00 /* SummarySheet */,
+				FC4BCA5D24482A0D00D57C00 /* SheetList */,
+				FC4BCA6924482CCA00D57C00 /* SheetManagement */,
+				FC4BCA6224482AC800D57C00 /* ItemManagement */,
+				FC4BCA5F24482A4900D57C00 /* ItemList */,
+				FC4BCA512448281000D57C00 /* Personal */,
+				FC4BCA572448293600D57C00 /* ThanksList */,
+				FC4BCA582448295800D57C00 /* ThanksDetail */,
+				FC4BCA5B244829B000D57C00 /* PrivacyList */,
+			);
+			path = Feature;
+			sourceTree = "<group>";
+		};
+		FC4BCA4A2448263800D57C00 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				FC4BCA6824482CAF00D57C00 /* Authentication */,
+				FC4BCA6B24482D1000D57C00 /* CoreData */,
+				FCF29DB32414D39E007E93D2 /* Extension */,
+				FCF29D9824139085007E93D2 /* Model */,
+				FC4BCA552448285C00D57C00 /* Navigation */,
+				FC4BCA56244828F000D57C00 /* SharedViewComponent */,
+				FC4BCA6124482AB100D57C00 /* UserDefault */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		FC4BCA4C244826E800D57C00 /* SummarySheet */ = {
+			isa = PBXGroup;
+			children = (
+				FC4BCA4E244827C000D57C00 /* ViewController */,
+				FC4BCA6424482B1C00D57C00 /* ViewModel */,
+			);
+			path = SummarySheet;
+			sourceTree = "<group>";
+		};
+		FC4BCA4E244827C000D57C00 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FCF5A9AA242AFE1E008121BA /* SummaryTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		FC4BCA512448281000D57C00 /* Personal */ = {
+			isa = PBXGroup;
+			children = (
+				FC4BCA532448284900D57C00 /* ViewController */,
+			);
+			path = Personal;
+			sourceTree = "<group>";
+		};
+		FC4BCA522448283B00D57C00 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				FC4BCA542448284D00D57C00 /* ViewController */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		FC4BCA532448284900D57C00 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FCF5A9C8242DD9DA008121BA /* PersonTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		FC4BCA542448284D00D57C00 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FC674DE9243C424300BD29E2 /* LoginViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		FC4BCA552448285C00D57C00 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				FCF5A9C6242DD13B008121BA /* CustomTabBarViewController.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		FC4BCA56244828F000D57C00 /* SharedViewComponent */ = {
+			isa = PBXGroup;
+			children = (
+				FCF29D9324138ECF007E93D2 /* TableCell */,
+				FCF5A9DB24307488008121BA /* CollectionCell */,
+				FCF5A9B4242B59EC008121BA /* TableHeader */,
+				FC85D1172420E408008512DB /* IconCollection */,
+				FCF29DE0241CB6E6007E93D2 /* DatePicker */,
+				FCF29DAE2414B9B8007E93D2 /* DateSelector */,
+			);
+			path = SharedViewComponent;
+			sourceTree = "<group>";
+		};
+		FC4BCA572448293600D57C00 /* ThanksList */ = {
+			isa = PBXGroup;
+			children = (
+				FC4BCA592448299D00D57C00 /* ViewController */,
+				FC4BCA6724482C5300D57C00 /* ViewModel */,
+			);
+			path = ThanksList;
+			sourceTree = "<group>";
+		};
+		FC4BCA582448295800D57C00 /* ThanksDetail */ = {
+			isa = PBXGroup;
+			children = (
+				FC4BCA5A244829A500D57C00 /* ViewController */,
+			);
+			path = ThanksDetail;
+			sourceTree = "<group>";
+		};
+		FC4BCA592448299D00D57C00 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FCF5A9CB242DDDA1008121BA /* ThanksForTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		FC4BCA5A244829A500D57C00 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FCF5A9D3242DEFE4008121BA /* ThanksDetailViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		FC4BCA5B244829B000D57C00 /* PrivacyList */ = {
+			isa = PBXGroup;
+			children = (
+				FC4BCA5C244829E000D57C00 /* ViewController */,
+			);
+			path = PrivacyList;
+			sourceTree = "<group>";
+		};
+		FC4BCA5C244829E000D57C00 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FC674DE1243B856B00BD29E2 /* PrivacyTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		FC4BCA5D24482A0D00D57C00 /* SheetList */ = {
+			isa = PBXGroup;
+			children = (
+				FC4BCA5E24482A3500D57C00 /* ViewController */,
+				FC4BCA6524482BA300D57C00 /* ViewModel */,
+			);
+			path = SheetList;
+			sourceTree = "<group>";
+		};
+		FC4BCA5E24482A3500D57C00 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FCF29DB624150E20007E93D2 /* AssetTableViewController.swift */,
+				FCF5A9A1242AED66008121BA /* LiabilityTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		FC4BCA5F24482A4900D57C00 /* ItemList */ = {
+			isa = PBXGroup;
+			children = (
+				FC4BCA6024482A5F00D57C00 /* ViewController */,
+			);
+			path = ItemList;
+			sourceTree = "<group>";
+		};
+		FC4BCA6024482A5F00D57C00 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FCF29DE7241CBBB6007E93D2 /* ItemListTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		FC4BCA6124482AB100D57C00 /* UserDefault */ = {
+			isa = PBXGroup;
+			children = (
+				FCF5AA2324330308008121BA /* Genre.plist */,
+			);
+			path = UserDefault;
+			sourceTree = "<group>";
+		};
+		FC4BCA6224482AC800D57C00 /* ItemManagement */ = {
+			isa = PBXGroup;
+			children = (
+				FC4BCA6324482ADF00D57C00 /* ViewController */,
+				FC4BCA6624482BC900D57C00 /* ViewModel */,
+			);
+			path = ItemManagement;
+			sourceTree = "<group>";
+		};
+		FC4BCA6324482ADF00D57C00 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FCF29DF8241E7A12007E93D2 /* CreateAssetGenreTableViewController.swift */,
+				FCF5A9D7243072BD008121BA /* IconCollectionViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		FC4BCA6424482B1C00D57C00 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FCF5A9AC242AFECC008121BA /* SummaryModelView.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		FC4BCA6524482BA300D57C00 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FCF5A9942429DEBD008121BA /* SheetManager.swift */,
+				FCF5A9922429DE79008121BA /* SheetListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		FC4BCA6624482BC900D57C00 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FCF5A99E242A15FF008121BA /* GenreManager.swift */,
+				FCF5A99C242A146A008121BA /* SheetGenreListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		FC4BCA6724482C5300D57C00 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FCF5A9D1242DE504008121BA /* ThanksManager.swift */,
+				FCF5A9CF242DE34F008121BA /* ThanksModelView.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		FC4BCA6824482CAF00D57C00 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				FC674DE7243C3E6C00BD29E2 /* Authentication.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		FC4BCA6924482CCA00D57C00 /* SheetManagement */ = {
+			isa = PBXGroup;
+			children = (
+				FC4BCA6A24482CED00D57C00 /* ViewController */,
+			);
+			path = SheetManagement;
+			sourceTree = "<group>";
+		};
+		FC4BCA6A24482CED00D57C00 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FCF29DDE241CA18E007E93D2 /* CreateSheetTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		FC4BCA6B24482D1000D57C00 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				FCF5AA1B2432E45E008121BA /* Genre+CoreDataClass.swift */,
+				FCF5AA1C2432E45E008121BA /* Genre+CoreDataProperties.swift */,
+				FCF5AA1D2432E45E008121BA /* Sheet+CoreDataClass.swift */,
+				FCF5AA1E2432E45E008121BA /* Sheet+CoreDataProperties.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		FC674DDE243B83EF00BD29E2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,10 +483,6 @@
 		FCF29D5E2413889F007E93D2 = {
 			isa = PBXGroup;
 			children = (
-				FCF5AA1B2432E45E008121BA /* Genre+CoreDataClass.swift */,
-				FCF5AA1C2432E45E008121BA /* Genre+CoreDataProperties.swift */,
-				FCF5AA1D2432E45E008121BA /* Sheet+CoreDataClass.swift */,
-				FCF5AA1E2432E45E008121BA /* Sheet+CoreDataProperties.swift */,
 				FCF29D692413889F007E93D2 /* MyBalanceSheet */,
 				FCF29D83241388A3007E93D2 /* MyBalanceSheetTests */,
 				FCF29D682413889F007E93D2 /* Products */,
@@ -226,18 +502,14 @@
 		FCF29D692413889F007E93D2 /* MyBalanceSheet */ = {
 			isa = PBXGroup;
 			children = (
-				FCF5A9912429DE58008121BA /* ViewModel */,
-				FCF29DB32414D39E007E93D2 /* Extension */,
-				FCF29D9824139085007E93D2 /* Model */,
-				FCF29D9224138EC8007E93D2 /* View */,
-				FCF29D8F241389CE007E93D2 /* Controller */,
+				FC4BCA4A2448263800D57C00 /* Infrastructure */,
+				FC4BCA49244823DE00D57C00 /* Feature */,
 				FCF29D6A2413889F007E93D2 /* AppDelegate.swift */,
 				FCF29D6C2413889F007E93D2 /* SceneDelegate.swift */,
 				FCF29D702413889F007E93D2 /* Main.storyboard */,
 				FCF29D76241388A3007E93D2 /* Assets.xcassets */,
 				FCF29D78241388A3007E93D2 /* LaunchScreen.storyboard */,
 				FCF29D7B241388A3007E93D2 /* Info.plist */,
-				FCF5AA2324330308008121BA /* Genre.plist */,
 			);
 			path = MyBalanceSheet;
 			sourceTree = "<group>";
@@ -249,29 +521,6 @@
 				FCF29D86241388A3007E93D2 /* Info.plist */,
 			);
 			path = MyBalanceSheetTests;
-			sourceTree = "<group>";
-		};
-		FCF29D8F241389CE007E93D2 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				FCF5A9CA242DDA60008121BA /* Navigation */,
-				FCF5A9A9242AFCCB008121BA /* HomePage */,
-				FCF29DF7241E78A3007E93D2 /* DetailPage */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		FCF29D9224138EC8007E93D2 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				FCF29D9324138ECF007E93D2 /* TableCell */,
-				FCF5A9DB24307488008121BA /* CollectionCell */,
-				FCF5A9B4242B59EC008121BA /* TableHeader */,
-				FC85D1172420E408008512DB /* IconCollection */,
-				FCF29DE0241CB6E6007E93D2 /* DatePicker */,
-				FCF29DAE2414B9B8007E93D2 /* DateSelector */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		FCF29D9324138ECF007E93D2 /* TableCell */ = {
@@ -341,61 +590,12 @@
 			path = DatePicker;
 			sourceTree = "<group>";
 		};
-		FCF29DF7241E78A3007E93D2 /* DetailPage */ = {
-			isa = PBXGroup;
-			children = (
-				FCF29DDE241CA18E007E93D2 /* CreateSheetTableViewController.swift */,
-				FCF29DE7241CBBB6007E93D2 /* ItemListTableViewController.swift */,
-				FCF29DF8241E7A12007E93D2 /* CreateAssetGenreTableViewController.swift */,
-				FCF5A9CB242DDDA1008121BA /* ThanksForTableViewController.swift */,
-				FCF5A9D3242DEFE4008121BA /* ThanksDetailViewController.swift */,
-				FCF5A9D7243072BD008121BA /* IconCollectionViewController.swift */,
-				FC674DE1243B856B00BD29E2 /* PrivacyTableViewController.swift */,
-			);
-			path = DetailPage;
-			sourceTree = "<group>";
-		};
-		FCF5A9912429DE58008121BA /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				FCF5A9AC242AFECC008121BA /* SummaryModelView.swift */,
-				FCF5A9922429DE79008121BA /* SheetListViewModel.swift */,
-				FCF5A99C242A146A008121BA /* SheetGenreListViewModel.swift */,
-				FCF5A9942429DEBD008121BA /* SheetManager.swift */,
-				FCF5A99E242A15FF008121BA /* GenreManager.swift */,
-				FCF5A9CF242DE34F008121BA /* ThanksModelView.swift */,
-				FCF5A9D1242DE504008121BA /* ThanksManager.swift */,
-				FC674DE7243C3E6C00BD29E2 /* Authentication.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		FCF5A9A9242AFCCB008121BA /* HomePage */ = {
-			isa = PBXGroup;
-			children = (
-				FCF5A9AA242AFE1E008121BA /* SummaryTableViewController.swift */,
-				FCF29DB624150E20007E93D2 /* AssetTableViewController.swift */,
-				FCF5A9A1242AED66008121BA /* LiabilityTableViewController.swift */,
-				FCF5A9C8242DD9DA008121BA /* PersonTableViewController.swift */,
-				FC674DE9243C424300BD29E2 /* LoginViewController.swift */,
-			);
-			path = HomePage;
-			sourceTree = "<group>";
-		};
 		FCF5A9B4242B59EC008121BA /* TableHeader */ = {
 			isa = PBXGroup;
 			children = (
 				FCF5A99A242A0EC2008121BA /* CellHeaderView.swift */,
 			);
 			path = TableHeader;
-			sourceTree = "<group>";
-		};
-		FCF5A9CA242DDA60008121BA /* Navigation */ = {
-			isa = PBXGroup;
-			children = (
-				FCF5A9C6242DD13B008121BA /* CustomTabBarViewController.swift */,
-			);
-			path = Navigation;
 			sourceTree = "<group>";
 		};
 		FCF5A9DB24307488008121BA /* CollectionCell */ = {
