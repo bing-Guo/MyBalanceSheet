@@ -8,7 +8,7 @@ class CreateItemTableViewController: UITableViewController {
     var newGenreType: GenreType?
     var newAccountName: String?
     var newIconString: String = "money-1"
-    let genreManager = GenreManager.shareInstance
+    private let viewModel: ItemViewModel = ItemViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -119,7 +119,7 @@ class CreateItemTableViewController: UITableViewController {
     func addAssetItem(genreType: GenreType, accountName: String) {
         guard let type = sheetType else { return }
         
-        genreManager.addGenre(accountName: accountName, genreType: genreType, icon: newIconString, sheetType: type)
+        viewModel.insert(accountName: accountName, genreType: genreType, icon: newIconString, sheetType: type)
     }
 }
 

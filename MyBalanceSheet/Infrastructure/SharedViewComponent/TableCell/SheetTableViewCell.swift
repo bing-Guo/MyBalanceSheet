@@ -14,7 +14,7 @@ class SheetTableViewCell: UITableViewCell {
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
-    @IBOutlet weak var rateStatueImageView: UIImageView!
+    @IBOutlet weak var rateStateImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,20 +34,20 @@ class SheetTableViewCell: UITableViewCell {
         selectionStyle = .none
     }
     
-    func setup(genre: String, amount: String, rate: String, rateStatue: RateStatue, reverse: Bool = false) {
+    func setup(genre: String, amount: String, rate: String, rateState: RateState, reverse: Bool = false) {
         self.genreLabel.text = genre
         self.totalLabel.text = amount
         self.statusLabel.text = rate
-        setRateStatue(rateStatue: rateStatue, reverse: reverse)
+        setRateState(rateState: rateState, reverse: reverse)
     }
     
-    func setRateStatue(rateStatue: RateStatue, reverse: Bool) {
+    func setRateState(rateState: RateState, reverse: Bool) {
         self.statusLabel.textColor = .black
-        rateStatueImageView.isHidden = false
+        rateStateImageView.isHidden = false
         
-        switch rateStatue {
+        switch rateState {
         case .up:
-            rateStatueImageView.image = UIImage(systemName: "arrowtriangle.up.fill")
+            rateStateImageView.image = UIImage(systemName: "arrowtriangle.up.fill")
             if reverse {
                 setDangerColor()
             } else {
@@ -55,7 +55,7 @@ class SheetTableViewCell: UITableViewCell {
             }
             break
         case .down:
-            rateStatueImageView.image = UIImage(systemName: "arrowtriangle.down.fill")
+            rateStateImageView.image = UIImage(systemName: "arrowtriangle.down.fill")
             if reverse {
                 setBetterColor()
             } else {
@@ -63,28 +63,28 @@ class SheetTableViewCell: UITableViewCell {
             }
             break
         case .flat:
-            rateStatueImageView.image = UIImage(systemName: "minus")
+            rateStateImageView.image = UIImage(systemName: "minus")
             setFlatColor()
             break
         case .none:
-            rateStatueImageView.isHidden = true
+            rateStateImageView.isHidden = true
             break
         }
     }
     
     func setBetterColor() {
         self.statusLabel.textColor = ._asset_background
-        rateStatueImageView.tintColor = ._asset_background
+        rateStateImageView.tintColor = ._asset_background
     }
  
     func setDangerColor() {
         self.statusLabel.textColor = ._liability_background
-        rateStatueImageView.tintColor = ._liability_background
+        rateStateImageView.tintColor = ._liability_background
     }
     
     func setFlatColor() {
         self.statusLabel.textColor = .black
-        rateStatueImageView.tintColor = .black
+        rateStateImageView.tintColor = .black
     }
     
     func setErrorStatus() {

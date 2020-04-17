@@ -4,10 +4,12 @@ class LiabilityTableViewController: UITableViewController {
     
     @IBOutlet weak var dateSelector: DateSelector!
     
-    var noDataView: UIView?
-    var sheetsData: [SheetListViewModel]?
-    var data = [GenreType: [SheetListViewModel]]()
-    let sheetManager = SheetManager.shareInstance
+    // MARK: - Private
+    
+    private var noDataView: UIView?
+    private let viewModel: SheetViewModel = SheetViewModel()
+    
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,16 +21,18 @@ class LiabilityTableViewController: UITableViewController {
         setNoDataView()
     }
     
+    // MARK: - View Setting
+    
     override func viewWillAppear(_ animated: Bool) {
-        let count = fetchData()
-        setNoData( (count == 0) )
+        let date = dateSelector.getDate()
+        viewModel.getSheetList(sheetType: .liability, year: Date.getYear(date), month: Date.getMonth(date))
+        setNoData( (viewModel.container.count == 0) )
         
         tableView.reloadData()
     }
     
     func setNavigation() {
         self.title = "負債"
-//        self.navigationItem.largeTitleDisplayMode = .always
         
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithOpaqueBackground()
@@ -57,27 +61,6 @@ class LiabilityTableViewController: UITableViewController {
         dateSelector.setRedMode()
     }
     
-    func fetchData() -> Int {
-        sheetsData = sheetManager.getLiabilityList()
-        let date = dateSelector.getDate()
-        let filter = filterData(year: Date.getYear(date), month: Date.getMonth(date))
-        sortData(filter)
-        
-        return filter.count
-    }
-    
-    func filterData(year: Int, month: Int) -> [SheetListViewModel] {
-        guard var filterSheetData = sheetsData else { return [] }
-        filterSheetData = filterSheetData.filter( {$0.year == year && $0.month == month } )
-        
-        return filterSheetData
-    }
-    
-    func sortData(_ filter: [SheetListViewModel]) {
-        data[.fixed] = filter.filter( {$0.genre.genreType == .fixed} )
-        data[.current] = filter.filter( {$0.genre.genreType == . current} )
-    }
-    
     func setNoDataView() {
         noDataView = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: self.tableView.frame.height))
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 350, height: 480))
@@ -99,7 +82,7 @@ class LiabilityTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let tableSection = GenreType(rawValue: section), let sheets = data[tableSection] {
+        if let tableSection = GenreType(rawValue: section), let sheets = viewModel.sortData[tableSection] {
             return sheets.count
         }
         
@@ -111,7 +94,7 @@ class LiabilityTableViewController: UITableViewController {
         let section = indexPath.section
         let row = indexPath.row
         
-        guard let tableSection = GenreType(rawValue: section), let sheetData = data[tableSection]  else { return UITableViewCell() }
+        guard let tableSection = GenreType(rawValue: section), let sheetData = viewModel.sortData[tableSection]  else { return UITableViewCell() }
 
         if sheetData.count > 0 {
             let sheet = sheetData[row]
@@ -126,7 +109,7 @@ class LiabilityTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let tableSection = GenreType(rawValue: indexPath.section), let sheetData = data[tableSection]?[indexPath.row]  else { return }
+        guard let tableSection = GenreType(rawValue: indexPath.section), let sheetData = viewModel.sortData[tableSection]?[indexPath.row]  else { return }
         
         let storyboard = UIStoryboard(name: "SheetManagement", bundle: nil)
         
@@ -140,7 +123,7 @@ class LiabilityTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        guard let tableSection = GenreType(rawValue: indexPath.section), let sheetData = data[tableSection]?[indexPath.row]  else { fatalError() }
+        guard let tableSection = GenreType(rawValue: indexPath.section), let sheetData = viewModel.sortData[tableSection]?[indexPath.row]  else { fatalError() }
         
         let shareAction = UIContextualAction(style: .normal, title: "") { (action, sourceView, completionHandler) in
             self.deleteSheet(sheetVM: sheetData)
@@ -165,7 +148,7 @@ class LiabilityTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        guard let tableSection = GenreType(rawValue: section), let sheets = data[tableSection] else { return "" }
+        guard let tableSection = GenreType(rawValue: section), let sheets = viewModel.sortData[tableSection] else { return "" }
         guard sheets.count > 0 else { return "" }
         
         switch tableSection {
@@ -192,10 +175,9 @@ class LiabilityTableViewController: UITableViewController {
         }
     }
     
-    func deleteSheet(sheetVM: SheetListViewModel) {
-        sheetManager.deleteSheet(id: sheetVM.id!)
-        let count = fetchData()
-        setNoData( (count == 0) )
+    func deleteSheet(sheetVM: SheetCellViewModel) {
+        viewModel.delete(id: sheetVM.id!)
+        setNoData( (viewModel.container.count == 0) )
         
         tableView.reloadData()
     }
@@ -203,16 +185,14 @@ class LiabilityTableViewController: UITableViewController {
 
 extension LiabilityTableViewController: DateSelectorDelegate {
     func prevMonth(year: Int, month: Int) {
-        let filter = filterData(year: year, month: month)
-        setNoData( (filter.count == 0) )
-        sortData(filter)
+        viewModel.getSheetList(sheetType: .liability, year: year, month: month)
+        setNoData( (viewModel.container.count == 0) )
         tableView.reloadData()
     }
     
     func nextMonth(year: Int, month: Int) {
-        let filter = filterData(year: year, month: month)
-        setNoData( (filter.count == 0) )
-        sortData(filter)
+        viewModel.getSheetList(sheetType: .liability, year: year, month: month)
+        setNoData( (viewModel.container.count == 0) )
         tableView.reloadData()
     }
 }

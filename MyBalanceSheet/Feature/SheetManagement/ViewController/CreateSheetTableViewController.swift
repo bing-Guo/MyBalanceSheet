@@ -4,19 +4,22 @@ class CreateSheetTableViewController: UITableViewController {
     
     var sheetType: SheetType?
     var editMode: Bool = false
-    var editData: SheetListViewModel?
+    var editData: SheetCellViewModel?
     var choseID: UUID?
-    var choseGenre: SheetGenreListViewModel?
+    var choseGenre: ItemCellViewModel?
     var choseAmount: Int?
     var choseYear: Int?
     var choseMonth: Int?
     var choseName: String?
-    let sheetManager = SheetManager.shareInstance
-    let genreManager = GenreManager.shareInstance
+    var sheetViewModel: SheetViewModel?
+    var itemViewModel: ItemViewModel?
    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        sheetViewModel = SheetViewModel()
+        itemViewModel = ItemViewModel()
+        
         setNavigation()
         setTableView()
         if(editMode) { setDefaultData() }
@@ -144,13 +147,11 @@ class CreateSheetTableViewController: UITableViewController {
         let year = choseYear ?? Date.getYear()
         let month = choseMonth ?? Date.getMonth()
         
-        if let genreVM = choseGenre, let name = choseName {
-            let genre = genreManager.getGenreByID(id: genreVM.id!)
-            
+        if let genre = choseGenre, let name = choseName {
             if editMode {
-                sheetManager.updateSheet(id: id, name: name, year: year, month: month, genre: genre, amount: amount)
+                sheetViewModel?.update(id: id, name: name, year: year, month: month, genre: genre, amount: amount)
             } else {
-                sheetManager.addSheet(name: name, year: year, month: month, genre: genre, amount: amount)
+                sheetViewModel?.insert(name: name, year: year, month: month, genre: genre, amount: amount)
             }
                         
             navigationController?.popViewController(animated: true)
@@ -182,7 +183,7 @@ class CreateSheetTableViewController: UITableViewController {
 }
 
 extension CreateSheetTableViewController: ChoseItemDelegate {
-    func choseItem(genre: SheetGenreListViewModel) {
+    func choseItem(genre: ItemCellViewModel) {
         self.choseGenre = genre
         
         let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! RightTextTableViewCell

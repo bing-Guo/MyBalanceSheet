@@ -1,7 +1,6 @@
 import Foundation
 
-class SheetGenreListViewModel {
-    
+class ItemCellViewModel {
     let id: UUID?
     let sheetType: SheetType
     let genreType: GenreType

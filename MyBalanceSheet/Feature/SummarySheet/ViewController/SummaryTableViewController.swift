@@ -4,10 +4,12 @@ class SummaryTableViewController: UITableViewController {
     
     @IBOutlet weak var dateSelector: DateSelector!
     
-    var noDataView: UIView?
-    var summaryData: [SummaryModelView]?
-    var data = [SummaryModelView]()
-    let sheetManager = SheetManager.shareInstance
+    // MARK: - Private
+    
+    private var noDataView: UIView?
+    private let viewModel: SummaryViewModel = SummaryViewModel()
+    
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,11 +21,12 @@ class SummaryTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        summaryData = sheetManager.getSummaryList()
         let date = dateSelector.getDate()
-        sortData(year: Date.getYear(date), month: Date.getMonth(date))
+        viewModel.getSummarySheet(year: Date.getYear(date), month: Date.getMonth(date))
         tableView.reloadData()
     }
+    
+    // MARK: - View Setting
     
     func setNavigation() {
         self.title = "總覽"
@@ -64,12 +67,6 @@ class SummaryTableViewController: UITableViewController {
         dateSelector.setYellowMode()
     }
     
-    func sortData(year: Int, month: Int) {
-        guard let filterData = summaryData else { return }
-        
-        data = filterData.filter( {$0.year == year && $0.month == month } )
-    }
-
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -77,9 +74,9 @@ class SummaryTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if data.count > 0 {
+        if viewModel.container.count > 0 {
             self.tableView.backgroundView?.isHidden = true
-            return data.count
+            return viewModel.container.count
         } else {
             self.tableView.backgroundView?.isHidden = false
             return 0
@@ -87,26 +84,22 @@ class SummaryTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let row = indexPath.row
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SheetTableViewCell", for: indexPath) as? SheetTableViewCell else { return UITableViewCell() }
+        guard let cellType = SummaryCellType(rawValue: indexPath.row), let summary = viewModel.container[cellType] else { return UITableViewCell()}
         
-        if data.count > 0 {
-            let summary = data[row]
-            switch data[row].type {
+        if viewModel.container.count > 0 {
+            switch cellType {
             case .networth:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "SheetTableViewCell", for: indexPath) as! SheetTableViewCell
-                cell.setup(genre: "淨值總計", amount: summary.amountString, rate: summary.rateString, rateStatue: summary.rateStatue)
+                cell.setup(genre: "淨值總計", amount: summary.amountString, rate: summary.rateString, rateState: summary.rateState)
                 return cell
             case .asset:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "SheetTableViewCell", for: indexPath) as! SheetTableViewCell
-                cell.setup(genre: "資產總計", amount: summary.amountString, rate: summary.rateString, rateStatue: summary.rateStatue)
+                cell.setup(genre: "資產總計", amount: summary.amountString, rate: summary.rateString, rateState: summary.rateState)
                 return cell
             case .liability:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "SheetTableViewCell", for: indexPath) as! SheetTableViewCell
-                cell.setup(genre: "負債總計", amount: summary.amountString, rate: summary.rateString, rateStatue: summary.rateStatue, reverse: true)
+                cell.setup(genre: "負債總計", amount: summary.amountString, rate: summary.rateString, rateState: summary.rateState, reverse: true)
                 return cell
             case .debtRatio:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "SheetTableViewCell", for: indexPath) as! SheetTableViewCell
-                cell.setup(genre: "負債比率", amount: summary.amountString, rate: summary.rateString, rateStatue: summary.rateStatue)
+                cell.setup(genre: "負債比率", amount: summary.amountString, rate: summary.rateString, rateState: summary.rateState)
                 return cell
             }
         }
@@ -146,12 +139,12 @@ class SummaryTableViewController: UITableViewController {
 
 extension SummaryTableViewController: DateSelectorDelegate {
     func prevMonth(year: Int, month: Int) {
-        sortData(year: year, month: month)
+        viewModel.getSummarySheet(year: year, month: month)
         tableView.reloadData()
     }
     
     func nextMonth(year: Int, month: Int) {
-        sortData(year: year, month: month)
+        viewModel.getSummarySheet(year: year, month: month)
         tableView.reloadData()
     }
 }
