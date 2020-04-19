@@ -6,10 +6,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Liability Table View Controller-->
+        <!--Sheet Table View Controller-->
         <scene sceneID="fln-P6-gED">
             <objects>
-                <tableViewController id="PZQ-Au-5ra" customClass="LiabilityTableViewController" customModule="MyBalanceSheet" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="PZQ-Au-5ra" customClass="SheetTableViewController" customModule="MyBalanceSheet" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="yCs-Gv-sOA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -47,7 +47,7 @@
         <!--負債-->
         <scene sceneID="sZp-bE-VXd">
             <objects>
-                <navigationController storyboardIdentifier="LiabilitySheetPage" automaticallyAdjustsScrollViewInsets="NO" id="Cp9-cy-adw" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="LiabilitySheetPage" automaticallyAdjustsScrollViewInsets="NO" id="Cp9-cy-adw" customClass="LiabilityNavigationController" customModule="MyBalanceSheet" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="負債" image="money" selectedImage="money.fill" id="vEy-nx-moL"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>

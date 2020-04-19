@@ -4,9 +4,30 @@ class CustomTabBarViewController: UITabBarController, UITabBarControllerDelegate
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.delegate = self
+
+        guard let viewControllers = viewControllers else { return }
+
+        for viewController in viewControllers {
+            if let sheetNVC = viewController as? AssetNavigationController {
+                if let sheetVC = sheetNVC.viewControllers.first as? SheetTableViewController {
+                    print("asset")
+                    sheetVC.sheetType = .asset
+                }
+            }
+            
+            if let sheetNVC = viewController as? LiabilityNavigationController {
+                if let sheetVC = sheetNVC.viewControllers.first as? SheetTableViewController {
+                    print("liability")
+                    sheetVC.sheetType = .liability
+                }
+            }
+        }
+
     }
+    
+
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         _ = tabBar.items?.firstIndex(of: item)

@@ -19,4 +19,12 @@ struct Summary {
         self.assetAmount = assetAmount
         self.liabilityAmount = liabilityAmount
     }
+    
+    init(sheets: [Sheet]) {
+        let assets = sheets.filter( {$0.genre?.sheetEnum == .asset } )
+        let liabilities = sheets.filter( {$0.genre?.sheetEnum == .liability } )
+        let totalAssets = assets.compactMap( {Int($0.amount)} ).reduce(0, +)
+        let totalLiabilities = liabilities.compactMap( {Int($0.amount)} ).reduce(0, +)
+        self.init(assetAmount: totalAssets, liabilityAmount: totalLiabilities)
+    }
 }

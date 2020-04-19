@@ -12,7 +12,7 @@ class ItemListTableViewController: UITableViewController {
     
     // MARK: - Private
     
-    var sheetType: SheetType = .asset
+    var sheetType: SheetType?
     private let viewModel: ItemViewModel  = ItemViewModel()
     
     // MARK: - Life Cycle
@@ -20,13 +20,15 @@ class ItemListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        viewModel.sheetType = sheetType!
+        
         setNavigation()
         setTableView()
         setBtn()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        viewModel.getGenreList(sheetType: sheetType)
+        viewModel.getGenreList()
         tableView.reloadData()
     }
     
@@ -34,16 +36,7 @@ class ItemListTableViewController: UITableViewController {
     
     func setNavigation() {
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        
-        switch sheetType {
-        case .asset:
-            self.title = "資產項目列表"
-            break
-        case .liability:
-            self.title = "負債項目列表"
-            break
-        }
-        
+        self.title = viewModel.title
     }
     
     func setTableView() {
@@ -57,7 +50,7 @@ class ItemListTableViewController: UITableViewController {
         btnContainer.backgroundColor = UIColor._app_background
         createAssetSheetItemBtn.layer.cornerRadius = 8
         
-        switch sheetType {
+        switch sheetType! {
         case .asset:
             createAssetSheetItemBtn.setTitle("新增資產項目", for: .normal)
             createAssetSheetItemBtn.setImage(btnImage, for: .normal)
@@ -72,7 +65,7 @@ class ItemListTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return viewModel.sectionCount
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -83,16 +76,12 @@ class ItemListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let section = indexPath.section
-        let row = indexPath.row
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ItemTableViewCell", for: indexPath) as? ItemTableViewCell,
+            let tableSection = GenreType(rawValue: indexPath.section),
+        let genre = viewModel.sortData[tableSection]?[indexPath.row] else { return UITableViewCell() }
         
-        if let tableSection = GenreType(rawValue: section), let genre = viewModel.sortData[tableSection]?[row] {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ItemTableViewCell", for: indexPath) as! ItemTableViewCell
-            cell.setup(itemLabelString: genre.accountName, iconString: genre.icon)
-            return cell
-        }
-        
-        return UITableViewCell()
+        cell.genre = genre
+        return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -108,15 +97,15 @@ class ItemListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard let tableSection = GenreType(rawValue: indexPath.section), let genre = viewModel.sortData[tableSection]?[indexPath.row]  else { fatalError() }
         
-        let shareAction = UIContextualAction(style: .normal, title: "") { (action, sourceView, completionHandler) in
+        let deleteAction = UIContextualAction(style: .normal, title: "") { (action, sourceView, completionHandler) in
             self.deleteGenre(genreVM: genre)
             completionHandler(true)
         }
         
-        shareAction.backgroundColor = ._app_background
-        shareAction.image = UIImage(named: "deleteBtn")
+        deleteAction.backgroundColor = ._app_background
+        deleteAction.image = UIImage(named: "deleteBtn")
 
-        let swipeConfiguration = UISwipeActionsConfiguration(actions: [shareAction])
+        let swipeConfiguration = UISwipeActionsConfiguration(actions: [deleteAction])
         swipeConfiguration.performsFirstActionWithFullSwipe = false
 
         return swipeConfiguration
@@ -127,13 +116,13 @@ class ItemListTableViewController: UITableViewController {
         
         if existed == false {
             viewModel.delete(id: genreVM.id!)
-            viewModel.getGenreList(sheetType: sheetType)
+            viewModel.getGenreList()
             self.tableView.reloadData()
         } else {
             let controller = UIAlertController(title: "注意", message: "該類別正在被使用中，若點選「確定」將會把該類別的紀錄都刪除，若是不想刪除，請選「取消」，先將過去紀錄更換類別在進行刪除", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "確定刪除", style: .default) { (_) in
                 self.viewModel.delete(id: genreVM.id!)
-                self.viewModel.getGenreList(sheetType: self.sheetType)
+                self.viewModel.getGenreList()
                 self.tableView.reloadData()
             }
             controller.addAction(okAction)
@@ -152,15 +141,9 @@ class ItemListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if let tableSection = GenreType(rawValue: section) {
-            switch tableSection {
-            case .current:
-                return (sheetType == .asset) ? "流動資產" : "流動負債"
-            case .fixed:
-                return (sheetType == .asset) ? "固定資產" : "長期負債"
-            }
-        }
-        return ""
+        guard let tableSection = GenreType(rawValue: section) else { return "" }
+            
+        return viewModel.sectionTitle[tableSection]
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

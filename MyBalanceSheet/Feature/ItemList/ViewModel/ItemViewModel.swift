@@ -4,12 +4,39 @@ import CoreData
 
 class ItemViewModel {
     private let coreDataConnection = CoreDataConnction<Genre>()
+    var sheetType: SheetType?
     var container: [ItemCellViewModel] = []
     var sortData: [GenreType: [ItemCellViewModel]] {
         var data = [GenreType: [ItemCellViewModel]]()
         data[.fixed] = self.container.filter({ $0.genreType == .fixed })
         data[.current] = self.container.filter({ $0.genreType == .current })
         return data
+    }
+    var title: String {
+        switch sheetType! {
+        case .asset:
+            return "資產項目列表"
+        case .liability:
+            return "負債項目列表"
+        }
+    }
+    var sectionCount: Int {
+        var i = 0
+        GenreType.allCases.forEach {
+            if self.sortData[$0]!.count > 0 {
+                i += 1
+            }
+        }
+        return i
+    }
+    var sectionTitle: [GenreType: String] {
+        guard let type = sheetType else { fatalError("Cannot find correct sheet type") }
+        switch type {
+        case .asset:
+            return [.fixed: "固定資產", .current: "流動資產"]
+        case .liability:
+            return [.fixed: "長期負債", .current: "流動負債"]
+        }
     }
     
     func getGenreByID(id: UUID) -> Genre? {
@@ -22,10 +49,10 @@ class ItemViewModel {
         }
     }
     
-    func getGenreList(sheetType: SheetType) {
+    func getGenreList() {
         do {
             let data = try self.coreDataConnection.retrieve()
-            let filter = data.filter( {$0.sheetEnum == sheetType} )
+            let filter = data.filter( {$0.sheetEnum == sheetType!} )
             
             self.container = filter.map( {ItemCellViewModel(genre: $0)} )
         } catch {
@@ -59,8 +86,9 @@ class ItemViewModel {
     }
     
     func checkGenreExistInSheet(genre: ItemCellViewModel) -> Bool{
-        let sheetViewModel = SheetViewModel()
-        let sheetData = sheetViewModel.getSheetByGenreID(genreID: genre.id!)
-        return ( sheetData.count > 0 )
+//        let sheetViewModel = SheetViewModel()
+//        let sheetData = sheetViewModel.getSheetByGenreID(genreID: genre.id!)
+//        return ( sheetData.count > 0 )
+        return true
     }
 }

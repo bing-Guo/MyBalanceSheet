@@ -74,14 +74,6 @@ class DateSelector: UIView {
         delegate?.nextMonth(year: Date.getYear(date), month: Date.getMonth(date))
     }
     
-    func triggerRightButtonClick() {
-        rightButton.sendActions(for: .touchUpInside)
-    }
-    
-    func triggerLeftButtonClick() {
-        leftButton.sendActions(for: .touchUpInside)
-    }
-    
     func setGreenMode() {
         let color: UIColor = UIColor._asset_background
         setSelectorBackgroundView(color)

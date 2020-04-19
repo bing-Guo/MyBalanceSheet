@@ -11,15 +11,12 @@ class CreateSheetTableViewController: UITableViewController {
     var choseYear: Int?
     var choseMonth: Int?
     var choseName: String?
-    var sheetViewModel: SheetViewModel?
-    var itemViewModel: ItemViewModel?
+    var sheetViewModel: SheetViewModel  = SheetViewModel()
+    var itemViewModel: ItemViewModel = ItemViewModel()
    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        sheetViewModel = SheetViewModel()
-        itemViewModel = ItemViewModel()
-        
         setNavigation()
         setTableView()
         if(editMode) { setDefaultData() }
@@ -149,9 +146,9 @@ class CreateSheetTableViewController: UITableViewController {
         
         if let genre = choseGenre, let name = choseName {
             if editMode {
-                sheetViewModel?.update(id: id, name: name, year: year, month: month, genre: genre, amount: amount)
+                sheetViewModel.update(id: id, name: name, year: year, month: month, genre: genre, amount: amount)
             } else {
-                sheetViewModel?.insert(name: name, year: year, month: month, genre: genre, amount: amount)
+                sheetViewModel.insert(name: name, year: year, month: month, genre: genre, amount: amount)
             }
                         
             navigationController?.popViewController(animated: true)

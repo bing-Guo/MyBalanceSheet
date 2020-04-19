@@ -6,10 +6,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Asset Table View Controller-->
+        <!--Sheet Table View Controller-->
         <scene sceneID="Egd-gR-ixf">
             <objects>
-                <tableViewController id="QRF-uq-eCX" customClass="AssetTableViewController" customModule="MyBalanceSheet" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="QRF-uq-eCX" customClass="SheetTableViewController" customModule="MyBalanceSheet" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Z1M-Mc-KZm">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -47,7 +47,7 @@
         <!--資產-->
         <scene sceneID="8zo-uL-KW5">
             <objects>
-                <navigationController storyboardIdentifier="AssetSheetPage" automaticallyAdjustsScrollViewInsets="NO" id="9mD-x1-5TW" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="AssetSheetPage" automaticallyAdjustsScrollViewInsets="NO" id="9mD-x1-5TW" customClass="AssetNavigationController" customModule="MyBalanceSheet" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="資產" image="dollarsign.circle" catalog="system" selectedImage="dollarsign.circle.fill" id="4yS-49-Nbh"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>

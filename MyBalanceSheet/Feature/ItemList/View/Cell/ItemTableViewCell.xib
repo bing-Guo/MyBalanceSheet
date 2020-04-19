@@ -19,12 +19,6 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hNd-qO-Wg5">
                         <rect key="frame" x="10" y="10" width="300" height="54"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zek-Z0-wvU">
-                                <rect key="frame" x="248" y="16.5" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ub-Tb-hGF">
                                 <rect key="frame" x="45" y="16.5" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -57,8 +51,6 @@
                         <constraints>
                             <constraint firstItem="kdQ-fp-Lul" firstAttribute="leading" secondItem="hNd-qO-Wg5" secondAttribute="leading" constant="10" id="SoA-ew-AJE"/>
                             <constraint firstItem="6ub-Tb-hGF" firstAttribute="centerY" secondItem="hNd-qO-Wg5" secondAttribute="centerY" id="T1L-ld-x3E"/>
-                            <constraint firstAttribute="trailing" secondItem="zek-Z0-wvU" secondAttribute="trailing" constant="10" id="Ulq-HN-c2n"/>
-                            <constraint firstItem="zek-Z0-wvU" firstAttribute="centerY" secondItem="hNd-qO-Wg5" secondAttribute="centerY" id="ggd-Du-T8K"/>
                             <constraint firstItem="6ub-Tb-hGF" firstAttribute="leading" secondItem="kdQ-fp-Lul" secondAttribute="trailing" constant="10" id="hRK-Xi-HTu"/>
                             <constraint firstItem="kdQ-fp-Lul" firstAttribute="centerY" secondItem="hNd-qO-Wg5" secondAttribute="centerY" id="tX8-tu-pAq"/>
                         </constraints>
@@ -75,7 +67,6 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="container" destination="hNd-qO-Wg5" id="Iqz-YS-XKh"/>
-                <outlet property="describeLabel" destination="zek-Z0-wvU" id="9SS-Z2-lOZ"/>
                 <outlet property="iconContainer" destination="kdQ-fp-Lul" id="K0l-wj-10e"/>
                 <outlet property="iconImage" destination="gO3-zF-lCd" id="wfN-LL-3WN"/>
                 <outlet property="itemLabel" destination="6ub-Tb-hGF" id="Xqe-nr-I8B"/>

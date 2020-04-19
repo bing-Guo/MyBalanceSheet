@@ -9,7 +9,7 @@
         <!--總覽-->
         <scene sceneID="bgN-WB-A0q">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4A6-60-njX" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4A6-60-njX" customClass="SummaryNavigationController" customModule="MyBalanceSheet" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="總覽" image="doc" catalog="system" selectedImage="doc.fill" id="TIl-bd-x8A"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>

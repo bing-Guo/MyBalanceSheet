@@ -8,7 +8,6 @@ class SummaryViewModel {
         print(self.container.count)
         return self.container.count == 0
     }
-    private var sheetViewModel: SheetViewModel = SheetViewModel()
     
     func getSummarySheet(year: Int, month: Int) {
         let previousSheet: [Sheet]
@@ -33,24 +32,20 @@ class SummaryViewModel {
     }
     
     func buildSummaryCell(currentSheet: [Sheet], previousSheet: [Sheet]) {
-        let currentSummary = buildSummary(sheets: currentSheet)
-        let previousSummery = buildSummary(sheets: previousSheet)
+        let currentSummary = Summary(sheets: currentSheet)
+        let previousSummery = Summary(sheets: previousSheet)
         
-        self.container[.asset] = SummaryCellViewModel(cellType: .asset, amount: currentSummary.assetAmount,
+        self.container[.asset] = SummaryCellViewModel(cellTypeName: "淨值總計",
+                                                      cellType: .asset, amount: currentSummary.assetAmount,
                                                       rate: caculateRate(current: currentSummary.assetAmount, previous: previousSummery.assetAmount))
-        self.container[.liability] = SummaryCellViewModel(cellType: .liability, amount: currentSummary.liabilityAmount,
+        self.container[.liability] = SummaryCellViewModel(cellTypeName: "資產總計",
+                                                          cellType: .liability, amount: currentSummary.liabilityAmount,
                                                           rate: caculateRate(current: currentSummary.liabilityAmount, previous: previousSummery.liabilityAmount))
-        self.container[.networth] = SummaryCellViewModel(cellType: .networth, amount: currentSummary.networth,
+        self.container[.networth] = SummaryCellViewModel(cellTypeName: "負債總計",
+                                                         cellType: .networth, amount: currentSummary.networth,
                                                          rate: caculateRate(current: currentSummary.networth, previous: previousSummery.networth))
-        self.container[.debtRatio] = SummaryCellViewModel(cellType: .debtRatio, amount: currentSummary.debtRatio, rate: nil)
-    }
-    
-    private func buildSummary(sheets: [Sheet]) -> Summary {
-        let assets = sheets.filter( {$0.genre?.sheetEnum == .asset } )
-        let liabilities = sheets.filter( {$0.genre?.sheetEnum == .liability } )
-        let totalAssets = assets.compactMap( {Int($0.amount)} ).reduce(0, +)
-        let totalLiabilities = liabilities.compactMap( {Int($0.amount)} ).reduce(0, +)
-        return Summary(assetAmount: totalAssets, liabilityAmount: totalLiabilities)
+        self.container[.debtRatio] = SummaryCellViewModel(cellTypeName: "負債比率",
+                                                          cellType: .debtRatio, amount: currentSummary.debtRatio, rate: nil)
     }
     
     private func caculateRate(current: Int, previous: Int) -> Int? {

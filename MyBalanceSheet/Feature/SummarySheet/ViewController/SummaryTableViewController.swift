@@ -59,7 +59,7 @@ class SummaryTableViewController: UITableViewController {
     
     func setTableView() {
         tableView.backgroundColor = UIColor._app_background
-        tableView.register(UINib(nibName: "SheetTableViewCell", bundle: nil), forCellReuseIdentifier: "SheetTableViewCell")
+        tableView.register(UINib(nibName: "SummaryTableViewCell", bundle: nil), forCellReuseIdentifier: "SummaryTableViewCell")
     }
     
     func setDateSelector() {
@@ -67,7 +67,7 @@ class SummaryTableViewController: UITableViewController {
         dateSelector.setYellowMode()
     }
     
-    // MARK: - Table view data source
+    // MARK: - Table View Data Source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -84,28 +84,15 @@ class SummaryTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SheetTableViewCell", for: indexPath) as? SheetTableViewCell else { return UITableViewCell() }
-        guard let cellType = SummaryCellType(rawValue: indexPath.row), let summary = viewModel.container[cellType] else { return UITableViewCell()}
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SummaryTableViewCell", for: indexPath) as? SummaryTableViewCell,
+            let cellType = SummaryCellType(rawValue: indexPath.row),
+            let summary = viewModel.container[cellType] else { return UITableViewCell() }
         
-        if viewModel.container.count > 0 {
-            switch cellType {
-            case .networth:
-                cell.setup(genre: "淨值總計", amount: summary.amountString, rate: summary.rateString, rateState: summary.rateState)
-                return cell
-            case .asset:
-                cell.setup(genre: "資產總計", amount: summary.amountString, rate: summary.rateString, rateState: summary.rateState)
-                return cell
-            case .liability:
-                cell.setup(genre: "負債總計", amount: summary.amountString, rate: summary.rateString, rateState: summary.rateState, reverse: true)
-                return cell
-            case .debtRatio:
-                cell.setup(genre: "負債比率", amount: summary.amountString, rate: summary.rateString, rateState: summary.rateState)
-                return cell
-            }
-        }
-        
-        return UITableViewCell()
+        cell.summary = summary
+        return cell
     }
+    
+    // MARK: - Table View Delegate
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
@@ -121,20 +108,6 @@ class SummaryTableViewController: UITableViewController {
         return 10
     }
     
-    // MARK: - Action
-    
-    @objc func swipe(_ recognizer:UISwipeGestureRecognizer) {
-        switch recognizer.direction {
-        case .left:
-           dateSelector.triggerRightButtonClick()
-           break
-        case .right:
-           dateSelector.triggerLeftButtonClick()
-           break
-        default:
-           break
-        }
-    }
 }
 
 extension SummaryTableViewController: DateSelectorDelegate {
