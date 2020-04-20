@@ -6,9 +6,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var optionallyStoreTheFirstLaunchFlag = false
     var userDefaults: UserDefaults!
+    var viewModel: ItemViewModel?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         userDefaults = UserDefaults.standard
+        viewModel = ItemViewModel()
         
         optionallyStoreTheFirstLaunchFlag = userDefaults.isFirstLaunch()
         if optionallyStoreTheFirstLaunchFlag {
@@ -53,7 +55,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func loadDefault() {
-        let manager = GenreManager.shareInstance
         let url = Bundle.main.url(forResource: "Genre", withExtension: "plist")!
                 
         let plistArray : NSArray = NSArray(contentsOf: url)!
@@ -63,7 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let genreType = GenreType(rawValue: itemDict["genreType"] as? Int ?? 0),
                 let icon = itemDict["icon"] as? String,
                 let sheetType = SheetType(rawValue: itemDict["sheetType"] as? Int ?? 0) {
-                manager.addGenre(accountName: accountName,
+                viewModel?.insert(accountName: accountName,
                                  genreType: genreType,
                                 icon: icon,
                                 sheetType: sheetType)
