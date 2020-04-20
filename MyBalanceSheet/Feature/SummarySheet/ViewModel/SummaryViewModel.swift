@@ -5,7 +5,6 @@ class SummaryViewModel {
     private let coreDataConnection = CoreDataConnction<Sheet>()
     var container = [SummaryCellType: SummaryCellViewModel]()
     var isEmpty: Bool {
-        print(self.container.count)
         return self.container.count == 0
     }
     

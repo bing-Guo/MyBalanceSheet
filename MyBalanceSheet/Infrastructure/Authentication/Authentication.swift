@@ -41,7 +41,6 @@ class Authentication {
                 
             } else {
                 completion(.success)
-                print("Successfully authenticated")
             }
         })
     }
@@ -76,7 +75,6 @@ class Authentication {
                 
             } else {
                 completion(.success)
-                print("Successfully authenticated")
             }
         })
     }

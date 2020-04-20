@@ -30,8 +30,6 @@ extension UserDefaults {
         let isFaceIDOn = !UserDefaults.standard.bool(forKey: flag)
         UserDefaults.standard.set(isFaceIDOn, forKey: flag)
         UserDefaults.standard.synchronize()
-        
-        print("now, \(self.isFaceIDOn())")
     }
     
     private func checkFaceIDExist() {

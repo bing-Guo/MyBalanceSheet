@@ -27,7 +27,6 @@ class SheetTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         let date = dateSelector.getDate()
         viewModel.getSheetList(year: Date.getYear(date), month: Date.getMonth(date))
-        print(viewModel.container)
         tableView.reloadData()
     }
     
@@ -80,7 +79,7 @@ class SheetTableViewController: UITableViewController {
     // MARK: - Table View Data Source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel.sectionCount
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -149,12 +148,17 @@ class SheetTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        guard let tableSection = GenreType(rawValue: section), let sheets = viewModel.sortData[tableSection] else { return 0 }
-        guard sheets.count > 0 else { return 0 }
+        guard let tableSection = GenreType(rawValue: section),
+            let sheets = viewModel.sortData[tableSection],
+            sheets.count > 0 else { return 0 }
         return 40
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let tableSection = GenreType(rawValue: section),
+            let sheets = viewModel.sortData[tableSection],
+            sheets.count > 0 else { return CellHeaderView(frame: .zero) }
+        
         let headerView = CellHeaderView(frame: CGRect(x: 10, y: 20, width: tableView.frame.size.width, height: 20))
         headerView.titleLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
         return headerView
@@ -166,7 +170,11 @@ class SheetTableViewController: UITableViewController {
         guard let type = sheetType else { return }
         let storyboard = UIStoryboard(name: "SheetManagement", bundle: nil)
         if let vc = storyboard.instantiateViewController(withIdentifier: "SheetManagement") as? CreateSheetTableViewController {
+            let date = dateSelector.getDate()
+            
             vc.sheetType = type
+            vc.choseYear = Date.getYear(date)
+            vc.choseMonth = Date.getMonth(date)
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

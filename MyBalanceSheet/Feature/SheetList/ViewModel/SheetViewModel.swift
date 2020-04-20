@@ -13,15 +13,6 @@ class SheetViewModel {
         
         return data
     }
-    var sectionCount: Int {
-        var i = 0
-        GenreType.allCases.forEach {
-            if self.sortData[$0]!.count > 0 {
-                i += 1
-            }
-        }
-        return i
-    }
     var color: UIColor {
         guard let type = sheetType else { fatalError("Cannot find correct sheet type") }
         switch type {

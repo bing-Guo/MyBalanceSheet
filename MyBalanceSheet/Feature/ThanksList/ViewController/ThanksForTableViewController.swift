@@ -76,7 +76,7 @@ class ThanksForTableViewController: UITableViewController {
         let row = indexPath.row
         
         if let tableSection = ThanksType(rawValue: section), let thanks = data[tableSection]?[row] {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let storyboard = UIStoryboard(name: "Personal", bundle: nil)
             if let vc = storyboard.instantiateViewController(withIdentifier: "thanksDetailPage") as? ThanksDetailViewController {
                 vc.thankVM = thanks
                 self.navigationController?.pushViewController(vc, animated: true)

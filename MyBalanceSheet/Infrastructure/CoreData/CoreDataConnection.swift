@@ -8,12 +8,27 @@ enum CoreDataError: Error {
 
 class CoreDataConnction<T: NSManagedObject> {
     
+    let persistentContainer: NSPersistentContainer!
+    
+    init(container: NSPersistentContainer) {
+        self.persistentContainer = container
+        self.persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
+    }
+        
+    convenience init() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            fatalError("Can not get shared app delegate")
+        }
+        self.init(container: appDelegate.persistentContainer)
+    }
+    
     private var entityName: String {
         return String(describing: T.self)
     }
     private var context : NSManagedObjectContext {
-        return (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        return self.persistentContainer.viewContext
     }
+
     private var entity: NSEntityDescription {
         return NSEntityDescription.entity(forEntityName: entityName, in: context)!
     }

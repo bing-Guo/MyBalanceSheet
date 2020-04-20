@@ -12,14 +12,12 @@ class CustomTabBarViewController: UITabBarController, UITabBarControllerDelegate
         for viewController in viewControllers {
             if let sheetNVC = viewController as? AssetNavigationController {
                 if let sheetVC = sheetNVC.viewControllers.first as? SheetTableViewController {
-                    print("asset")
                     sheetVC.sheetType = .asset
                 }
             }
             
             if let sheetNVC = viewController as? LiabilityNavigationController {
                 if let sheetVC = sheetNVC.viewControllers.first as? SheetTableViewController {
-                    print("liability")
                     sheetVC.sheetType = .liability
                 }
             }

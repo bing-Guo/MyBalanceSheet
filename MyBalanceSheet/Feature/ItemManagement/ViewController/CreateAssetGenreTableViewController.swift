@@ -91,7 +91,7 @@ class CreateItemTableViewController: UITableViewController {
         
         switch indexPath.row {
         case 2:
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let storyboard = UIStoryboard(name: "ItemManagement", bundle: nil)
             if let vc = storyboard.instantiateViewController(withIdentifier: "choseIconPage") as? IconCollectionViewController {
                 vc.delegate = self
                 vc.chosenIcon = newIconString

@@ -11,6 +11,7 @@ class CreateSheetTableViewController: UITableViewController {
     var choseYear: Int?
     var choseMonth: Int?
     var choseName: String?
+    var defautlDate: Date?
     var sheetViewModel: SheetViewModel  = SheetViewModel()
     var itemViewModel: ItemViewModel = ItemViewModel()
    
@@ -96,7 +97,7 @@ class CreateSheetTableViewController: UITableViewController {
                 cell.leftTextLabel.text = "日期"
                 cell.delegate = self
                 
-                if let year = editData?.year, let month = editData?.month {
+                if let year = choseYear, let month = choseMonth {
                     cell.setup(year: year, month: month)
                 }
                 

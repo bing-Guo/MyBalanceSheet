@@ -61,7 +61,7 @@ class PersonTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "Personal", bundle: nil)
         
         switch indexPath.row {
         case 0:

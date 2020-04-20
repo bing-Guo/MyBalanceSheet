@@ -20,15 +20,6 @@ class ItemViewModel {
             return "負債項目列表"
         }
     }
-    var sectionCount: Int {
-        var i = 0
-        GenreType.allCases.forEach {
-            if self.sortData[$0]!.count > 0 {
-                i += 1
-            }
-        }
-        return i
-    }
     var sectionTitle: [GenreType: String] {
         guard let type = sheetType else { fatalError("Cannot find correct sheet type") }
         switch type {
@@ -86,9 +77,8 @@ class ItemViewModel {
     }
     
     func checkGenreExistInSheet(genre: ItemCellViewModel) -> Bool{
-//        let sheetViewModel = SheetViewModel()
-//        let sheetData = sheetViewModel.getSheetByGenreID(genreID: genre.id!)
-//        return ( sheetData.count > 0 )
-        return true
+        let sheetViewModel = SheetViewModel()
+        let sheetData = sheetViewModel.getSheetByGenreID(genreID: genre.id!)
+        return ( sheetData.count > 0 )
     }
 }
